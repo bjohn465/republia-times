@@ -1,0 +1,20 @@
+{
+	"name": "republia-times",
+	"version": "0.0.1",
+	"description": "A port of the flash game Republia Times to the web.",
+	"author": "Brandon Johnson <bjohn465+gihub@gmail.com>",
+	"private": true,
+	"scripts": {
+		"build": "set NODE_ENV=production& webpack --progress --colors",
+		"watch": "webpack -d --progress --colors --watch"
+	},
+	"devDependencies": {
+		"babel-loader": "4.2.0",
+		"webpack": "1.7.3",
+		"envify-loader": "0.1.0"
+	},
+	"dependencies": {
+		"immutable": "3.6.4",
+		"react": "0.13.1"
+	}
+}
