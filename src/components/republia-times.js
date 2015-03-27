@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	renderMorningScreen() {
 		return <MorningScreen
 			day={this.state.day}
-			onContinue={this.changeToScreen.bind( null, "play" )} />;
+			onContinue={() => this.changeToScreen( "play" )} />;
 	},
 
 	renderPlayScreen() {
