@@ -1,9 +1,11 @@
-var React = require( "react" );
+var React = require( "react/addons" );
 var MorningScreen = require( "./morning-screen" );
 var PlayScreen = require( "./play-screen" );
 
 module.exports = React.createClass({
 	displayName: "RepubliaTimes",
+
+	mixins: [ React.addons.PureRenderMixin ],
 
 	getInitialState() {
 		return {

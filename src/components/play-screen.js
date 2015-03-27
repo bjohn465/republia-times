@@ -1,7 +1,9 @@
-var React = require( "react" );
+var React = require( "react/addons" );
 
 module.exports = React.createClass({
 	displayName: "PlayScreen",
+
+	mixins: [ React.addons.PureRenderMixin ],
 
 	propTypes: {
 		day: React.PropTypes.number.isRequired

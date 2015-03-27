@@ -1,10 +1,12 @@
-var React = require( "react" );
+var React = require( "react/addons" );
 var MorningScreenHeader = require( "./morning-screen-header" );
 var MorningScreenFooter = require( "./morning-screen-footer" );
 var PropTypes = React.PropTypes;
 
 module.exports = React.createClass({
 	displayName: "MorningScreen",
+
+	mixins: [ React.addons.PureRenderMixin ],
 
 	propTypes: {
 		day: PropTypes.number.isRequired,
