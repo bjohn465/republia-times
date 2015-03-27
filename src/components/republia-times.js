@@ -1,4 +1,5 @@
 var React = require( "react" );
+var MorningScreen = require( "./morning-screen" );
 
 module.exports = React.createClass({
 	displayName: "RepubliaTimes",
@@ -10,8 +11,6 @@ module.exports = React.createClass({
 	},
 
 	render() {
-		return (
-			<h1>The Republia Times</h1>
-		);
+		return <MorningScreen day={this.state.day} />;
 	}
 });
