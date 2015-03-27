@@ -1,6 +1,7 @@
 var React = require( "react" );
+var RepubliaTimes = require( "./components/republia-times" );
 
 React.render(
-	<h1>Hello world</h1>,
+	<RepubliaTimes />,
 	document.body
 );
