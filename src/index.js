@@ -3,5 +3,5 @@ var RepubliaTimes = require( "./components/republia-times" );
 
 React.render(
 	<RepubliaTimes />,
-	document.body
+	document.getElementById( "content" )
 );
