@@ -15,7 +15,10 @@ module.exports = React.createClass({
 			<div>
 				<h2>Day {this.props.day}</h2>
 				<Clock />
-				<p>TODO: Play Screen</p>
+				<div>6 AM - 6 PM</div>
+				<button type="button">End Day</button>
+
+				<p>TODO: Finish Play Screen</p>
 			</div>
 		);
 	}
