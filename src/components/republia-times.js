@@ -10,7 +10,9 @@ module.exports = React.createClass({
 	getInitialState() {
 		return {
 			day: 1,
-			screen: "morning"
+			screen: "morning",
+			readers: 200,
+			loyalty: 0
 		};
 	},
 
@@ -27,7 +29,10 @@ module.exports = React.createClass({
 	},
 
 	renderPlayScreen() {
-		return <PlayScreen day={this.state.day} />;
+		return <PlayScreen
+			day={this.state.day}
+			readers={this.state.readers}
+			loyalty={this.state.loyalty} />;
 	},
 
 	render() {
