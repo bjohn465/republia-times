@@ -9,12 +9,12 @@
 		"watch": "webpack -d --progress --colors --watch"
 	},
 	"devDependencies": {
-		"babel-loader": "4.2.0",
+		"babel-loader": "5.0.0",
 		"webpack": "1.7.3",
 		"envify-loader": "0.1.0"
 	},
 	"dependencies": {
-		"immutable": "3.6.4",
+		"immutable": "3.7.1",
 		"react": "0.13.1"
 	}
 }
