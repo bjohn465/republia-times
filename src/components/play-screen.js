@@ -27,7 +27,8 @@ module.exports = React.createClass({
 
 	getInitialState() {
 		return {
-			time: 0
+			time: 0,
+			speed: this.props.day === 1 ? 0.5 : 1
 		};
 	},
 
@@ -52,7 +53,8 @@ module.exports = React.createClass({
 		if ( this.prevTimestamp === null ) {
 			this.prevTimestamp = timestamp;
 		}
-		elapsedSeconds = ( timestamp - this.prevTimestamp ) / 1000;
+		elapsedSeconds =
+			this.state.speed * ( ( timestamp - this.prevTimestamp ) / 1000 );
 		this.prevTimestamp = timestamp;
 
 		this.setState(
@@ -63,13 +65,21 @@ module.exports = React.createClass({
 		);
 	},
 
+	handleEndDayClick() {
+		this.setState({
+			speed: 10
+		});
+	},
+
 	render() {
 		return (
 			<div>
 				<h1>Day {this.props.day}</h1>
 				<Clock time={elapsedTimeToClockTime( this.state.time )} />
 				<div>6 AM - 6 PM</div>
-				<button type="button">End Day</button>
+				<button type="button" onClick={this.handleEndDayClick}>
+					End Day
+				</button>
 
 				<h2>Readers</h2>
 				<div>{this.props.readers}</div>
