@@ -1,7 +1,7 @@
-var React = require( "react/addons" );
-var MorningScreenHeader = require( "./morning-screen-header" );
-var MorningScreenFooter = require( "./morning-screen-footer" );
-var PropTypes = React.PropTypes;
+const React = require( "react/addons" );
+const MorningScreenHeader = require( "./morning-screen-header" );
+const MorningScreenFooter = require( "./morning-screen-footer" );
+const PropTypes = React.PropTypes;
 
 module.exports = React.createClass({
 	displayName: "MorningScreen",

@@ -1,4 +1,4 @@
-var React = require( "react/addons" );
+const React = require( "react/addons" );
 
 module.exports = React.createClass({
 	displayName: "MorningScreenHeader",

@@ -1,13 +1,10 @@
-var React = require( "react/addons" );
-var Clock = require( "./clock" );
-var elapsedTimeToClockTime = require( "../util/elapsedTimeToClockTime" );
-var PropTypes = React.PropTypes;
-
+const React = require( "react/addons" );
+const Clock = require( "./clock" );
+const PropTypes = React.PropTypes;
 const dayLength = 60;
 const workingHours = 12;
 const startingHour = 6;
-
-elapsedTimeToClockTime = elapsedTimeToClockTime.bind(
+const elapsedTimeToClockTime = require( "../util/elapsedTimeToClockTime" ).bind(
 	null,
 	startingHour,
 	workingHours,
@@ -48,12 +45,10 @@ module.exports = React.createClass({
 	},
 
 	updateTime( timestamp ) {
-		var elapsedSeconds;
-
 		if ( this.prevTimestamp === null ) {
 			this.prevTimestamp = timestamp;
 		}
-		elapsedSeconds =
+		const elapsedSeconds =
 			this.state.speed * ( ( timestamp - this.prevTimestamp ) / 1000 );
 		this.prevTimestamp = timestamp;
 

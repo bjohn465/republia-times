@@ -1,5 +1,5 @@
-var React = require( "react" );
-var RepubliaTimes = require( "./components/republia-times" );
+const React = require( "react" );
+const RepubliaTimes = require( "./components/republia-times" );
 
 React.render(
 	<RepubliaTimes />,

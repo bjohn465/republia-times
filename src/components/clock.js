@@ -1,11 +1,11 @@
-var React = require( "react/addons" );
-var PropTypes = React.PropTypes;
+const React = require( "react/addons" );
+const PropTypes = React.PropTypes;
 
-var leadingZero = function( num ) {
+const leadingZero = function( num ) {
 	return ( num < 10 ? "0" : "" ) + num;
 };
 
-var formatTime = function( timeObj ) {
+const formatTime = function( timeObj ) {
 	return leadingZero( timeObj.hours ) + ":" +
 		leadingZero( timeObj.minutes ) + ":" +
 		leadingZero( timeObj.seconds );

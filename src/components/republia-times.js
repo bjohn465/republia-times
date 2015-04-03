@@ -1,6 +1,6 @@
-var React = require( "react/addons" );
-var MorningScreen = require( "./morning-screen" );
-var PlayScreen = require( "./play-screen" );
+const React = require( "react/addons" );
+const MorningScreen = require( "./morning-screen" );
+const PlayScreen = require( "./play-screen" );
 
 module.exports = React.createClass({
 	displayName: "RepubliaTimes",
@@ -36,8 +36,8 @@ module.exports = React.createClass({
 	},
 
 	render() {
-		var screen = this.state.screen;
-		var screenRenderFunction = {
+		const screen = this.state.screen;
+		const screenRenderFunction = {
 			morning: this.renderMorningScreen,
 			play: this.renderPlayScreen
 		}[ screen ];
