@@ -1,4 +1,4 @@
-module.exports = function elapsedTimeToClockTime(
+function elapsedTimeToClockTime(
 			startingHour,
 			workingHours,
 			dayLength,
@@ -18,3 +18,5 @@ module.exports = function elapsedTimeToClockTime(
 		seconds: wholeSeconds
 	};
 };
+
+module.exports = elapsedTimeToClockTime;

@@ -2,9 +2,7 @@ const React = require( "react/addons" );
 const MorningScreen = require( "./morning-screen" );
 const PlayScreen = require( "./play-screen" );
 
-module.exports = React.createClass({
-	displayName: "RepubliaTimes",
-
+const RepubliaTimes = React.createClass({
 	mixins: [ React.addons.PureRenderMixin ],
 
 	getInitialState() {
@@ -49,3 +47,5 @@ module.exports = React.createClass({
 		return screenRenderFunction();
 	}
 });
+
+module.exports = RepubliaTimes;

@@ -1,8 +1,6 @@
 const React = require( "react/addons" );
 
-module.exports = React.createClass({
-	displayName: "MorningScreenFooter",
-
+const MorningScreenFooter = React.createClass({
 	mixins: [ React.addons.PureRenderMixin ],
 
 	render() {
@@ -20,3 +18,5 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+module.exports = MorningScreenFooter;

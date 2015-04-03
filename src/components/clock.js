@@ -1,19 +1,17 @@
 const React = require( "react/addons" );
 const PropTypes = React.PropTypes;
 
-const leadingZero = function( num ) {
+function leadingZero( num ) {
 	return ( num < 10 ? "0" : "" ) + num;
 };
 
-const formatTime = function( timeObj ) {
+function formatTime( timeObj ) {
 	return leadingZero( timeObj.hours ) + ":" +
 		leadingZero( timeObj.minutes ) + ":" +
 		leadingZero( timeObj.seconds );
 };
 
-module.exports = React.createClass({
-	displayName: "Clock",
-
+const Clock = React.createClass({
 	mixins: [ React.addons.PureRenderMixin ],
 
 	propTypes: {
@@ -30,3 +28,5 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+module.exports = Clock;

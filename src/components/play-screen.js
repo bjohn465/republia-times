@@ -11,9 +11,7 @@ const elapsedTimeToClockTime = require( "../util/elapsedTimeToClockTime" ).bind(
 	dayLength
 );
 
-module.exports = React.createClass({
-	displayName: "PlayScreen",
-
+const PlayScreen = React.createClass({
 	mixins: [ React.addons.PureRenderMixin ],
 
 	propTypes: {
@@ -95,3 +93,5 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+module.exports = PlayScreen;

@@ -3,7 +3,7 @@ const MorningScreenHeader = require( "./morning-screen-header" );
 const MorningScreenFooter = require( "./morning-screen-footer" );
 const PropTypes = React.PropTypes;
 
-module.exports = React.createClass({
+const MorningScreen = React.createClass({
 	displayName: "MorningScreen",
 
 	mixins: [ React.addons.PureRenderMixin ],
@@ -31,3 +31,5 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+module.exports = MorningScreen;
