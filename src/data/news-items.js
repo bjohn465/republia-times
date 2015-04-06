@@ -1,4 +1,5 @@
 const Immutable = require( "immutable" );
+const shuffle = require( "lodash/collection/shuffle" );
 const LOYALTY_UP = 1;
 const LOYALTY_NONE = 0;
 const LOYALTY_DOWN = -1;
@@ -136,4 +137,11 @@ const allStories = Immutable.Set().concat(
 	politicalStories
 );
 
-module.exports = allStories;
+function getShuffledStories( stories = allStories ) {
+	return Immutable.OrderedSet( shuffle( stories.toArray() ) );
+}
+
+module.exports = {
+	allStories,
+	getShuffledStories
+};

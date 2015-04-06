@@ -32,7 +32,7 @@ const PlayScreen = React.createClass({
 		return {
 			time: 0,
 			speed: this.props.day === 1 ? 0.5 : 1,
-			stories: newsItems.take( 10 ).toOrderedSet()
+			stories: newsItems.getShuffledStories().take( 10 )
 		};
 	},
 
