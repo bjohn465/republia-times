@@ -10,6 +10,14 @@ const elapsedTimeToClockTime = require( "../util/elapsedTimeToClockTime" ).bind(
 	workingHours,
 	dayLength
 );
+const newsItems = require( "../data/news-items" );
+
+function renderNewsFeedItem( item ) {
+	var blurb = item.get( "blurb" );
+	return (
+		<li key={blurb}>{blurb}</li>
+	);
+}
 
 const PlayScreen = React.createClass({
 	mixins: [ React.addons.PureRenderMixin ],
@@ -23,7 +31,8 @@ const PlayScreen = React.createClass({
 	getInitialState() {
 		return {
 			time: 0,
-			speed: this.props.day === 1 ? 0.5 : 1
+			speed: this.props.day === 1 ? 0.5 : 1,
+			stories: newsItems.take( 10 ).toOrderedSet()
 		};
 	},
 
@@ -82,8 +91,7 @@ const PlayScreen = React.createClass({
 
 				<h2>News Feed</h2>
 				<ul>
-					<li>Story 1</li>
-					<li>Story 2</li>
+					{this.state.stories.map( renderNewsFeedItem )}
 				</ul>
 
 				<div>Drag Articles to Paper</div>
