@@ -9,13 +9,13 @@
 		"watch": "webpack -d --progress --colors --watch"
 	},
 	"devDependencies": {
-		"babel-loader": "5.0.0",
-		"webpack": "1.7.3",
+		"babel-loader": "5.3.2",
+		"webpack": "1.11.0",
 		"envify-loader": "0.1.0"
 	},
 	"dependencies": {
-		"immutable": "3.7.1",
-		"react": "0.13.1",
-		"lodash": "3.6.0"
+		"immutable": "3.7.4",
+		"react": "0.13.3",
+		"lodash": "3.10.1"
 	}
 }
