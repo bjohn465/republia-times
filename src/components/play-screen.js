@@ -1,5 +1,7 @@
 const React = require( "react/addons" );
 const Clock = require( "./clock" );
+const Modal = require( "./modal" );
+
 const PropTypes = React.PropTypes;
 const dayLength = 60;
 const workingHours = 12;
@@ -73,6 +75,24 @@ const PlayScreen = React.createClass({
 		});
 	},
 
+	renderModal() {
+		if ( this.state.time !== dayLength ) {
+			return null;
+		}
+
+		return (
+			<Modal>
+				<div>
+					The day is over. There is no more time.
+					We must send to print immediately.
+				</div>
+				<div>
+					<button type="button">Send to Print</button>
+				</div>
+			</Modal>
+		);
+	},
+
 	render() {
 		return (
 			<div>
@@ -97,6 +117,8 @@ const PlayScreen = React.createClass({
 				<div>Drag Articles to Paper</div>
 
 				<h2>The Republia Times</h2>
+
+				{this.renderModal()}
 			</div>
 		);
 	}
