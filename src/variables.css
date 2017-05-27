@@ -1,0 +1,12 @@
+:root {
+  /* colors */
+  --dark-grey: #24292e;
+  --white: #fff;
+
+  /* color by function */
+  --color-text-default: var(--dark-grey);
+  --color-background: var(--white);
+
+  /* fonts */
+  --font-family: sans-serif;
+}

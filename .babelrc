@@ -1,0 +1,53 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [ "env", {
+          "loose": true,
+          "modules": false,
+          "target": {
+            "browsers": "last 2 versions, not ie < 11, not ie_mob < 11"
+          }
+        } ],
+        "react"
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties",
+        "transform-react-jsx-source"
+      ]
+    },
+    "production": {
+      "presets": [
+        [ "env", {
+          "loose": true,
+          "modules": false,
+          "target": {
+            "browsers": "last 2 versions, not ie < 11, not ie_mob < 11"
+          }
+        } ],
+        "react"
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties"
+      ]
+    },
+    "test": {
+      "presets": [
+        [ "env", {
+          "exclude": [ "transform-regenerator" ],
+          "loose": true,
+          "modules": "commonjs",
+          "target": { "node": "current" }
+        } ],
+        "react"
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties",
+        "transform-react-jsx-source"
+      ]
+    }
+  }
+}

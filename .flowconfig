@@ -1,0 +1,10 @@
+[ignore]
+.*/build/.*
+.*/coverage/.*
+.*/__tests__/.*
+.*/node_modules/stylelint/.*
+.*/postcss.config.js
+.*/webpack.config.js
+[libs]
+[options]
+module.name_mapper='^\(.*\)\.css$' -> './flow-typed/css-module.js'

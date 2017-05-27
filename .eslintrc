@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:flowtype/recommended",
+    "plugin:jest/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "immutable",
+    "jest"
+  ],
+  "rules": {
+    "immutable/no-mutation": "error",
+    "flowtype/require-valid-file-annotation": [
+      "error",
+      "always", {
+        "annotationStyle": "line"
+      }
+    ],
+    "jest/no-disabled-tests": "error"
+  }
+}

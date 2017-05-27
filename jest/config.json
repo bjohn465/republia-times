@@ -1,0 +1,32 @@
+{
+  "browser": true,
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.js",
+    "!**/__tests__/**"
+  ],
+  "coverageDirectory": "./coverage",
+  "coverageReporters": [
+    "html",
+    "text-summary"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "rootDir": "../",
+  "testURL": "http://localhost:8000/",
+  "transform": {
+    "\\.js$": "babel-jest",
+    "\\.(png|gif|jpe?g|svg)$": "<rootDir>/jest/url-loader-transformer.js"
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/"
+  ]
+}
