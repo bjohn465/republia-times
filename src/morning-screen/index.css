@@ -1,0 +1,45 @@
+@import "../variables";
+
+.root {
+  margin: auto;
+  max-width: 65rem;
+}
+
+.header {
+  text-align: center;
+}
+
+.paperName {
+  font-family: EnglishTowne-Webfont, serif;
+  font-size: 4rem;
+  font-weight: normal;
+}
+
+.day {
+  font-size: var(--font-size-normal);
+}
+
+.message {
+  font-size: var(--font-size-normal);
+  margin: auto;
+  text-align: justify;
+  width: 66%;
+}
+
+.actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.button {
+  min-width: 20%;
+}
+
+.footer {
+  font-size: var(--font-size-normal);
+  text-align: right;
+}
+
+.by {
+  margin-top: 0.5em;
+}

@@ -75,6 +75,7 @@
   "webpack-dev-server": "^2.2.0"
  },
  "dependencies": {
+  "classnames": "^2.2.5",
   "react": "^15.5.0",
   "react-dom": "^15.5.0"
  }

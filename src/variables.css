@@ -8,5 +8,6 @@
   --color-background: var(--white);
 
   /* fonts */
-  --font-family: sans-serif;
+  --font-family: "VT323", "VT323-Webfont", monospace;
+  --font-size-normal: 1.5rem;
 }
