@@ -18,7 +18,7 @@ describe('main module', () => {
   })
 
   it('adds a div with a class to the body', () => {
-    expect(document.querySelector('body > div.root')).not.toBeNull()
+    expect(document.querySelector('body > div.appContainer')).not.toBeNull()
   })
 
   it('renders the app', () => {

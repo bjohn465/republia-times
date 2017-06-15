@@ -8,7 +8,7 @@ import RepubliaTimes from './republia-times'
 outputRevision()
 
 const root = document.createElement('div')
-root.classList.add(styles.root)
+root.classList.add(styles.appContainer)
 document.body && document.body.appendChild(root)
 
 render(<RepubliaTimes />, root)

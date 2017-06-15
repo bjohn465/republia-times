@@ -19,9 +19,9 @@ describe('button', () => {
     expect(tree.find('button').prop('type')).toBe('submit')
   })
 
-  it('adds root class', () => {
+  it('adds button class', () => {
     const tree = shallow(<Button />)
-    expect(tree.find('button').prop('className').split(' ')).toContain('root')
+    expect(tree.find('button').prop('className').split(' ')).toContain('button')
   })
 
   it('includes given classes', () => {

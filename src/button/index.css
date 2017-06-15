@@ -1,6 +1,6 @@
 @import "../variables";
 
-.root {
+.button {
   all: initial;
   border: 0.25rem solid;
   border-radius: 0.375rem;

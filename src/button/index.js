@@ -13,7 +13,7 @@ export default class Button extends PureComponent {
     const { children, className, ...props } = this.props
     const classes = classnames(
       className,
-      styles.root
+      styles.button
     )
 
     return (
