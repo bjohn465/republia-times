@@ -43,8 +43,5 @@
 .footer {
   font-size: var(--font-size-normal);
   text-align: right;
-}
-
-.by {
   margin-top: 0.5em;
 }

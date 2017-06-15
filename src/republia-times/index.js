@@ -3,13 +3,9 @@ import React, { PureComponent } from 'react'
 import MorningScreen from '../morning-screen'
 
 export default class RepubliaTimes extends PureComponent {
-  state: {
-    day: number,
-    loyalty: number,
-    readers: number,
-    screen: typeof MorningScreen
-  } = {
+  state: GameState = {
     day: 1,
+    governmentName: 'Republia',
     loyalty: 0,
     readers: 200,
     screen: MorningScreen

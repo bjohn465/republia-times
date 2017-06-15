@@ -5,7 +5,8 @@ import MorningScreen from '../index'
 
 describe('morning screen', () => {
   const defaults = {
-    day: 1
+    day: 1,
+    governmentName: 'Republia'
   }
 
   it('renders the paper name', () => {
@@ -26,7 +27,7 @@ describe('morning screen', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
     const message = tree.find('.message')
     expect(message.exists()).toBe(true)
-    expect(message.text()).toBe('TODO: Message')
+    expect(message.text().length).not.toBe(0)
   })
 
   it('has a "Start Work" button', () => {
@@ -38,14 +39,14 @@ describe('morning screen', () => {
 
   it('has by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLine = tree.find('.by').first()
+    const byLine = tree.find('.footer > div').first()
     expect(byLine.exists()).toBe(true)
-    expect(byLine.text()).toBe('byLucas Pope@dukope')
+    expect(byLine.text()).toBe('by Lucas Pope @dukope')
   })
 
   it('has link in by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLineLink = tree.find('.by').first().find('a')
+    const byLineLink = tree.find('.footer > div').first().find('a')
     expect(byLineLink.exists()).toBe(true)
     expect(byLineLink.text()).toBe('@dukope')
     expect(byLineLink.prop('href')).toBe('https://twitter.com/dukope')
@@ -53,14 +54,14 @@ describe('morning screen', () => {
 
   it('has ported by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLine = tree.find('.by').last()
+    const byLine = tree.find('.footer > div').last()
     expect(byLine.exists()).toBe(true)
-    expect(byLine.text()).toBe('ported byBrandon Johnson@bjohn465')
+    expect(byLine.text()).toBe('ported by Brandon Johnson @bjohn465')
   })
 
   it('has link in ported by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLineLink = tree.find('.by').last().find('a')
+    const byLineLink = tree.find('.footer > div').last().find('a')
     expect(byLineLink.exists()).toBe(true)
     expect(byLineLink.text()).toBe('@bjohn465')
     expect(byLineLink.prop('href')).toBe('https://twitter.com/bjohn465')
