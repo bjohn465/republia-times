@@ -12,7 +12,7 @@ export default class MorningScreen extends PureComponent {
     const { day } = this.props
 
     return (
-      <div className={styles.root}>
+      <div className={styles.morningScreen}>
         <div className={styles.header}>
           <h1 className={styles.paperName}>The Republia Times</h1>
           <h2 className={styles.day}>Day {day}</h2>

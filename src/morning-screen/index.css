@@ -1,11 +1,16 @@
 @import "../variables";
 
-.root {
+.morningScreen {
   margin: auto;
   max-width: 65rem;
 }
 
 .header {
+  background-image: url("./header-left.png"), url("./header-right.png");
+  background-position: top left, top right;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  image-rendering: pixelated;
   text-align: center;
 }
 
