@@ -9,6 +9,11 @@
   font-family: var(--font-family);
   padding: 0.125rem;
   text-align: center;
+
+  &:focus {
+    outline: 0.125rem dashed var(--dark-grey);
+    outline-offset: 0.125rem;
+  }
 }
 
 .inner {

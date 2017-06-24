@@ -7,7 +7,7 @@
 }
 
 .focused {
-  outline: 0.125rem dotted var(--dark-grey);
+  outline: 0.125rem dashed var(--dark-grey);
   outline-offset: 0.125rem;
 }
 

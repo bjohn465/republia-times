@@ -34,12 +34,16 @@ export default class MorningScreen extends PureComponent {
           <AudioControls isOn={isSoundOn} onChange={onSoundOnChange} />
           <div className={styles.byLines}>
             <div>
-              by Lucas Pope <a href='https://twitter.com/dukope'>@dukope</a>
+              {'by Lucas Pope '}
+              <a className={styles.link} href='https://twitter.com/dukope'>
+                @dukope
+              </a>
             </div>
             <div>
-              ported by Brandon Johnson <a
-                href='https://twitter.com/bjohn465'
-              >@bjohn465</a>
+              {'ported by Brandon Johnson '}
+              <a className={styles.link} href='https://twitter.com/bjohn465'>
+                @bjohn465
+              </a>
             </div>
           </div>
         </div>
