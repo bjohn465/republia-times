@@ -21,9 +21,9 @@ export default class MorningScreen extends PureComponent {
           <h1 className={styles.paperName}>{paperName}</h1>
           <h2 className={styles.day}>Day {day}</h2>
         </div>
-        <p className={styles.message}>
+        <div className={styles.message}>
           {message.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-        </p>
+        </div>
         <div className={styles.actions}>
           <Button className={styles.button}>Start Work</Button>
         </div>
