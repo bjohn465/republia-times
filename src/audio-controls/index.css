@@ -1,0 +1,18 @@
+@import "../variables";
+
+.audioControls {
+  cursor: pointer;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.focused {
+  outline: 0.125rem dotted var(--dark-grey);
+  outline-offset: 0.125rem;
+}
+
+.controlImage {
+  height: 100%;
+  image-rendering: pixelated;
+  width: 100%;
+}

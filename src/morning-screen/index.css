@@ -41,7 +41,13 @@
 }
 
 .footer {
+  align-items: center;
+  display: flex;
   font-size: var(--font-size-normal);
-  text-align: right;
+  justify-content: space-between;
   margin-top: 0.5em;
+}
+
+.byLines {
+  text-align: right;
 }

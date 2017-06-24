@@ -39,14 +39,14 @@ describe('morning screen', () => {
 
   it('has by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLine = tree.find('.footer > div').first()
+    const byLine = tree.find('.byLines > div').first()
     expect(byLine.exists()).toBe(true)
     expect(byLine.text()).toBe('by Lucas Pope @dukope')
   })
 
   it('has link in by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLineLink = tree.find('.footer > div').first().find('a')
+    const byLineLink = tree.find('.byLines > div').first().find('a')
     expect(byLineLink.exists()).toBe(true)
     expect(byLineLink.text()).toBe('@dukope')
     expect(byLineLink.prop('href')).toBe('https://twitter.com/dukope')
@@ -54,14 +54,14 @@ describe('morning screen', () => {
 
   it('has ported by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLine = tree.find('.footer > div').last()
+    const byLine = tree.find('.byLines > div').last()
     expect(byLine.exists()).toBe(true)
     expect(byLine.text()).toBe('ported by Brandon Johnson @bjohn465')
   })
 
   it('has link in ported by line', () => {
     const tree = shallow(<MorningScreen {...defaults} />)
-    const byLineLink = tree.find('.footer > div').last().find('a')
+    const byLineLink = tree.find('.byLines > div').last().find('a')
     expect(byLineLink.exists()).toBe(true)
     expect(byLineLink.text()).toBe('@bjohn465')
     expect(byLineLink.prop('href')).toBe('https://twitter.com/bjohn465')

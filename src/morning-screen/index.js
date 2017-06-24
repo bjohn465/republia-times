@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react'
+import AudioControls from '../audio-controls'
 import Button from '../button'
 import getMessage from './get-message'
 import styles from './index.css'
@@ -7,11 +8,13 @@ import styles from './index.css'
 export default class MorningScreen extends PureComponent {
   props: {
     day: Day,
-    governmentName: GovernmentName
+    governmentName: GovernmentName,
+    isSoundOn: boolean,
+    onSoundOnChange: (isSoundOn: boolean) => any
   }
 
   render () {
-    const { day, governmentName } = this.props
+    const { day, governmentName, isSoundOn, onSoundOnChange } = this.props
     const paperName = `The ${governmentName} Times`
     const message = getMessage({ governmentName })
 
@@ -28,13 +31,16 @@ export default class MorningScreen extends PureComponent {
           <Button className={styles.button}>Start Work</Button>
         </div>
         <div className={styles.footer}>
-          <div>
-            by Lucas Pope <a href='https://twitter.com/dukope'>@dukope</a>
-          </div>
-          <div>
-            ported by Brandon Johnson <a
-              href='https://twitter.com/bjohn465'
-            >@bjohn465</a>
+          <AudioControls isOn={isSoundOn} onChange={onSoundOnChange} />
+          <div className={styles.byLines}>
+            <div>
+              by Lucas Pope <a href='https://twitter.com/dukope'>@dukope</a>
+            </div>
+            <div>
+              ported by Brandon Johnson <a
+                href='https://twitter.com/bjohn465'
+              >@bjohn465</a>
+            </div>
           </div>
         </div>
       </div>
