@@ -11,6 +11,7 @@
         "global"
       ]
     } ],
-    "string-quotes": "double"
+    "string-quotes": "double",
+    "unit-blacklist": [["px"]]
   }
 }
