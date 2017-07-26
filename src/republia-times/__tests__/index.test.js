@@ -12,10 +12,10 @@ describe('app', () => {
 
   it('handles soundOn change', () => {
     const tree = shallow(<RepubliaTimes />)
-    expect(tree.state('isSoundOn')).toBe(false)
-    tree.simulate('soundOnChange', true)
     expect(tree.state('isSoundOn')).toBe(true)
     tree.simulate('soundOnChange', false)
     expect(tree.state('isSoundOn')).toBe(false)
+    tree.simulate('soundOnChange', true)
+    expect(tree.state('isSoundOn')).toBe(true)
   })
 })

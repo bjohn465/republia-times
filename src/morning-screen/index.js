@@ -1,8 +1,10 @@
 // @flow
 import React, { PureComponent } from 'react'
 import AudioControls from '../audio-controls'
+import BackgroundMusic from '../background-music'
 import Button from '../button'
 import getMessage from './get-message'
+import mainMusic from './main-music.mp3'
 import styles from './index.css'
 
 export default class MorningScreen extends PureComponent {
@@ -32,6 +34,7 @@ export default class MorningScreen extends PureComponent {
         </div>
         <div className={styles.footer}>
           <AudioControls isOn={isSoundOn} onChange={onSoundOnChange} />
+          <BackgroundMusic isOn={isSoundOn} src={mainMusic} />
           <div className={styles.byLines}>
             <div>
               {'by Lucas Pope '}

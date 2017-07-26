@@ -8,3 +8,8 @@
 [libs]
 [options]
 module.name_mapper='^\(.*\)\.css$' -> './flow-typed/css-module.js'
+# Ugh, this isn't right for mp3 "imports",
+# but I fought with "Required module not found" errors long enough,
+# and this prevents the error,
+# so I'm sticking with it for now.
+module.name_mapper='^\(.*\)\.mp3$' -> 'flow-bin'

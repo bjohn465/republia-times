@@ -24,7 +24,7 @@
   "testURL": "http://localhost:8000/",
   "transform": {
     "\\.js$": "babel-jest",
-    "\\.(png|gif|jpe?g|svg)$": "<rootDir>/jest/url-loader-transformer.js"
+    "\\.(png|gif|jpe?g|svg|mp3)$": "<rootDir>/jest/url-loader-transformer.js"
   },
   "transformIgnorePatterns": [
     "/node_modules/"

@@ -6,7 +6,7 @@ export default class RepubliaTimes extends PureComponent {
   state: GameState = {
     day: 1,
     governmentName: 'Republia',
-    isSoundOn: false,
+    isSoundOn: true,
     loyalty: 0,
     readers: 200,
     screen: MorningScreen

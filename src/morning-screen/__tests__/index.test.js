@@ -66,4 +66,47 @@ describe('morning screen', () => {
     expect(byLineLink.text()).toBe('@bjohn465')
     expect(byLineLink.prop('href')).toBe('https://twitter.com/bjohn465')
   })
+
+  describe('audio control', () => {
+    it('exists', () => {
+      const tree = shallow(<MorningScreen {...defaults} />)
+      expect(tree.find('AudioControls').exists()).toBe(true)
+    })
+
+    it('is passed isSoundOn', () => {
+      const tree = shallow(<MorningScreen {...defaults} isSoundOn />)
+      expect(tree.find('AudioControls').prop('isOn')).toBe(true)
+      tree.setProps({ isSoundOn: false })
+      expect(tree.find('AudioControls').prop('isOn')).toBe(false)
+    })
+
+    it('uses onSoundOnChange for changes', () => {
+      const onSoundOnChange = jest.fn()
+      const tree = shallow(
+        <MorningScreen {...defaults} onSoundOnChange={onSoundOnChange} />
+      )
+      tree.find('AudioControls').simulate('change')
+      expect(onSoundOnChange).toHaveBeenCalled()
+    })
+  })
+
+  describe('background music', () => {
+    it('exists', () => {
+      const tree = shallow(<MorningScreen {...defaults} />)
+      expect(tree.find('BackgroundMusic').exists()).toBe(true)
+    })
+
+    it('is passed isSoundOn', () => {
+      const tree = shallow(<MorningScreen {...defaults} isSoundOn />)
+      expect(tree.find('BackgroundMusic').prop('isOn')).toBe(true)
+      tree.setProps({ isSoundOn: false })
+      expect(tree.find('BackgroundMusic').prop('isOn')).toBe(false)
+    })
+
+    it('uses correct source', () => {
+      const tree = shallow(<MorningScreen {...defaults} />)
+      expect(tree.find('BackgroundMusic').prop('src'))
+        .toMatch(/\/main-music\.mp3$/)
+    })
+  })
 })

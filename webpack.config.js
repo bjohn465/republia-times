@@ -73,7 +73,7 @@ module.exports = function getWebpackConfig () {
           loader: 'url-loader?limit=10000'
         },
         {
-          test: /\.(svg|eot|otf|ttf|woff2?)$/,
+          test: /\.(svg|mp3|eot|otf|ttf|woff2?)$/,
           loader: 'file-loader'
         }
       ]
