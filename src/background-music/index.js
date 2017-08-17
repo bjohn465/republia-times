@@ -7,9 +7,7 @@ type Props = {|
   volume: number
 |}
 
-export default class BackgroundMusic extends PureComponent {
-  props: Props
-
+export default class BackgroundMusic extends PureComponent<Props> {
   static defaultProps = {
     volume: 0.5
   }

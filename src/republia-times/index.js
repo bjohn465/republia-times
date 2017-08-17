@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import MorningScreen from '../morning-screen'
 
-export default class RepubliaTimes extends PureComponent {
+export default class RepubliaTimes extends PureComponent<{}, GameState> {
   state: GameState = {
     day: 1,
     governmentName: 'Republia',

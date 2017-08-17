@@ -23,6 +23,7 @@
         "annotationStyle": "line"
       }
     ],
-    "jest/no-disabled-tests": "error"
+    "jest/no-disabled-tests": "error",
+    "react/prop-types": "off"
   }
 }

@@ -6,15 +6,13 @@ import soundOn from './sound-on.png'
 import soundOff from './sound-off.png'
 import styles from './index.css'
 
-export default class AudioControls extends PureComponent {
-  props: {|
-    isOn: boolean,
-    onChange: (isOn: boolean) => any
-  |}
-
-  state: {|
-    hasFocus: boolean
-  |} = {
+export default class AudioControls extends PureComponent<{|
+  isOn: boolean,
+  onChange: (isOn: boolean) => any
+|}, {|
+  hasFocus: boolean
+|}> {
+  state = {
     hasFocus: false
   }
 
@@ -24,7 +22,7 @@ export default class AudioControls extends PureComponent {
     }))
   }
 
-  handleChange = (event: SyntheticInputEvent) => {
+  handleChange = (event: SyntheticInputEvent<>) => {
     this.props.onChange(event.target.checked)
   }
 

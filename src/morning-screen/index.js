@@ -7,14 +7,12 @@ import getMessage from './get-message'
 import mainMusic from './main-music.mp3'
 import styles from './index.css'
 
-export default class MorningScreen extends PureComponent {
-  props: {
-    day: Day,
-    governmentName: GovernmentName,
-    isSoundOn: boolean,
-    onSoundOnChange: (isSoundOn: boolean) => any
-  }
-
+export default class MorningScreen extends PureComponent<{
+  day: Day,
+  governmentName: GovernmentName,
+  isSoundOn: boolean,
+  onSoundOnChange: (isSoundOn: boolean) => any
+}> {
   render () {
     const { day, governmentName, isSoundOn, onSoundOnChange } = this.props
     const paperName = `The ${governmentName} Times`

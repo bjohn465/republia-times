@@ -5,7 +5,8 @@
 .*/node_modules/stylelint/.*
 .*/postcss.config.js
 .*/webpack.config.js
-[libs]
+[lints]
+all=error
 [options]
 module.name_mapper='^\(.*\)\.css$' -> './flow-typed/css-module.js'
 # Ugh, this isn't right for mp3 "imports",

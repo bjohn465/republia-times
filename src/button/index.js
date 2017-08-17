@@ -1,14 +1,12 @@
 // @flow
-import React, { PureComponent } from 'react'
+import React, { PureComponent, type Node as ReactNode } from 'react'
 import classnames from 'classnames'
 import styles from './index.css'
 
-export default class Button extends PureComponent {
-  props: {
-    children?: React.Element<*>,
-    className?: string
-  }
-
+export default class Button extends PureComponent<{
+  children?: ReactNode,
+  className?: string
+}> {
   render () {
     const { children, className, ...props } = this.props
     const classes = classnames(

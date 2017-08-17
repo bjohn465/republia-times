@@ -1,12 +1,10 @@
 // @flow
-import React, { PureComponent } from 'react'
+import React, { PureComponent, type Node as ReactNode } from 'react'
 import styles from './index.css'
 
-export default class ScreenReaderContent extends PureComponent {
-  props: {
-    children?: React.Element<*>,
-  }
-
+export default class ScreenReaderContent extends PureComponent<{
+  children?: ReactNode,
+}> {
   render () {
     return (
       <span className={styles.screenReaderContent}>{this.props.children}</span>
