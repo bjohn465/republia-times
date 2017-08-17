@@ -1,7 +1,7 @@
 // @flow
 export default function getMessage ({
   governmentName
-  }: {
+}: {
   governmentName: GovernmentName
 }): string[] {
   const targetLoyalty = 20
