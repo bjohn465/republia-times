@@ -11,8 +11,9 @@
   text-align: center;
 
   &:focus {
-    outline: 0.125rem dashed var(--dark-grey);
-    outline-offset: 0.125rem;
+    background: var(--color-text-default);
+    border-color: var(--color-text-default);
+    color: var(--color-background);
   }
 }
 
