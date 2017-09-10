@@ -11,8 +11,7 @@
   outline-offset: 0.125rem;
 }
 
-.controlImage {
+.controlIcon {
   height: 100%;
-  image-rendering: pixelated;
   width: 100%;
 }

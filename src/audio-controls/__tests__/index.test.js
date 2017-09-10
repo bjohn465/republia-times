@@ -27,11 +27,6 @@ describe('audio controls', () => {
       .toBe('Toggle sound on (checked) and off (unchecked)')
   })
 
-  it('should include aria-hidden on the image', () => {
-    const tree = shallow(<AudioControls {...defaults} />)
-    expect(tree.find('img').prop('aria-hidden')).toBe(true)
-  })
-
   it('adds class when focused', () => {
     const tree = shallow(<AudioControls {...defaults} />)
     expect(tree.find('label').prop('className')).not.toContain('focused')
@@ -67,9 +62,9 @@ describe('audio controls', () => {
       expect(onChange).toHaveBeenCalledWith(false)
     })
 
-    it('should use the sound on image', () => {
+    it('should use the speaker with sound icon', () => {
       const tree = shallow(<AudioControls {...onDefaults} />)
-      expect(tree.find('img').prop('src')).toContain('sound-on.png')
+      expect(tree.find('SpeakerWithSoundIcon').exists()).toBe(true)
     })
   })
 
@@ -93,9 +88,9 @@ describe('audio controls', () => {
       expect(onChange).toHaveBeenCalledWith(true)
     })
 
-    it('should use the sound off image', () => {
+    it('should use the speaker icon', () => {
       const tree = shallow(<AudioControls {...offDefaults} />)
-      expect(tree.find('img').prop('src')).toContain('sound-off.png')
+      expect(tree.find('SpeakerIcon').exists()).toBe(true)
     })
   })
 })
