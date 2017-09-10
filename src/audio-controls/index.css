@@ -7,8 +7,9 @@
 }
 
 .focused {
-  outline: 0.125rem dashed var(--dark-grey);
-  outline-offset: 0.125rem;
+  background: var(--color-text-default);
+  color: var(--color-background);
+  outline: 0.125rem solid var(--color-text-default);
 }
 
 .controlIcon {

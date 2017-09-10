@@ -56,6 +56,8 @@
   color: var(--color-text-default);
 
   &:focus {
-    outline: 0.125rem dashed var(--dark-grey);
+    background: var(--color-text-default);
+    color: var(--color-background);
+    outline: 0.125rem solid var(--color-text-default);
   }
 }
