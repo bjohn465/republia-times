@@ -21,6 +21,9 @@
     "\\.css$": "identity-obj-proxy"
   },
   "rootDir": "../",
+  "setupFiles": [
+    "<rootDir>/jest/setup.js"
+  ],
   "testURL": "http://localhost:8000/",
   "transform": {
     "\\.js$": "babel-jest",
