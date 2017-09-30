@@ -19,7 +19,7 @@
  ],
  "scripts": {
   "build": "rm -rf build && cross-env NODE_ENV=production webpack",
-  "eslint": "eslint .",
+  "eslint": "eslint --report-unused-disable-directives .",
   "flow": "flow check",
   "jest": "jest --config jest/config.json",
   "pretest": "eslint . && flow check && stylelint \"src/**/*.css\"",
