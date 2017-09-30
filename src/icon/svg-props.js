@@ -8,7 +8,7 @@ export type Props = {
 
 const svgProps = ({className, ...props}: Props = {}) => ({
   'aria-hidden': true,
-  focusable: false,
+  focusable: 'false',
   role: 'img',
   ...props,
   className: classnames(styles.icon, className)

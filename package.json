@@ -40,7 +40,7 @@
   "css-loader": "^0.28.7",
   "dotenv": "^4.0.0",
   "enzyme": "^3.0.0",
-  "enzyme-adapter-react-15": "^1.0.0",
+  "enzyme-adapter-react-16": "^1.0.0",
   "eslint": "^4.8.0",
   "eslint-config-standard": "^10.0.0",
   "eslint-config-standard-react": "^5.0.0",
@@ -65,7 +65,8 @@
   "postcss-loader": "^2.0.5",
   "postcss-reporter": "^5.0.0",
   "postcss-url": "^7.1.2",
-  "react-test-renderer": "^15.5.4",
+  "raf": "^3.3.2",
+  "react-test-renderer": "^16.0.0",
   "style-loader": "^0.18.1",
   "stylelint": "^8.1.1",
   "stylelint-config-standard": "^17.0.0",
@@ -75,7 +76,7 @@
  },
  "dependencies": {
   "classnames": "^2.2.5",
-  "react": "^15.5.0",
-  "react-dom": "^15.5.0"
+  "react": "^16.0.0",
+  "react-dom": "^16.0.0"
  }
 }

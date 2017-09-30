@@ -24,7 +24,7 @@ for (const Icon of icons) {
 
     it('is not focusable', () => {
       const tree = shallow(<Icon />)
-      expect(tree.find('svg').prop('focusable')).toBe(false)
+      expect(tree.find('svg').prop('focusable')).toBe('false')
     })
 
     it('is aria-hidden', () => {

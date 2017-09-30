@@ -7,7 +7,7 @@ describe('svgIconProps', () => {
   })
 
   it('makes svg non focusable in IE', () => {
-    expect(svgIconProps().focusable).toBe(false)
+    expect(svgIconProps().focusable).toBe('false')
   })
 
   it('sets the role to img', () => {
