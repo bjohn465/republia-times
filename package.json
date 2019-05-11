@@ -1,21 +1,33 @@
 {
-	"name": "republia-times",
-	"version": "0.0.1",
-	"description": "A port of the flash game Republia Times to the web.",
-	"author": "Brandon Johnson <bjohn465+gihub@gmail.com>",
-	"private": true,
-	"scripts": {
-		"build": "set NODE_ENV=production& webpack --progress --colors",
-		"watch": "webpack -d --progress --colors --watch"
-	},
-	"devDependencies": {
-		"babel-loader": "5.3.2",
-		"webpack": "1.11.0",
-		"envify-loader": "0.1.0"
-	},
-	"dependencies": {
-		"immutable": "3.7.4",
-		"react": "0.13.3",
-		"lodash": "3.10.1"
-	}
+  "name": "republia-times",
+  "version": "0.1.0",
+  "description": "A port of the flash game Republia Times to the web.",
+  "author": "Brandon Johnson <bjohn465+github@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
