@@ -1,3 +1,7 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+// We're not going to use this for now,
+// so don't worry about type checking it yet.
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
