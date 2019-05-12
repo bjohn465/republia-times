@@ -5,6 +5,7 @@
   "author": "Brandon Johnson <bjohn465+github@gmail.com>",
   "private": true,
   "dependencies": {
+    "flow-bin": "^0.98.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -13,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"
