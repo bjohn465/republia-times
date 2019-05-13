@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A port of the flash game Republia Times to the web.",
   "author": "Brandon Johnson <bjohn465+github@gmail.com>",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "flow-bin": "^0.98.1",
