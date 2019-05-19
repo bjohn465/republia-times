@@ -1,7 +1,6 @@
-// @flow strict
+// @flow strict-local
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import RepubliaTimes from './RepubliaTimes'
 // import * as serviceWorker from './serviceWorker'
 
