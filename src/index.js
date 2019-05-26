@@ -1,8 +1,18 @@
 // @flow strict-local
 import React from 'react'
 import ReactDOM from 'react-dom'
+import t from 'format-message'
+import underscored_crc32 from 'format-message-generate-id/underscored_crc32'
+import locales from './locales'
 import RepubliaTimes from './RepubliaTimes'
 // import * as serviceWorker from './serviceWorker'
+
+t.setup({
+  generateId: underscored_crc32,
+  locale: 'en',
+  missingTranslation: 'ignore',
+  translations: locales,
+})
 
 const rootElement = document.createElement('div')
 document.body && document.body.appendChild(rootElement)

@@ -1,5 +1,10 @@
 {
-  "extends": ["react-app", "plugin:prettier/recommended"],
+  "extends": [
+    "react-app",
+    "plugin:format-message/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["format-message"],
   "rules": {
     "flowtype/require-valid-file-annotation": [
       "error",
@@ -7,6 +12,13 @@
       {
         "annotationStyle": "line"
       }
-    ]
+    ],
+    "format-message/no-missing-translation": "warn"
+  },
+  "settings": {
+    "format-message": {
+      "sourceLocale": "en",
+      "translations": "./src/locales"
+    }
   }
 }

@@ -9,6 +9,8 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "flow-bin": "^0.98.1",
+    "format-message": "^6.2.1",
+    "format-message-generate-id": "^6.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -20,7 +22,8 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "prettier": "prettier",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "extract": "format-message extract -g underscored_crc32 -o src/locales/en.json 'src/**/!(*.test)*.js'"
   },
   "browserslist": {
     "production": [
@@ -35,9 +38,12 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-flowtype": "^3.9.1",
+    "eslint-plugin-format-message": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.0",
+    "format-message-cli": "^6.2.1",
     "prettier": "1.17.1"
   }
 }
