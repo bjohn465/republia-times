@@ -1,8 +1,35 @@
 {
+  "as_a_precaution_against_influence_we_are_keeping_y_f5469760": {
+    "message": "As a precaution against influence, we are keeping your wife and child in a safe location."
+  },
+  "by_a_lucas_pope_a_7f082726": {
+    "message": "by <a>Lucas Pope</a>"
+  },
   "day_n_number_d61774bd": {
     "message": "Day { n, number }"
   },
+  "it_is_your_job_to_increase_their_loyalty_by_editin_fe8b4db9": {
+    "message": "It is your job to increase their loyalty by editing The Republia Times carefully. Pick only stories that highlight the good things about Republia and its government."
+  },
+  "ported_by_a_brandon_johnson_a_bcbd3276": {
+    "message": "ported by <a>Brandon Johnson</a>"
+  },
+  "start_work_10e7e170": {
+    "message": "Start Work"
+  },
+  "the_public_is_not_loyal_to_the_government_d1dc2a46": {
+    "message": "The public is not loyal to the government."
+  },
   "the_republia_times_250f791": {
     "message": "The Republia Times"
+  },
+  "the_war_with_antegria_is_over_and_the_rebellion_up_9529fd69": {
+    "message": "The war with Antegria is over and the rebellion uprising has been crushed. Order is slowly returning to Republia."
+  },
+  "welcome_to_the_republia_times_you_are_the_new_edit_afa19d0d": {
+    "message": "Welcome to The Republia Times. You are the new editor-in-chief."
+  },
+  "you_have_3_days_to_raise_the_public_s_loyalty_to_2_7f06f1ff": {
+    "message": "You have 3 days to raise the public''s loyalty to 20"
   }
 }
