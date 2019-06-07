@@ -1,5 +1,5 @@
 // @flow strict-local
-import React from 'react'
+import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import t from 'format-message'
 import underscored_crc32 from 'format-message-generate-id/underscored_crc32'
@@ -17,7 +17,12 @@ t.setup({
 const rootElement = document.createElement('div')
 document.body && document.body.appendChild(rootElement)
 
-ReactDOM.render(<RepubliaTimes />, rootElement)
+ReactDOM.render(
+  <StrictMode>
+    <RepubliaTimes />
+  </StrictMode>,
+  rootElement
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
