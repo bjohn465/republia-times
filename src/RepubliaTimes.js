@@ -1,8 +1,11 @@
 // @flow strict-local
-import React from 'react'
+import React, { useState } from 'react'
 import GlobalStyles from './GlobalStyles'
 import styled from '@emotion/styled'
 import MorningScreen from './MorningScreen'
+import WorkScreen from './WorkScreen'
+
+type ScreenState = 'morning' | 'work'
 
 const Wrapper = styled.div`
   background: #fff;
@@ -11,11 +14,24 @@ const Wrapper = styled.div`
 `
 
 function RepubliaTimes() {
+  const day = 1
+  const [screen, setScreen] = useState<ScreenState>('morning')
+
   return (
-    <Wrapper>
+    <>
       <GlobalStyles />
-      <MorningScreen />
-    </Wrapper>
+      <Wrapper>
+        {screen === 'morning' && (
+          <MorningScreen
+            day={day}
+            onStartWork={() => {
+              setScreen('work')
+            }}
+          />
+        )}
+        {screen === 'work' && <WorkScreen day={day} />}
+      </Wrapper>
+    </>
   )
 }
 

@@ -2,11 +2,16 @@
 import React from 'react'
 import t from 'format-message'
 
-function MorningScreen() {
+type Props = {
+  day: number,
+  onStartWork: () => void,
+}
+
+function MorningScreen({ day, onStartWork }: Props) {
   return (
     <>
       <h1>{t('The Republia Times')}</h1>
-      <h2>{t('Day {n, number}', { n: 1 })}</h2>
+      <h2>{t('Day {n, number}', { n: day })}</h2>
       <p>
         {t('Welcome to The Republia Times. You are the new editor-in-chief.')}
       </p>
@@ -33,7 +38,9 @@ function MorningScreen() {
             'we are keeping your wife and child in a safe location.'
         )}
       </p>
-      <button type="button">{t('Start Work')}</button>
+      <button type="button" onClick={onStartWork}>
+        {t('Start Work')}
+      </button>
       <footer>
         <p>
           {t.rich('by <a>Lucas Pope</a>', {
