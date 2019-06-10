@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.11",
+    "@emotion/styled": "^10.0.12",
     "format-message": "^6.2.1",
     "format-message-generate-id": "^6.2.0",
     "react": "^16.8.6",
