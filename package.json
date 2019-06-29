@@ -6,8 +6,8 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.12",
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
     "format-message": "^6.2.1",
     "format-message-generate-id": "^6.2.0",
     "react": "^16.8.6",
