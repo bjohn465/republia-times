@@ -10,7 +10,8 @@
       "error",
       "always",
       {
-        "annotationStyle": "line"
+        "annotationStyle": "line",
+        "strict": true
       }
     ],
     "format-message/no-missing-translation": "warn"
