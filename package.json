@@ -22,7 +22,9 @@
     "flow": "flow",
     "prettier": "prettier",
     "eslint": "eslint .",
-    "extract": "format-message extract -g underscored_crc32 -o src/locales/en.json 'src/**/!(*.test)*.js'"
+    "extract": "format-message extract -g underscored_crc32 -o src/locales/en.json 'src/**/!(*.test)*.js'",
+    "cypress:open": "BROWSER=none start-server-and-test start http://localhost:3000 cypress:open:final",
+    "cypress:open:final": "cypress open"
   },
   "browserslist": {
     "production": [
@@ -48,6 +50,7 @@
     "flow-bin": "^0.102.0",
     "format-message-cli": "^6.2.1",
     "jest-dom": "^3.5.0",
-    "prettier": "1.18.2"
+    "prettier": "1.18.2",
+    "start-server-and-test": "^1.9.1"
   }
 }
