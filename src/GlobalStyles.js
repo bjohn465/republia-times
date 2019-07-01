@@ -1,11 +1,11 @@
 // @flow strict-local
-import React, { Fragment } from 'react'
+import React from 'react'
 import vt323 from './vt323/VT323-Regular.ttf'
 import { Global, css } from '@emotion/core'
 
 function GlobalStyles() {
   return (
-    <Fragment>
+    <>
       <Global
         styles={css`
           @font-face {
@@ -32,7 +32,7 @@ function GlobalStyles() {
           }
         `}
       />
-    </Fragment>
+    </>
   )
 }
 
