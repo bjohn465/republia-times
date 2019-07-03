@@ -25,7 +25,9 @@
     "eslint": "eslint .",
     "extract": "format-message extract -g underscored_crc32 -o src/locales/en.json 'src/**/!(*.test)*.js'",
     "cypress:open": "start-server-and-test start:nobrowser http://localhost:3000 cypress:open:final",
-    "cypress:open:final": "cypress open"
+    "cypress:open:final": "cypress open",
+    "cypress:run": "start-server-and-test start:nobrowser http://localhost:3000 cypress:run:final",
+    "cypress:run:final": "cypress run"
   },
   "browserslist": {
     "production": [
