@@ -23,7 +23,7 @@
     "flow": "flow",
     "prettier": "prettier",
     "eslint": "eslint .",
-    "lint": "npm-run-all eslint flow",
+    "lint": "npm-run-all --parallel --continue-on-error eslint flow",
     "extract": "format-message extract -g underscored_crc32 -o src/locales/en.json 'src/**/!(*.test)*.js'",
     "cypress:open": "start-server-and-test start:nobrowser http://localhost:3000 cypress:open:final",
     "cypress:open:final": "cypress open",
