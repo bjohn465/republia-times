@@ -19,6 +19,7 @@
     "start:nobrowser": "cross-env BROWSER=none yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:once": "yarn test --watchAll=false",
     "eject": "react-scripts eject",
     "flow": "flow",
     "prettier": "prettier",
