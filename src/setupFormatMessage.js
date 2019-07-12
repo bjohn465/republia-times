@@ -8,4 +8,9 @@ t.setup({
   locale: 'en',
   missingTranslation: 'ignore',
   translations: locales,
+  formats: {
+    time: {
+      'H:mm': { hour: 'numeric', minute: '2-digit', timeZone: 'UTC' },
+    },
+  },
 })
