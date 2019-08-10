@@ -40,7 +40,6 @@ function WorkDayClock({ onDayEnd }: Props) {
   const previousActualTime = performance.now()
   useEffect(() => {
     function tick() {
-      console.log('tick called')
       const elapsedMilliseconds = performance.now() - previousActualTime
       const elapsedSeconds = elapsedMilliseconds / millisecondsInASecond
       const additionalGameSeconds = elapsedSeconds * gameSecondsSpeedFactor

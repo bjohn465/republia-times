@@ -1,6 +1,6 @@
 // @flow strict-local
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, act } from '@testing-library/react'
 import WorkDayClock from '../WorkDayClock'
 
 describe('WorkDayClock', () => {
@@ -25,7 +25,48 @@ describe('WorkDayClock', () => {
   })
 
   it('updates the time at the correct rate', () => {
-    // TODO: Fill this in
+    // Have 1000 milliseconds elapse
+    // between the first call to `performance.now` and the second
+    jest
+      .spyOn(global.performance, 'now')
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(1000)
+
+    const { queryByText } = render(<WorkDayClock {...defaults} />)
+
+    // Ensure the update doesn't happen too fast
+    act(() => {
+      jest.advanceTimersByTime(50)
+    })
+    expect(queryByText('6:00 AM')).toBeInTheDocument()
+
+    // Ensure the update happens,
+    // but it will use the 1000 milliseconds we set up before,
+    // so the time should advance by 6 minutes.
+    act(() => {
+      jest.advanceTimersByTime(50)
+    })
+    expect(queryByText('6:06 AM')).toBeInTheDocument()
+  })
+
+  it('calls onDayEnd when the work day ends', () => {
+    jest
+      .spyOn(global.performance, 'now')
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(60 * 1000)
+      .mockReturnValueOnce(60 * 1000)
+      .mockReturnValueOnce(120 * 1000)
+
+    const onDayEnd = jest.fn()
+    const { queryByText } = render(
+      <WorkDayClock {...defaults} onDayEnd={onDayEnd} />
+    )
+
+    act(() => {
+      jest.advanceTimersByTime(200)
+    })
+    expect(queryByText('6:00 PM')).toBeInTheDocument()
+    expect(onDayEnd).toHaveBeenCalled()
   })
 
   describe('work day hours', () => {
