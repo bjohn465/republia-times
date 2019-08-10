@@ -47,7 +47,7 @@
   "devDependencies": {
     "@testing-library/cypress": "^4.1.0",
     "@testing-library/jest-dom": "^4.0.0",
-    "@testing-library/react": "^9.0.2",
+    "@testing-library/react": "^9.1.0",
     "cross-env": "^5.2.0",
     "cypress": "^3.4.1",
     "eslint": "^6.1.0",
