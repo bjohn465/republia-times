@@ -1238,13 +1238,14 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@testing-library/cypress@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-4.1.0.tgz#62a3d74e4c548307c426a54cc688f18995c3ae6b"
-  integrity sha512-5yz5lCBc1S/aGbg9GqEX557PVIPbA3JMDXyI0lJDceKfD/K/ZcrN6q4XERCuOhpxXJvClPT+dUqZOoWQGVWqJg==
+"@testing-library/cypress@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-4.1.1.tgz#8e9b2cfdc5dcfb2e09a9800dd16054b43285b039"
+  integrity sha512-3Rfh/2po8EMcNzCGhQvdH2/RIQP15J/opv0AZVCfmAaJ/Xr70m0pJYWDdn0PnnUjJfimyMjvosI9XNDuqrULkw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
+    "@types/testing-library__cypress" "^4.1.0"
 
 "@testing-library/dom@^6.0.0":
   version "6.0.0"
@@ -1257,10 +1258,10 @@
     pretty-format "^24.8.0"
     wait-for-expect "^1.3.0"
 
-"@testing-library/jest-dom@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-4.0.0.tgz#56eee8dd183fe14a682fda7aca6413ec4e5303d2"
-  integrity sha512-YQA/LnRRfqHV5YRauawOGgMDgq43XfyqCz3whmxIPyrfvTdjLCNyY/BseGaa48y54yb3oiRo/NZT0oXNMQdkTA==
+"@testing-library/jest-dom@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-4.0.1.tgz#edc4901d309b82fe6149dff3f817c6ea247bc22f"
+  integrity sha512-UHai1O5zN6UIqZ0SR35BsAEM0FED4xXoOQnE6tzdeIPa8FaAor5zaM30qK49Ynjd/rcC3DbA9jqR+0C5WD2Xng==
   dependencies:
     "@babel/runtime" "^7.5.1"
     chalk "^2.4.1"
@@ -1272,13 +1273,14 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
-"@testing-library/react@^9.1.0":
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.1.0.tgz#c00c4ff90c5f9015365f63b7759a57c428b6ab56"
-  integrity sha512-XMtU8AmGX472c7+qXaaVZ2QpDKPA56vRaVEjlFBPDL8im2erM6DF0KJlwzLcc2wrvfYkcMDbreFyL0vdalubrQ==
+"@testing-library/react@^9.1.3":
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.1.3.tgz#3fb495227322ea36cd817532441dabb552e0d6ce"
+  integrity sha512-qFVo6TsEbpEFpOmKjIxMHDujOKVdvVpcYFcUfJeWBqMO8eja5pN9SZnt6W6AzW3a1MRvRfw3X0Fhx3eXnBJxjA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
+    "@types/testing-library__react" "^9.1.0"
 
 "@types/babel__core@^7.1.0":
   version "7.1.2"
@@ -1338,20 +1340,80 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
+"@types/jquery@*":
+  version "3.3.31"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.31.tgz#27c706e4bf488474e1cb54a71d8303f37c93451b"
+  integrity sha512-Lz4BAJihoFw5nRzKvg4nawXPzutkv7wmfQ5121avptaSIXlDNJCUuxZxX/G+9EVidZGuO0UBlk+YjKbwRKJigg==
+  dependencies:
+    "@types/sizzle" "*"
+
 "@types/json-schema@^7.0.3":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
+
+"@types/pretty-format@*":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.1.tgz#7ce03b403887b087701a2b4534464f48ce7b2f48"
+  integrity sha512-Oh7wnvVUCtVIWnCHQWe9qDZKn0fGyk5AMq99jXml0x39K59P+z9qe31CNRtop9TceCpS7NmoK+J9eGeCnyFgnw==
+
+"@types/prop-types@*":
+  version "15.7.1"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
+  integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
 
 "@types/q@^1.5.1":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
+"@types/react-dom@*":
+  version "16.8.5"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.8.5.tgz#3e3f4d99199391a7fb40aa3a155c8dd99b899cbd"
+  integrity sha512-idCEjROZ2cqh29+trmTmZhsBAUNQuYrF92JHKzZ5+aiFM1mlSk3bb23CK7HhYuOY75Apgap5y2jTyHzaM2AJGA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*":
+  version "16.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.2.tgz#6d1765431a1ad1877979013906731aae373de268"
+  integrity sha512-jYP2LWwlh+FTqGd9v7ynUKZzjj98T8x7Yclz479QdRhHfuW9yQ+0jjnD31eXSXutmBpppj5PYNLYLRfnZJvcfg==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/sizzle@*":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
+  integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/testing-library__cypress@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__cypress/-/testing-library__cypress-4.1.0.tgz#4e521b3531170dc91342bfe560fd4bbfae12898b"
+  integrity sha512-SUNZmsgkKp7zjzzOfysAgJph4zHVU2P9DExGMIX1sksMcGgUOiLJ11Z5M+jHumHrx48lVpo+WDXIq8vSlFlSzw==
+  dependencies:
+    "@types/jquery" "*"
+    "@types/testing-library__dom" "*"
+
+"@types/testing-library__dom@*":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__dom/-/testing-library__dom-6.0.0.tgz#89d756b5b31f4b9632bcf04ff86f2a427671d195"
+  integrity sha512-AmAPJGaH2M45JVzccn2kNRtgNQClnJka938YV1af22pgV+JULAEeaIkmS1qN3SLPqu5Hh0rDZDsc0Uxjt15SGw==
+  dependencies:
+    "@types/pretty-format" "*"
+
+"@types/testing-library__react@^9.1.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__react/-/testing-library__react-9.1.0.tgz#71c03d3f15b7bfbca2d214e88131df13ae975567"
+  integrity sha512-EbQv9URq6oGs/t83SUQQmsEFCO1TOr5zN8MNROHiuMc7grqjJzr6ExLIDWIW9JPuT5c347WJInhzKtJYTpdLSA==
+  dependencies:
+    "@types/react-dom" "*"
+    "@types/testing-library__dom" "*"
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.12"
@@ -3252,7 +3314,7 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   dependencies:
     cssom "0.3.x"
 
-csstype@^2.5.7:
+csstype@^2.2.0, csstype@^2.5.7:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
   integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
