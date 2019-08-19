@@ -6,7 +6,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.15",
+    "@emotion/core": "^10.0.16",
     "@emotion/styled": "^10.0.15",
     "format-message": "^6.2.3",
     "format-message-generate-id": "^6.2.3",
