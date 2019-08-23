@@ -1,7 +1,16 @@
-// flow-typed signature: 558e1f34a2539e1adfbbcaebffd871e5
-// flow-typed version: 78a0c0cb64/@testing-library/react_v8.x.x/flow_>=v0.67.1
-
 declare module '@testing-library/react' {
+  // This type comes from
+  // https://github.com/facebook/flow/blob/v0.104.0/lib/react-dom.js#L64
+  declare type ReactDOMTestUtilsThenable = {
+    then(resolve: () => mixed, reject?: () => mixed): mixed,
+    ...
+  };
+  // This type comes from
+  // https://github.com/facebook/flow/blob/v0.104.0/lib/react-dom.js#L116
+  declare type ReactDOMTestUtilsAct = (
+    callback: () => void | ReactDOMTestUtilsThenable
+  ) => ReactDOMTestUtilsThenable;
+
   declare type TextMatch =
     | string
     | RegExp
@@ -116,6 +125,8 @@ declare module '@testing-library/react' {
       ui: React$Element<*>,
       options?: { container: HTMLElement, baseElement?: HTMLElement }
     ) => RenderResult,
+
+    act: ReactDOMTestUtilsAct,
 
     cleanup: () => void,
 
