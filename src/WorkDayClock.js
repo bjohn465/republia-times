@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import t from 'format-message'
 import SRContent from './ScreenReaderContent'
 
-const millisecondsInASecond = 1000
 const updateFequencyInMilliseconds = 100
 const dayStart = new Date('2019-01-01T06:00:00Z')
 const dayEnd = new Date('2019-01-01T18:00:00Z')
@@ -22,10 +21,9 @@ function getDatetimeValue(date: Date) {
   )
 }
 
-function getWorkDayTime(elapsedSeconds: number) {
-  const workDayTime = new Date(dayStart)
-  workDayTime.setSeconds(elapsedSeconds)
-  return workDayTime < dayEnd ? workDayTime : dayEnd
+function getNewGameDate(previousGameDate: Date, timeToAdd: number) {
+  const newGameDate = new Date(previousGameDate.getTime() + timeToAdd)
+  return newGameDate < dayEnd ? newGameDate : dayEnd
 }
 
 type Props = {
@@ -33,23 +31,27 @@ type Props = {
 }
 
 function WorkDayClock({ onDayEnd }: Props) {
-  const gameSecondsSpeedFactor = 360
-  const [elapsedGameSeconds, setElapsedGameSeconds] = useState(0)
-  const workDayTime = getWorkDayTime(elapsedGameSeconds)
-  const hasWorkDayEnded = workDayTime === dayEnd
-  const previousActualTime = performance.now()
+  const gameSpeedFactor = 360
+  const [gameDate, setGameDate] = useState(dayStart)
+  const [timerTime, setTimerTime] = useState(performance.now())
+  const hasWorkDayEnded = gameDate === dayEnd
+
   useEffect(() => {
     function tick() {
-      const elapsedMilliseconds = performance.now() - previousActualTime
-      const elapsedSeconds = elapsedMilliseconds / millisecondsInASecond
-      const additionalGameSeconds = elapsedSeconds * gameSecondsSpeedFactor
-      setElapsedGameSeconds(elapsedGameSeconds + additionalGameSeconds)
+      const newTimerTime = performance.now()
+      const elapsedTime = newTimerTime - timerTime
+      const additionalGameTime = elapsedTime * gameSpeedFactor
+      const newGameDate = getNewGameDate(gameDate, additionalGameTime)
+      const didWorkDayJustEnd = newGameDate === dayEnd
+      setGameDate(newGameDate)
+      setTimerTime(newTimerTime)
+      if (didWorkDayJustEnd) {
+        onDayEnd()
+      }
     }
     if (!hasWorkDayEnded) {
       const id = setTimeout(tick, updateFequencyInMilliseconds)
       return () => clearTimeout(id)
-    } else {
-      onDayEnd()
     }
   })
 
@@ -58,8 +60,8 @@ function WorkDayClock({ onDayEnd }: Props) {
       <SRContent>
         <h2 id="clock-heading">{t('Work day clock')}</h2>
       </SRContent>
-      <time dateTime={getDatetimeValue(workDayTime)}>
-        {t.time(workDayTime, 'H:mm')}
+      <time dateTime={getDatetimeValue(gameDate)}>
+        {t.time(gameDate, 'H:mm')}
       </time>
 
       <div>
