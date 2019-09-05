@@ -7,7 +7,7 @@ describe('starting a game', function() {
   })
 
   it('starts the first day', function() {
-    cy.getByText('Start Work').click()
+    cy.findByText('Start Work').click()
     cy.get('h1').within(function() {
       cy.queryByText('Day 1').should('exist')
     })
@@ -25,7 +25,7 @@ describe('starting a game', function() {
     })
 
     it('starts the day at 6:00 AM', function() {
-      cy.getByLabelText('Work day clock').within(function() {
+      cy.findByLabelText('Work day clock').within(function() {
         cy.queryByText('6:00 AM').should('exist')
       })
     })
