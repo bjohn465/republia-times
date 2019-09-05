@@ -16,6 +16,7 @@
     ],
     "format-message/no-missing-translation": "warn"
   },
+  "reportUnusedDisableDirectives": true,
   "settings": {
     "format-message": {
       "sourceLocale": "en",
