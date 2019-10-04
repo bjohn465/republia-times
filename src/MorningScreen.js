@@ -1,6 +1,7 @@
 // @flow strict-local
 import React from 'react'
 import t from 'format-message'
+import Button from './Button'
 
 type Props = {
   day: number,
@@ -38,9 +39,7 @@ function MorningScreen({ day, onStartWork }: Props) {
             'we are keeping your wife and child in a safe location.'
         )}
       </p>
-      <button type="button" onClick={onStartWork}>
-        {t('Start Work')}
-      </button>
+      <Button onClick={onStartWork}>{t('Start Work')}</Button>
       <footer>
         <p>
           {t.rich('by <a>Lucas Pope</a>', {
