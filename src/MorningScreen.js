@@ -3,10 +3,10 @@ import React from 'react'
 import t from 'format-message'
 import Button from './Button'
 
-type Props = {
+type Props = {|
   day: number,
   onStartWork: () => void,
-}
+|}
 
 function MorningScreen({ day, onStartWork }: Props) {
   return (

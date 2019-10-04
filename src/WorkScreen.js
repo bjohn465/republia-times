@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import t from 'format-message'
 import WorkDayClock from './WorkDayClock'
 
-type Props = {
+type Props = {|
   day: number,
-}
+|}
 
 function WorkScreen({ day }: Props) {
   const [hasDayEnded, setHasDayEnded] = useState(false)

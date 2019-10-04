@@ -13,9 +13,9 @@ const Wrapper = styled.span`
   width: 0.0625rem;
 `
 
-type Props = {
+type Props = {|
   children: ReactNode,
-}
+|}
 
 function ScreenReaderContent({ children }: Props) {
   return <Wrapper>{children}</Wrapper>

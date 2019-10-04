@@ -26,9 +26,9 @@ function getNewGameDate(previousGameDate: Date, timeToAdd: number) {
   return newGameDate < dayEnd ? newGameDate : dayEnd
 }
 
-type Props = {
+type Props = {|
   onDayEnd: () => void,
-}
+|}
 
 function WorkDayClock({ onDayEnd }: Props) {
   const gameSpeedFactor = 360
