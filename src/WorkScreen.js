@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import t from 'format-message'
 import WorkDayClock from './WorkDayClock'
+import Button from './Button'
 
 const updateFequencyInMilliseconds = 100
 const dayStart = new Date('2019-01-01T06:00:00Z')
@@ -17,10 +18,13 @@ type Props = {|
 |}
 
 function WorkScreen({ day }: Props) {
-  const gameSpeedFactor = 360
+  const [gameSpeedFactor, setGameSpeedFactor] = useState(360)
   const [gameDate, setGameDate] = useState(dayStart)
   const [timerTime, setTimerTime] = useState(performance.now())
   const hasDayEnded = gameDate === dayEnd
+  const handleEndDayClick = () => {
+    setGameSpeedFactor(gameSpeedFactor * 50)
+  }
 
   useEffect(() => {
     function tick() {
@@ -41,7 +45,7 @@ function WorkScreen({ day }: Props) {
     <>
       <h1>{t('Day {n, number}', { n: day })}</h1>
       <WorkDayClock gameDate={gameDate} />
-      {hasDayEnded && 'Day has ended!'}
+      <Button onClick={handleEndDayClick}>{t('End Day')}</Button>
     </>
   )
 }

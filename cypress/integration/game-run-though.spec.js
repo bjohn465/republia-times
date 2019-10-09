@@ -2,6 +2,11 @@ describe('game run-through', function() {
   it('displays the morning screen and starts the first day', function() {
     let performanceNowValue = 0
 
+    function advanceTimeBy(value) {
+      performanceNowValue = performanceNowValue + value
+      cy.tick(200)
+    }
+
     cy.clock()
     cy.visit('/', {
       onBeforeLoad: windowObject => {
@@ -24,13 +29,30 @@ describe('game run-through', function() {
         cy.queryByText('6:00 AM').should('exist')
       })
       .then(function() {
-        performanceNowValue = 200
-        cy.tick(200)
+        advanceTimeBy(200)
       })
 
     // Ensure that the clock updated
     cy.findByLabelText('Work day clock').within(function() {
       cy.queryByText('6:02 AM').should('exist')
+    })
+
+    // Ensure that the "End Day" button works
+    cy.findByText('End Day')
+      .click()
+      .then(function() {
+        advanceTimeBy(1196)
+      })
+    cy.findByLabelText('Work day clock').within(function() {
+      cy.findByText('6:00 PM').should('exist')
+    })
+
+    // Ensure clock doesn't keep going at the end of the day
+    cy.clock().then(function() {
+      advanceTimeBy(200)
+    })
+    cy.findByLabelText('Work day clock').within(function() {
+      cy.findByText('6:00 PM').should('exist')
     })
   })
 })
