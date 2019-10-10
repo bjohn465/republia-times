@@ -37,6 +37,12 @@ describe('game run-through', function() {
       cy.queryByText('6:02 AM').should('exist')
     })
 
+    // Check initial stats
+    cy.findByLabelText('Paper Stats').within(function() {
+      cy.queryByText('200 Readers').should('exist')
+      cy.queryByText('Loyalty: 0').should('exist')
+    })
+
     // Ensure that the "End Day" button works
     cy.findByText('End Day')
       .click()

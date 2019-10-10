@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import t from 'format-message'
 import WorkDayClock from './WorkDayClock'
 import Button from './Button'
+import Stats from './Stats'
 
 const updateFequencyInMilliseconds = 100
 const dayStart = new Date('2019-01-01T06:00:00Z')
@@ -15,9 +16,11 @@ function getNewGameDate(previousGameDate: Date, timeToAdd: number) {
 
 type Props = {|
   day: number,
+  loyaltyValue: number,
+  readerCount: number,
 |}
 
-function WorkScreen({ day }: Props) {
+function WorkScreen({ day, loyaltyValue, readerCount }: Props) {
   const [gameSpeedFactor, setGameSpeedFactor] = useState(360)
   const [gameDate, setGameDate] = useState(dayStart)
   const [timerTime, setTimerTime] = useState(performance.now())
@@ -46,6 +49,7 @@ function WorkScreen({ day }: Props) {
       <h1>{t('Day {n, number}', { n: day })}</h1>
       <WorkDayClock gameDate={gameDate} />
       <Button onClick={handleEndDayClick}>{t('End Day')}</Button>
+      <Stats loyaltyValue={loyaltyValue} readerCount={readerCount} />
     </>
   )
 }

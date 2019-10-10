@@ -17,8 +17,23 @@
   "it_is_your_job_to_increase_their_loyalty_by_editin_fe8b4db9": {
     "message": "It is your job to increase their loyalty by editing The Republia Times carefully. Pick only stories that highlight the good things about Republia and its government."
   },
+  "loyalty_96420174": {
+    "message": "Loyalty"
+  },
+  "loyalty_loyaltyvalue_number_16245596": {
+    "message": "Loyalty: { loyaltyValue, number }"
+  },
+  "paper_stats_c15f922d": {
+    "message": "Paper Stats"
+  },
   "ported_by_a_brandon_johnson_a_bcbd3276": {
     "message": "ported by <a>Brandon Johnson</a>"
+  },
+  "readercount_plural_one_reader_other_readers_7a5cb08b": {
+    "message": "{ readerCount, plural,\n    one {# Reader}\n  other {# Readers}\n}"
+  },
+  "readers_de289ce7": {
+    "message": "Readers"
   },
   "start_work_10e7e170": {
     "message": "Start Work"

@@ -4,7 +4,11 @@ import { render } from '@testing-library/react'
 import WorkScreen from '../WorkScreen'
 
 describe('WorkScreen', () => {
-  const defaults = { day: 1 }
+  const defaults = {
+    day: 1,
+    loyaltyValue: 0,
+    readerCount: 200,
+  }
 
   describe('day number', () => {
     it('is shown', () => {

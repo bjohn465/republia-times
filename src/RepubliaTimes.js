@@ -15,6 +15,8 @@ const Wrapper = styled.div`
 
 function RepubliaTimes() {
   const day = 1
+  const loyaltyValue = 0
+  const readerCount = 200
   const [screen, setScreen] = useState<ScreenState>('morning')
 
   return (
@@ -29,7 +31,13 @@ function RepubliaTimes() {
             }}
           />
         )}
-        {screen === 'work' && <WorkScreen day={day} />}
+        {screen === 'work' && (
+          <WorkScreen
+            day={day}
+            loyaltyValue={loyaltyValue}
+            readerCount={readerCount}
+          />
+        )}
       </Wrapper>
     </>
   )
