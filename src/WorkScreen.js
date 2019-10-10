@@ -4,6 +4,7 @@ import t from 'format-message'
 import WorkDayClock from './WorkDayClock'
 import Button from './Button'
 import Stats from './Stats'
+import NewsFeed from './NewsFeed'
 
 const updateFequencyInMilliseconds = 100
 const dayStart = new Date('2019-01-01T06:00:00Z')
@@ -50,6 +51,7 @@ function WorkScreen({ day, loyaltyValue, readerCount }: Props) {
       <WorkDayClock gameDate={gameDate} />
       <Button onClick={handleEndDayClick}>{t('End Day')}</Button>
       <Stats loyaltyValue={loyaltyValue} readerCount={readerCount} />
+      <NewsFeed />
     </>
   )
 }

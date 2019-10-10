@@ -43,6 +43,10 @@ describe('game run-through', function() {
       cy.queryByText('Loyalty: 0').should('exist')
     })
 
+    // Ensure we have a news feed
+    cy.findByText('News Feed').should('exist')
+    cy.findByLabelText('News Feed').should('exist')
+
     // Ensure that the "End Day" button works
     cy.findByText('End Day')
       .click()
