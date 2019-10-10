@@ -10,11 +10,7 @@ type Props = {|
 
 function Stats({ loyaltyValue, readerCount }: Props) {
   return (
-    <section aria-labelledby="stats-heading">
-      <SRContent>
-        <h2 id="stats-heading">{t('Paper Stats')}</h2>
-      </SRContent>
-
+    <section aria-label={t('Paper Stats')}>
       <div>
         <div aria-hidden="true">{t('Readers')}</div>
         <div aria-hidden="true">{t.number(readerCount)}</div>

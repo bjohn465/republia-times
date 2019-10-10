@@ -1,7 +1,4 @@
 {
-  "6_am_6_pm_ddf5f5a9": {
-    "message": "6 AM - 6 PM"
-  },
   "as_a_precaution_against_influence_we_are_keeping_y_f5469760": {
     "message": "As a precaution against influence, we are keeping your wife and child in a safe location."
   },
@@ -13,6 +10,9 @@
   },
   "end_day_72b50a25": {
     "message": "End Day"
+  },
+  "hourslabel_work_day_hours_hourslabel_6_am_6_pm_14e91c95": {
+    "message": "<hoursLabel>Work day hours:</hoursLabel>6 AM - 6 PM"
   },
   "it_is_your_job_to_increase_their_loyalty_by_editin_fe8b4db9": {
     "message": "It is your job to increase their loyalty by editing The Republia Times carefully. Pick only stories that highlight the good things about Republia and its government."
@@ -52,9 +52,6 @@
   },
   "work_day_clock_7d6d8ee7": {
     "message": "Work day clock"
-  },
-  "work_day_hours_490c8df8": {
-    "message": "Work day hours"
   },
   "you_have_3_days_to_raise_the_public_s_loyalty_to_2_7f06f1ff": {
     "message": "You have 3 days to raise the public''s loyalty to 20"

@@ -1,5 +1,5 @@
 // @flow strict-local
-import React from 'react'
+import React, { type Node as ReactNode } from 'react'
 import t from 'format-message'
 import SRContent from './ScreenReaderContent'
 
@@ -17,25 +17,29 @@ function getDatetimeValue(date: Date) {
   )
 }
 
+type HoursLabelProps = {|
+  children: ReactNode,
+|}
+
+function HoursLabel({ children }: HoursLabelProps) {
+  return <SRContent key="hiddenLabel">{children}</SRContent>
+}
+
 type Props = {|
   gameDate: Date,
 |}
 
 function WorkDayClock({ gameDate }: Props) {
   return (
-    <section aria-labelledby="clock-heading">
-      <SRContent>
-        <h2 id="clock-heading">{t('Work day clock')}</h2>
-      </SRContent>
+    <section aria-label={t('Work day clock')}>
       <time dateTime={getDatetimeValue(gameDate)}>
         {t.time(gameDate, 'H:mm')}
       </time>
 
       <div>
-        <SRContent>
-          <h3>{t('Work day hours')}</h3>
-        </SRContent>
-        {t('6 AM - 6 PM')}
+        {t.rich('<hoursLabel>Work day hours:</hoursLabel>6 AM - 6 PM', {
+          hoursLabel: HoursLabel,
+        })}
       </div>
     </section>
   )
