@@ -10,7 +10,7 @@ describe('WorkDayClock', () => {
 
   it('is labelled', () => {
     const { queryByLabelText } = render(<WorkDayClock {...defaults} />)
-    expect(queryByLabelText(/clock/i)).toBeInTheDocument()
+    expect(queryByLabelText(/work day clock/i)).toBeInTheDocument()
   })
 
   it('displays the current time', () => {
@@ -21,10 +21,9 @@ describe('WorkDayClock', () => {
   })
 
   describe('work day hours', () => {
-    it('has a heading', () => {
+    it('has a label', () => {
       const { queryByText } = render(<WorkDayClock {...defaults} />)
-      const el = queryByText(/hours/i)
-      expect(el && el.tagName).toBe('H3')
+      expect(queryByText(/work day hours/i)).toBeInTheDocument()
     })
 
     it('displays the work day hours', () => {
