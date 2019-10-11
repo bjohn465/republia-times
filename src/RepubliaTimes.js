@@ -4,12 +4,13 @@ import GlobalStyles from './GlobalStyles'
 import styled from '@emotion/styled'
 import MorningScreen from './MorningScreen'
 import WorkScreen from './WorkScreen'
+import { colorBackground, colorTextDefault } from './css-variables'
 
 type ScreenState = 'morning' | 'work'
 
 const Wrapper = styled.div`
-  background: #fff;
-  color: #24292e;
+  background: ${colorBackground};
+  color: ${colorTextDefault};
   margin-bottom: 1rem;
 `
 
