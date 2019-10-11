@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   border-radius: 0.375rem;
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   padding: 0.25rem 0.5rem;
   position: relative;
   text-align: center;

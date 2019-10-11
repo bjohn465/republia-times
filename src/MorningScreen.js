@@ -3,13 +3,17 @@ import React from 'react'
 import t from 'format-message'
 import styled from '@emotion/styled'
 import ministryBuilding from './ministry-building.png'
+import {
+  colorBackground,
+  colorTextDefault,
+  normalFontSize,
+} from './css-variables'
 import Button from './Button'
 
-const PaperName = styled.h1`
-  font-family: EnglishTowne-Webfont, serif;
-  font-size: 4rem;
-  font-weight: normal;
-  line-height: 0.85;
+const Wrapper = styled.div`
+  font-size: ${normalFontSize};
+  margin: 1rem auto;
+  max-width: 65rem;
 `
 
 const headerImageWidth = '14rem'
@@ -46,10 +50,45 @@ const Header = styled.header`
     right: 0;
     transform: rotateY(0.5turn);
   }
+`
 
-  > h1,
-  > h2 {
-    margin: 0;
+const PaperName = styled.h1`
+  font-family: EnglishTowne-Webfont, serif;
+  font-size: 4rem;
+  font-weight: normal;
+  line-height: 0.85;
+  margin: 0;
+`
+
+const DayNumber = styled.h2`
+  font-size: ${normalFontSize};
+  margin: 0;
+`
+
+const Message = styled.main`
+  margin: auto;
+  text-align: justify;
+  width: 66%;
+`
+
+const StartWorkButton = styled(Button)`
+  display: block;
+  margin: auto;
+  width: 14rem;
+`
+
+const ByLine = styled.p`
+  margin: 0.25rem 0;
+  text-align: right;
+`
+
+const Link = styled.a`
+  color: ${colorTextDefault};
+
+  :focus {
+    background: ${colorTextDefault};
+    color: ${colorBackground};
+    outline: 0.125rem solid ${colorTextDefault};
   }
 `
 
@@ -60,61 +99,65 @@ type Props = {|
 
 function MorningScreen({ day, onStartWork }: Props) {
   return (
-    <>
+    <Wrapper>
       <Header>
         <PaperName>{t('The Republia Times')}</PaperName>
-        <h2>{t('Day {n, number}', { n: day })}</h2>
+        <DayNumber>{t('Day {n, number}', { n: day })}</DayNumber>
       </Header>
-      <p>
-        {t('Welcome to The Republia Times. You are the new editor-in-chief.')}
-      </p>
-      <p>
-        {t(
-          'The war with Antegria is over ' +
-            'and the rebellion uprising has been crushed. ' +
-            'Order is slowly returning to Republia.'
-        )}
-      </p>
-      <p>{t('The public is not loyal to the government.')}</p>
-      <p>
-        {t(
-          'It is your job to increase their loyalty ' +
-            'by editing The Republia Times carefully. ' +
-            'Pick only stories that highlight the good things ' +
-            'about Republia and its government.'
-        )}
-      </p>
-      <p>{t("You have 3 days to raise the public's loyalty to 20")}</p>
-      <p>
-        {t(
-          'As a precaution against influence, ' +
-            'we are keeping your wife and child in a safe location.'
-        )}
-      </p>
-      <Button onClick={onStartWork}>{t('Start Work')}</Button>
-      <footer>
+      <Message>
         <p>
+          {t('Welcome to The Republia Times. You are the new editor-in-chief.')}
+        </p>
+        <p>
+          {t(
+            'The war with Antegria is over ' +
+              'and the rebellion uprising has been crushed. ' +
+              'Order is slowly returning to Republia.'
+          )}
+        </p>
+        <p>{t('The public is not loyal to the government.')}</p>
+        <p>
+          {t(
+            'It is your job to increase their loyalty ' +
+              'by editing The Republia Times carefully. ' +
+              'Pick only stories that highlight the good things ' +
+              'about Republia and its government.'
+          )}
+        </p>
+        <p>{t("You have 3 days to raise the public's loyalty to 20")}</p>
+        <p>
+          {t(
+            'As a precaution against influence, ' +
+              'we are keeping your wife and child in a safe location.'
+          )}
+        </p>
+        <StartWorkButton onClick={onStartWork}>
+          {t('Start Work')}
+        </StartWorkButton>
+      </Message>
+      <footer>
+        <ByLine>
           {t.rich('by <a>Lucas Pope</a>', {
             // TODO: The format-message/translation-match-params rule
             // has a problem with the `a` param here.
             a: ({ children }) => (
-              <a href="https://twitter.com/dukope" key="a">
+              <Link href="https://twitter.com/dukope" key="a">
                 {children}
-              </a>
+              </Link>
             ),
           })}
-        </p>
-        <p>
+        </ByLine>
+        <ByLine>
           {t.rich('ported by <a>Brandon Johnson</a>', {
             a: ({ children }) => (
-              <a href="https://twitter.com/bjohn465" key="a">
+              <Link href="https://twitter.com/bjohn465" key="a">
                 {children}
-              </a>
+              </Link>
             ),
           })}
-        </p>
+        </ByLine>
       </footer>
-    </>
+    </Wrapper>
   )
 }
 
