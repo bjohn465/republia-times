@@ -2,12 +2,55 @@
 import React from 'react'
 import t from 'format-message'
 import styled from '@emotion/styled'
+import ministryBuilding from './ministry-building.png'
 import Button from './Button'
 
 const PaperName = styled.h1`
   font-family: EnglishTowne-Webfont, serif;
   font-size: 4rem;
   font-weight: normal;
+  line-height: 0.85;
+`
+
+const headerImageWidth = '14rem'
+const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 9.5rem;
+  padding: 0 calc(${headerImageWidth} + 0.5rem);
+  position: relative;
+  text-align: center;
+
+  ::before,
+  ::after {
+    background-image: url('${ministryBuilding}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 0;
+    content: '';
+    /* For Firefox */
+    image-rendering: crisp-edges;
+    /* For Chrome, Safari, etc. */
+    image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    width: ${headerImageWidth};
+  }
+
+  ::before {
+    left: 0;
+  }
+
+  ::after {
+    right: 0;
+    transform: rotateY(0.5turn);
+  }
+
+  > h1,
+  > h2 {
+    margin: 0;
+  }
 `
 
 type Props = {|
@@ -18,8 +61,10 @@ type Props = {|
 function MorningScreen({ day, onStartWork }: Props) {
   return (
     <>
-      <PaperName>{t('The Republia Times')}</PaperName>
-      <h2>{t('Day {n, number}', { n: day })}</h2>
+      <Header>
+        <PaperName>{t('The Republia Times')}</PaperName>
+        <h2>{t('Day {n, number}', { n: day })}</h2>
+      </Header>
       <p>
         {t('Welcome to The Republia Times. You are the new editor-in-chief.')}
       </p>

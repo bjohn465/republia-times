@@ -11,7 +11,8 @@ type ScreenState = 'morning' | 'work'
 const Wrapper = styled.div`
   background: ${colorBackground};
   color: ${colorTextDefault};
-  margin-bottom: 1rem;
+  margin: 1rem auto;
+  max-width: 65rem;
 `
 
 function RepubliaTimes() {
