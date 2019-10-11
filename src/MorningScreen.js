@@ -1,7 +1,14 @@
 // @flow strict-local
 import React from 'react'
 import t from 'format-message'
+import styled from '@emotion/styled'
 import Button from './Button'
+
+const PaperName = styled.h1`
+  font-family: EnglishTowne-Webfont, serif;
+  font-size: 4rem;
+  font-weight: normal;
+`
 
 type Props = {|
   day: number,
@@ -11,7 +18,7 @@ type Props = {|
 function MorningScreen({ day, onStartWork }: Props) {
   return (
     <>
-      <h1>{t('The Republia Times')}</h1>
+      <PaperName>{t('The Republia Times')}</PaperName>
       <h2>{t('Day {n, number}', { n: day })}</h2>
       <p>
         {t('Welcome to The Republia Times. You are the new editor-in-chief.')}
