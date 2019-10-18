@@ -57,6 +57,6 @@
     "format-message-cli": "^6.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "1.18.2",
-    "start-server-and-test": "^1.10.5"
+    "start-server-and-test": "^1.10.6"
   }
 }
