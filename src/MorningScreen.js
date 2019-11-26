@@ -1,5 +1,5 @@
 // @flow strict-local
-import React from 'react'
+import React, { type Node as ReactNode } from 'react'
 import t from 'format-message'
 import styled from '@emotion/styled'
 import ministryBuilding from './ministry-building.png'
@@ -10,11 +10,15 @@ import {
 } from './css-variables'
 import Button from './Button'
 
-const Wrapper = styled.div`
-  font-size: ${normalFontSize};
-  margin: 1rem auto;
-  max-width: 65rem;
-`
+type WrapperProps = {|
+  children: ReactNode,
+|}
+
+const Wrapper = styled.div<WrapperProps>({
+  fontSize: normalFontSize,
+  margin: '1rem auto',
+  maxWidth: '65rem',
+})
 
 const headerImageWidth = '14rem'
 const Header = styled.header`
