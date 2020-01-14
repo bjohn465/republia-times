@@ -1,21 +1,233 @@
 {
+  "30_000_teachers_and_academics_reassigned_to_more_u_b71d6008": {
+    "message": "30,000 teachers and academics reassigned to more useful labor tasks"
+  },
+  "40_000_gallons_of_military_gasoline_stolen_from_we_f807c5c9": {
+    "message": "40,000 gallons of military gasoline stolen from western bases"
+  },
+  "_e9d9bccb": {
+    "message": "*** ####....##...####..## ***",
+    "description": "Meant to represent a transmission that didn’t come through correctly"
+  },
+  "a_lifetime_of_glory_49d8fd51": {
+    "message": "A Lifetime of Glory!"
+  },
+  "agricultural_output_from_the_farming_sector_double_287c47ca": {
+    "message": "Agricultural output from the farming sector doubles for 10th straight month"
+  },
+  "another_dry_day_6a9f0a64": {
+    "message": "Another Dry Day!"
+  },
+  "another_sunny_day_6704af23": {
+    "message": "Another Sunny Day!"
+  },
   "as_a_precaution_against_influence_we_are_keeping_y_f5469760": {
     "message": "As a precaution against influence, we are keeping your wife and child in a safe location."
+  },
+  "baseball_success_sealed_ff392fdc": {
+    "message": "Baseball Success Sealed!"
+  },
+  "beloved_children_s_book_mumpit_mush_finally_coming_a6ab53f4": {
+    "message": "Beloved children’s book \"Mumpit Mush\" finally coming to the big screen"
+  },
+  "blizzard_incoming_70a248ac": {
+    "message": "Blizzard Incoming?"
+  },
+  "bomb_factory_found_destroyed_b20f3af2": {
+    "message": "Bomb Factory Found, Destroyed!"
+  },
+  "borders_reinforced_df19038a": {
+    "message": "Borders Reinforced!"
+  },
+  "buckle_down_for_ice_a0408b85": {
+    "message": "Buckle Down For Ice!"
+  },
+  "butt_within_spec_5e034f47": {
+    "message": "Butt Within Spec!"
   },
   "by_a_lucas_pope_a_7f082726": {
     "message": "by <a>Lucas Pope</a>"
   },
+  "c_j_fairytale_ends_c4b4bea": {
+    "message": "C&J Fairytale Ends!"
+  },
+  "c_j_finally_hitched_72cb6a93": {
+    "message": "C&J Finally Hitched!"
+  },
+  "c_j_to_tie_the_knot_12d543e1": {
+    "message": "C&J To Tie the Knot!"
+  },
+  "central_terrorists_terminated_d6878e04": {
+    "message": "Central Terrorists Terminated!"
+  },
+  "championship_weight_lifter_lekshou_retires_due_to__8b4f238c": {
+    "message": "Championship weight lifter Lekshou retires due to crippling injury"
+  },
+  "cherrywood_s_newest_stars_attended_recent_gala_bal_d938e956": {
+    "message": "Cherrywood’s newest stars attended recent gala ball to honor verterans"
+  },
+  "critical_oil_fields_in_the_north_have_been_sabotag_21e35c78": {
+    "message": "Critical oil fields in the north have been sabotaged"
+  },
   "day_n_number_d61774bd": {
     "message": "Day { n, number }"
+  },
+  "eastern_hurricanes_return_73ad178e": {
+    "message": "Eastern Hurricanes Return!"
+  },
+  "education_spending_up_e623da2": {
+    "message": "Education Spending Up!"
+  },
+  "educators_punished_for_being_smart_dd80e092": {
+    "message": "Educators Punished For Being Smart!"
   },
   "end_day_72b50a25": {
     "message": "End Day"
   },
+  "explosion_rocks_the_seas_6701e3b5": {
+    "message": "Explosion Rocks The Seas!"
+  },
+  "factory_sabotaged_a9ba40a7": {
+    "message": "Factory Sabotaged!"
+  },
+  "fall_tv_revealaed_a2e7b51b": {
+    "message": "Fall TV Revealaed!"
+  },
+  "fashion_designer_crevycrevy_has_defected_to_antegr_4cd8c83b": {
+    "message": "Fashion designer CrevyCrevy has defected to Antegria"
+  },
+  "fashion_icon_defects_53a5e6e5": {
+    "message": "Fashion Icon Defects!"
+  },
+  "faster_fighter_flown_9d064808": {
+    "message": "Faster Fighter Flown!"
+  },
+  "futuristic_fight_crashes_burns_e141d1e5": {
+    "message": "Futuristic Fight Crashes, Burns!"
+  },
+  "general_dies_overnight_19a37ec8": {
+    "message": "General Dies Overnight!"
+  },
+  "goalstatus_select_met_it_s_working_your_efforts_ha_8fddc05b": {
+    "message": "{ goalStatus, select,\n             met {*** It’s working! Your efforts have strengthened us unimaginably! ***}\n  workingTowards {*** Your family will soon be safe! Drop the public’s loyalty to -30 and get 1000 readers in 3 days! ***}\n           other {*** Please help us. The government’s tyranny must end! Place negative articles! ***}\n}"
+  },
+  "goalstatus_select_met_oh_glorious_day_we_strike_at_ac195546": {
+    "message": "{ goalStatus, select,\n             met {''*** Oh glorious day! We strike at sundown. Prepare yourself! ***}\n  workingTowards {*** Our time is at hand! Hurry! Get 1000 readers with -30 loyalty by the end of today! ***}\n           other {*** We have no time! The people must be free! Spread negative news! ***}\n}"
+  },
+  "goalstatus_select_met_yes_our_operations_are_in_or_e0969b6": {
+    "message": "{ goalStatus, select,\n             met {''*** Yes! Our operations are in order. Soon we overthrow! ***}\n  workingTowards {*** Your family’s safety is assured! Convince 1000 readers to be disloyal in 2 days! ***}\n           other {*** The government cannot win! Seal their fate! Place negative articles! ***}\n}"
+  },
+  "governmentid_select_democria_antegria_navy_sinks_d_718475b6": {
+    "message": "{ governmentId, select,\n  democria {Antegria Navy sinks Democria battleship off eastern coast}\n     other {Antegria Navy sinks Republia battleship off eastern coast}\n}"
+  },
+  "governmentid_select_democria_antegria_secret_code__133e7d99": {
+    "message": "{ governmentId, select,\n  democria {Antegria secret code remains unbreakable. Top Democria minds are flumoxed}\n     other {Antegria secret code remains unbreakable. Top Republia minds are flumoxed}\n}"
+  },
+  "governmentid_select_democria_antegria_ski_team_sou_3fc4e63c": {
+    "message": "{ governmentId, select,\n  democria {Antegria ski team soundly defeated by Democria crew}\n     other {Antegria ski team soundly defeated by Republia crew}\n}"
+  },
+  "governmentid_select_democria_athletic_training_in__49752bb5": {
+    "message": "{ governmentId, select,\n  democria {Athletic training in Democria is years behind the competition}\n     other {Athletic training in Republia is years behind the competition}\n}"
+  },
+  "governmentid_select_democria_democria_air_force_ta_c2c2fea6": {
+    "message": "{ governmentId, select,\n  democria {Democria Air Force tactical fighter sets new speed record}\n     other {Republia Air Force tactical fighter sets new speed record}\n}"
+  },
+  "governmentid_select_democria_democria_air_force_ta_e49f9093": {
+    "message": "{ governmentId, select,\n  democria {Democria Air Force tactical fighter test flight ends in crash. Crew lost}\n     other {Republia Air Force tactical fighter test flight ends in crash. Crew lost}\n}"
+  },
+  "governmentid_select_democria_democria_army_5th_div_ec49aed5": {
+    "message": "{ governmentId, select,\n  democria {Democria Army 5th Divison shuts down bomb factory in northern mountains}\n     other {Republia Army 5th Divison shuts down bomb factory in northern mountains}\n}"
+  },
+  "governmentid_select_democria_democria_battleship_b_9d26885b": {
+    "message": "{ governmentId, select,\n  democria {Democria Battleship Bested!}\n     other {Republia Battleship Bested!}\n}"
+  },
+  "governmentid_select_democria_democria_borders_have_31da0ec7": {
+    "message": "{ governmentId, select,\n  democria {Democria borders have been reinforced with 200,000 additional troops}\n     other {Republia borders have been reinforced with 200,000 additional troops}\n}"
+  },
+  "governmentid_select_democria_democria_defeats_ante_1b402311": {
+    "message": "{ governmentId, select,\n  democria {Democria Defeats Antegria Skiers!}\n     other {Republia Defeats Antegria Skiers!}\n}"
+  },
+  "governmentid_select_democria_democria_downs_enemy__9f38462b": {
+    "message": "{ governmentId, select,\n  democria {Democria Downs Enemy Satellite!}\n     other {Republia Downs Enemy Satellite!}\n}"
+  },
+  "governmentid_select_democria_democria_football_stu_7d3de9d4": {
+    "message": "{ governmentId, select,\n  democria {Democria Football Stumbles!}\n     other {Republia Football Stumbles!}\n}"
+  },
+  "governmentid_select_democria_democria_forces_have__c9ae57c2": {
+    "message": "{ governmentId, select,\n  democria {Democria forces have destroyed Antegria’s illegal satellites}\n     other {Republia forces have destroyed Antegria’s illegal satellites}\n}"
+  },
+  "governmentid_select_democria_democria_national_foo_4d47f065": {
+    "message": "{ governmentId, select,\n  democria {Democria National Football Team has lost the regional finals to Antegria}\n     other {Republia National Football Team has lost the regional finals to Antegria}\n}"
+  },
+  "governmentid_select_democria_democria_national_tea_43d7e826": {
+    "message": "{ governmentId, select,\n  democria {Democria National Team has won the global football tournament}\n     other {Republia National Team has won the global football tournament}\n}"
+  },
+  "governmentid_select_democria_democria_navy_commiss_bd4b81e6": {
+    "message": "{ governmentId, select,\n  democria {Democria Navy commissions an additional 500 destroyers to patrol coast}\n     other {Republia Navy commissions an additional 500 destroyers to patrol coast}\n}"
+  },
+  "governmentid_select_democria_democria_navy_identif_fffa03b2": {
+    "message": "{ governmentId, select,\n  democria {Democria Navy identifies critical fault in all operational submarines}\n     other {Republia Navy identifies critical fault in all operational submarines}\n}"
+  },
+  "governmentid_select_democria_democria_soldiers_str_889b60a0": {
+    "message": "{ governmentId, select,\n  democria {Democria soldiers strongest in the world according to latest tests}\n     other {Republia soldiers strongest in the world according to latest tests}\n}"
+  },
+  "governmentid_select_democria_democria_wins_footbal_4e99ced7": {
+    "message": "{ governmentId, select,\n  democria {Democria Wins Football Crown!}\n     other {Republia Wins Football Crown!}\n}"
+  },
+  "governmentid_select_democria_entire_democria_natio_76cab880": {
+    "message": "{ governmentId, select,\n  democria {Entire Democria National Hockey team killed in plane crash}\n     other {Entire Republia National Hockey team killed in plane crash}\n}"
+  },
+  "governmentid_select_democria_skilled_democria_base_bc084a24": {
+    "message": "{ governmentId, select,\n  democria {Skilled Democria baseball team finishes record season. Thanks Leader for support}\n     other {Skilled Republia baseball team finishes record season. Thanks Leader for support}\n}"
+  },
+  "governmentid_select_democria_terrorist_2nd_in_comm_9c92d2b7": {
+    "message": "{ governmentId, select,\n  democria {Terrorist 2nd-in-command captured. Renounces fight against Democria}\n     other {Terrorist 2nd-in-command captured. Renounces fight against Republia}\n}"
+  },
+  "governmentid_select_democria_worldwide_survey_find_c5804774": {
+    "message": "{ governmentId, select,\n  democria {Worldwide survey finds Democria soldiers worst trained, with worst aim}\n     other {Worldwide survey finds Republia soldiers worst trained, with worst aim}\n}"
+  },
+  "governmentid_select_democria_young_democria_athele_393312f2": {
+    "message": "{ governmentId, select,\n  democria {Young Democria atheletes dominate track and field. May win Olympic gold}\n     other {Young Republia atheletes dominate track and field. May win Olympic gold}\n}"
+  },
+  "governmentid_select_other_new_fall_tv_programming__fedc8f69": {
+    "message": "{ governmentId, select,\n  other {New fall TV programming will focus on Republia’s rebuilding}\n}"
+  },
+  "great_leader_in_a_dress_f7685d10": {
+    "message": "Great Leader, In A Dress!"
+  },
   "hourslabel_work_day_hours_hourslabel_6_am_6_pm_14e91c95": {
     "message": "<hoursLabel>Work day hours:</hoursLabel>6 AM - 6 PM"
   },
+  "hugginboyz_talentless_after_all_a5ceb387": {
+    "message": "HugginBoyz: Talentless After All!"
+  },
+  "income_reallocation_scheme_contributes_400_million_d33497dd": {
+    "message": "Income reallocation scheme contributes 400 million to schools. Proves system works"
+  },
+  "is_sec_commu_tion_732e0b58": {
+    "message": "*** ##is...sec##..###commu###tion ***",
+    "description": "Meant to represent a transmission that only partially made it through, containing parts of the words \"this\", \"secret\", and \"communication\""
+  },
   "it_is_your_job_to_increase_their_loyalty_by_editin_fe8b4db9": {
     "message": "It is your job to increase their loyalty by editing The Republia Times carefully. Pick only stories that highlight the good things about Republia and its government."
+  },
+  "kayaking_for_the_enemy_cf8b664e": {
+    "message": "Kayaking For The Enemy!"
+  },
+  "keeping_an_eye_on_crime_a9a6557b": {
+    "message": "Keeping An Eye On Crime!"
+  },
+  "latest_polls_show_broad_satisfaction_with_governme_80580fb2": {
+    "message": "Latest polls show broad satisfaction with government leaders"
+  },
+  "less_food_for_orphans_12bef101": {
+    "message": "Less Food For Orphans"
+  },
+  "local_citizen_council_votes_will_be_eliminated_in__6c25cf5a": {
+    "message": "Local citizen council votes will be eliminated in favor of suggestive comments"
+  },
+  "local_councils_lose_vote_75700af2": {
+    "message": "Local Councils Lose Vote!"
   },
   "loyalty_96420174": {
     "message": "Loyalty"
@@ -23,14 +235,77 @@
   "loyalty_loyaltyvalue_number_16245596": {
     "message": "Loyalty: { loyaltyValue, number }"
   },
+  "mega_group_hugginboyz_admits_to_not_singing_on_any_ddff9036": {
+    "message": "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
+  },
+  "military_gas_gone_1ddd2ef5": {
+    "message": "Military Gas Gone!"
+  },
+  "more_corn_than_air_13d5dee8": {
+    "message": "More Corn Than Air!"
+  },
+  "multiple_terrorist_cells_in_central_district_foile_16144948": {
+    "message": "Multiple terrorist cells in central district foiled in operation"
+  },
+  "mumpit_mush_is_coming_6e773e3a": {
+    "message": "Mumpit Mush Is Coming!"
+  },
+  "muscleman_retires_83d0cc40": {
+    "message": "Muscleman Retires!"
+  },
+  "my_butt_is_not_too_fat_just_right_claims_tv_star_a_706a7042": {
+    "message": "\"My butt is not too fat, just right\" claims TV star Aprelica"
+  },
+  "national_kayaking_team_has_defected_to_antegria_c19ebd2a": {
+    "message": "National kayaking team has defected to Antegria"
+  },
+  "newest_regional_administrator_fights_for_worker_s__83079645": {
+    "message": "Newest regional administrator fights for worker’s rights"
+  },
   "news_feed_ea42a89": {
     "message": "News Feed"
+  },
+  "our_athletes_behind_the_curve_b3d35849": {
+    "message": "Our Athletes: Behind The Curve?"
+  },
+  "our_boys_are_the_best_acebd6f7": {
+    "message": "Our Boys Are the Best!"
+  },
+  "our_boys_can_t_fire_straight_e37405fa": {
+    "message": "Our Boys Can’t Fire Straight!"
+  },
+  "our_subs_are_faulty_a43caf2b": {
+    "message": "Our Subs Are Faulty!"
+  },
+  "our_young_heroes_4f4edfd8": {
+    "message": "Our Young Heroes!"
   },
   "paper_stats_c15f922d": {
     "message": "Paper Stats"
   },
+  "party_officials_have_voted_to_adjust_ration_quotas_f61cfd7": {
+    "message": "Party officials have voted to adjust ration quotas for all orphans"
+  },
+  "peace_enforcement_squad_rounds_up_200_terrorist_re_75b71346": {
+    "message": "Peace enforcement squad rounds up 200 terrorist rebels"
+  },
+  "peace_restored_rebels_captured_ed5e361e": {
+    "message": "Peace Restored, Rebels Captured!"
+  },
+  "pipelines_crippled_edf5a633": {
+    "message": "Pipelines Crippled!"
+  },
+  "please_hear_me_i_am_kurstov_leader_of_the_rebellio_acae03e5": {
+    "message": "*** #Please hear me. I am Kurstov, leader of the rebellion. We need your help. ***"
+  },
+  "politics_polls_positive_33f371aa": {
+    "message": "Politics Polls Positive!"
+  },
   "ported_by_a_brandon_johnson_a_bcbd3276": {
     "message": "ported by <a>Brandon Johnson</a>"
+  },
+  "power_to_the_people_d6af4663": {
+    "message": "Power To The People!"
   },
   "readercount_plural_one_reader_other_readers_7a5cb08b": {
     "message": "{ readerCount, plural,\n    one {# Reader}\n  other {# Readers}\n}"
@@ -38,23 +313,155 @@
   "readers_de289ce7": {
     "message": "Readers"
   },
+  "reality_star_mestonda_found_dead_from_apparent_ove_58d7860": {
+    "message": "Reality star Mestonda found dead from apparent overdose"
+  },
+  "reality_star_overdoses_444ad030": {
+    "message": "Reality Star Overdoses!"
+  },
+  "rebellion_crushed_peace_restored_f67c684e": {
+    "message": "Rebellion Crushed, Peace Restored!"
+  },
+  "rebels_at_central_chem_sabotage_important_machinar_a65fd0c4": {
+    "message": "Rebels at Central Chem sabotage important machinary"
+  },
+  "rebels_gaining_support_712f5361": {
+    "message": "Rebels Gaining Support!"
+  },
+  "rebels_regroup_in_western_towns_growing_in_strengt_91b7af5b": {
+    "message": "Rebels regroup in western towns. Growing in strength and number."
+  },
+  "rebels_routed_at_factory_eba13808": {
+    "message": "Rebels Routed At Factory!"
+  },
+  "safeguarding_the_coasts_5776ce95": {
+    "message": "Safeguarding The Coasts!"
+  },
+  "sea_breeze_incoming_e2c10b21": {
+    "message": "Sea Breeze Incoming!"
+  },
+  "showers_rain_down_261253fc": {
+    "message": "Showers Rain Down!"
+  },
+  "stars_dance_for_vets_2c4d5c3e": {
+    "message": "Stars Dance For Vets!"
+  },
   "start_work_10e7e170": {
     "message": "Start Work"
+  },
+  "state_of_the_art_military_spy_satellites_now_used__8d66f174": {
+    "message": "State-of-the-art military spy satellites now used to reduce crime"
+  },
+  "superstars_chad_and_jenlyn_file_for_divorce_both_c_6ba8c5e5": {
+    "message": "Superstars Chad and Jenlyn file for divorce. Both claim infidelity"
+  },
+  "superstars_chad_and_jenlyn_marry_in_extravagant_fe_3dfe3500": {
+    "message": "Superstars Chad and Jenlyn marry in extravagant festival"
+  },
+  "superstars_chad_and_jenlyn_preparing_for_cherrywoo_2975c876": {
+    "message": "Superstars Chad and Jenlyn preparing for Cherrywood wedding tomorrow"
+  },
+  "tank_production_falls_behind_schedule_poor_factory_568c8b23": {
+    "message": "Tank production falls behind schedule. Poor factory conditions blamed"
+  },
+  "tanking_tanks_eee3c2d9": {
+    "message": "Tanking Tanks!"
+  },
+  "taxes_rise_for_8th_year_6c3a31b9": {
+    "message": "Taxes Rise For 8th Year!"
+  },
+  "tennis_star_advances_b2e80540": {
+    "message": "Tennis Star Advances!"
+  },
+  "tennis_star_restojiu_powers_through_semifinal_brac_7c530458": {
+    "message": "Tennis star Restojiu powers through semifinal brackets"
+  },
+  "terrorist_bomb_explodes_on_northern_bay_ferry_600__7f41b50c": {
+    "message": "Terrorist bomb explodes on northern bay ferry. 600 people missing"
+  },
+  "terrorist_leader_buckles_70bc624a": {
+    "message": "Terrorist Leader Buckles!"
+  },
+  "terrorist_rebel_hideout_near_central_chem_destroye_d6ae6feb": {
+    "message": "Terrorist rebel hideout near Central Chem destroyed"
+  },
+  "the_enemy_s_unbreakable_code_b03c186d": {
+    "message": "The Enemy’s Unbreakable Code!"
+  },
+  "the_honorable_and_great_leader_awarded_lifetime_gl_6ea60bc1": {
+    "message": "The Honorable and Great Leader awarded Lifetime Glory medal"
+  },
+  "the_honorable_and_great_leader_photographed_in_wom_e629b92": {
+    "message": "The Honorable and Great Leader photographed in women’s clothes"
   },
   "the_public_is_not_loyal_to_the_government_d1dc2a46": {
     "message": "The public is not loyal to the government."
   },
+  "the_rebellion_has_been_crushed_peace_returns_to_al_14c68560": {
+    "message": "The rebellion has been crushed. Peace returns to all sectors"
+  },
   "the_republia_times_250f791": {
     "message": "The Republia Times"
+  },
+  "the_top_general_in_charge_of_southern_forces_has_d_defb09ea": {
+    "message": "The top general in charge of southern forces has died suddenly"
   },
   "the_war_with_antegria_is_over_and_the_rebellion_up_9529fd69": {
     "message": "The war with Antegria is over and the rebellion uprising has been crushed. Order is slowly returning to Republia."
   },
+  "tragedy_strikes_hockey_a76b76fa": {
+    "message": "Tragedy Strikes Hockey!"
+  },
+  "warm_to_cloudy_a7972032": {
+    "message": "Warm To Cloudy!"
+  },
+  "warm_to_cloudy_this_week_291ffeb2": {
+    "message": "Warm To Cloudy This Week!"
+  },
+  "we_can_rescue_your_family_sow_disloyalty_to_streng_3712cefd": {
+    "message": "*** We can rescue your family. Sow disloyalty to strengthen the rebels. You have 4 days. ***"
+  },
+  "weather_clear_skies_and_no_sign_of_rain_924f7f00": {
+    "message": "Weather: Clear skies and no sign of rain"
+  },
+  "weather_expect_unseasonal_snow_in_the_south_6c1fea3": {
+    "message": "Weather: Expect unseasonal snow in the south"
+  },
+  "weather_forecast_expects_heavy_rains_in_the_north__5503cdc7": {
+    "message": "Weather: Forecast expects heavy rains in the north and east"
+  },
+  "weather_freezing_sleet_and_snow_expected_in_northe_98f5c253": {
+    "message": "Weather: Freezing sleet and snow expected in northern mountains"
+  },
+  "weather_hurricane_level_winds_spotted_off_eastern__91abebfb": {
+    "message": "Weather: Hurricane-level winds spotted off eastern coast"
+  },
+  "weather_light_showers_throughout_the_day_3724e52b": {
+    "message": "Weather: Light showers throughout the day"
+  },
+  "weather_skies_and_temperatures_will_remain_calm_to_d9818881": {
+    "message": "Weather: Skies and temperatures will remain calm today"
+  },
+  "weather_storms_predicted_to_wash_western_coast_out_f1c3823f": {
+    "message": "Weather: Storms predicted to wash western coast out to sea"
+  },
+  "weather_sunny_morning_and_cloudy_evening_for_the_d_d0265e84": {
+    "message": "Weather: Sunny morning and cloudy evening for the day"
+  },
+  "weather_tropical_breezes_blow_across_southeastern__8fafc9cd": {
+    "message": "Weather: Tropical breezes blow across southeastern coast"
+  },
   "welcome_to_the_republia_times_you_are_the_new_edit_afa19d0d": {
     "message": "Welcome to The Republia Times. You are the new editor-in-chief."
   },
+  "western_storms_threaten_coast_bb87b2b": {
+    "message": "Western Storms Threaten Coast!"
+  },
   "work_day_clock_7d6d8ee7": {
     "message": "Work day clock"
+  },
+  "yearly_donations_to_the_state_must_increase_to_sup_9eaf1c4": {
+    "message": "Yearly donations to the state must increase to support growing government oversight"
   },
   "you_have_3_days_to_raise_the_public_s_loyalty_to_2_7f06f1ff": {
     "message": "You have 3 days to raise the public''s loyalty to 20"
