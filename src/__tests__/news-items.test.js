@@ -1,58 +1,50 @@
 // @flow strict-local
-import { getShuffledNewsItems } from '../news-items'
+import { getNewsItemsForDay } from '../news-items'
 
-describe('getShuffledNewsItems', () => {
-  it('defaults to shuffling the array of all news items', () => {
-    const randomSpy = jest.spyOn(global.Math, 'random').mockReturnValue(0.223)
-    const firstResult = getShuffledNewsItems()
-    expect(firstResult.length).toBeGreaterThan(0)
+describe('getNewsItemsForDay', () => {
+  it.each`
+    day  | mockRandomValue | usedNewsItemNumbers
+    ${0} | ${0.223}        | ${[]}
+    ${1} | ${0.45}         | ${[16, 18, 41]}
+    ${2} | ${0.5}          | ${[0, 16, 18, 41, 42]}
+    ${3} | ${0.12}         | ${[0, 16, 18, 41, 42]}
+    ${4} | ${0.88}         | ${[0, 14, 16, 17, 18, 41, 42]}
+    ${5} | ${0.762}        | ${[0, 13, 14, 15, 16, 17, 18, 41, 42]}
+    ${6} | ${0.357}        | ${[0, 13, 14, 15, 16, 17, 18, 41, 42]}
+  `(
+    'returns the correct items for day $day',
+    ({ day, mockRandomValue, usedNewsItemNumbers }) => {
+      const mathDotRandom = jest
+        .spyOn(global.Math, 'random')
+        .mockReturnValue(mockRandomValue)
+      const usedNewsItemIds = new Set(
+        usedNewsItemNumbers.map(num => `news-item-${num}`)
+      )
+      const newsItems = getNewsItemsForDay(day, usedNewsItemIds)
 
-    randomSpy.mockReturnValue(0.45)
-    const secondResult = getShuffledNewsItems()
-    // Ensure they don't reference the same array object
-    expect(firstResult).not.toBe(secondResult)
-    // Ensure their contents are different
-    expect(firstResult).not.toEqual(secondResult)
+      // Has at most 10 items
+      expect(newsItems.length).toBeLessThanOrEqual(10)
 
-    randomSpy.mockRestore()
-  })
+      // Has at least 7 items
+      expect(newsItems.length).toBeGreaterThanOrEqual(7)
 
-  it('shuffles news items passed into it', () => {
-    const newsItems = [
-      {
-        id: 'test-news-item-1',
-        getBlurb: () => 'blurb one',
-        getArticle: () => 'article one',
-        isInteresting: false,
-        loyalty: 0,
-      },
-      {
-        id: 'test-news-item-2',
-        getBlurb: () => 'blurb two',
-        getArticle: () => 'article two',
-        isInteresting: false,
-        loyalty: 0,
-      },
-      {
-        id: 'test-news-item-3',
-        getBlurb: () => 'blurb three',
-        getArticle: () => 'article three',
-        isInteresting: false,
-        loyalty: 0,
-      },
-    ]
+      // Has no more than one weather message
+      expect(
+        newsItems.filter(item => item.messageType === 'weather').length
+      ).toBeLessThanOrEqual(1)
 
-    const randomSpy = jest.spyOn(global.Math, 'random').mockReturnValue(0.22)
-    const firstResult = getShuffledNewsItems(newsItems)
-    expect(firstResult).toHaveLength(newsItems.length)
-    // Ensure they don't reference the same array object
-    expect(firstResult).not.toBe(newsItems)
+      // Shouldn't return items that aren't supposed to show up on this day
+      expect(newsItems.find(item => item.dayRangeStart > day)).toBeUndefined()
+      expect(
+        newsItems.find(item => item.dayRangeEnd < day && item.dayRangeEnd > 0)
+      ).toBeUndefined()
 
-    randomSpy.mockReturnValue(0.5)
-    const secondResult = getShuffledNewsItems(newsItems)
-    // Ensure their contents are different
-    expect(firstResult).not.toEqual(secondResult)
+      // Shouldn't return already-used items
+      expect(
+        newsItems.find(item => usedNewsItemIds.has(item.id))
+      ).toBeUndefined()
 
-    randomSpy.mockRestore()
-  })
+      mathDotRandom.mockRestore()
+    }
+  )
 })

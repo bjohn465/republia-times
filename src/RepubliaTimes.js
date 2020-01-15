@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import MorningScreen from './MorningScreen'
 import WorkScreen from './WorkScreen'
 import { colorBackground, colorTextDefault } from './css-variables'
+import { type GovernmentID, type GoalStatus } from './common-types'
 
 type ScreenState = 'morning' | 'work'
 
@@ -18,6 +19,8 @@ function RepubliaTimes() {
   const loyaltyValue = 0
   const readerCount = 200
   const [screen, setScreen] = useState<ScreenState>('morning')
+  const governmentId: GovernmentID = 'republia'
+  const goalStatus: GoalStatus = 'notWorking'
 
   return (
     <>
@@ -34,6 +37,8 @@ function RepubliaTimes() {
         {screen === 'work' && (
           <WorkScreen
             day={day}
+            goalStatus={goalStatus}
+            governmentId={governmentId}
             loyaltyValue={loyaltyValue}
             readerCount={readerCount}
           />

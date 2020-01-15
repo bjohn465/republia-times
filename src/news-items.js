@@ -1,25 +1,28 @@
 // @flow strict-local
 import t from 'format-message'
+import { type GovernmentID, type GoalStatus } from './common-types'
 
 const LOYALTY_UP = 1
 const LOYALTY_DOWN = -1
 const LOYALTY_NONE = 0
 
 type NewsItemState = {
-  governmentId: 'democria' | 'republia',
-  goalStatus: 'notWorking' | 'workingTowards' | 'met',
+  governmentId: GovernmentID,
+  goalStatus: GoalStatus,
   ...
 }
 
+opaque type NewsItemID: string = string
+
 type NewsItem = $ReadOnly<{|
-  id: string,
+  id: NewsItemID,
   getBlurb: (state: NewsItemState) => string,
   getArticle: (state: NewsItemState) => string | null,
   isInteresting: boolean,
   loyalty: -1 | 0 | 1,
-  dayRangeStart?: number,
-  dayRangeEnd?: number,
-  messageType?: 'weather' | 'rebelLeader',
+  dayRangeStart: number,
+  dayRangeEnd: number,
+  messageType: 'normal' | 'weather' | 'rebelLeader',
 |}>
 
 const allNewsItems: $ReadOnlyArray<NewsItem> = [
@@ -32,6 +35,8 @@ const allNewsItems: $ReadOnlyArray<NewsItem> = [
     getArticle: () => t('Rebellion Crushed, Peace Restored!'),
     isInteresting: true,
     loyalty: LOYALTY_UP,
+    dayRangeStart: 1,
+    dayRangeEnd: 3,
   },
   {
     getBlurb: () =>
@@ -809,29 +814,84 @@ const allNewsItems: $ReadOnlyArray<NewsItem> = [
     dayRangeStart: 6,
     dayRangeEnd: -1,
   },
-].map(function addIdToMessage(message, index) {
+].map(addDefaultsToNewsItem)
+
+function addDefaultsToNewsItem(
+  item: $Shape<NewsItem>,
+  index: number
+): NewsItem {
   return {
     id: `news-item-${index}`,
-    ...message,
+    dayRangeStart: 0,
+    dayRangeEnd: 0,
+    messageType: 'normal',
+    ...item,
   }
-})
+}
 
-export function getShuffledNewsItems(
+function getShuffledNewsItems(
   newsItems?: $ReadOnlyArray<NewsItem> = allNewsItems
 ): $ReadOnlyArray<NewsItem> {
-  let index = -1
-  const length = newsItems.length
+  const shuffledArray: Array<NewsItem> = newsItems.concat()
+  const length = shuffledArray.length
   const lastIndex = length - 1
-  const shuffledArray: Array<NewsItem> = Array(length)
+  let index = -1
 
   while (++index < length) {
     const randomIndex =
       index + Math.floor(Math.random() * (lastIndex - index + 1))
-    const value = newsItems[randomIndex]
+    const value = shuffledArray[randomIndex]
 
-    shuffledArray[randomIndex] = newsItems[index]
+    shuffledArray[randomIndex] = shuffledArray[index]
     shuffledArray[index] = value
   }
 
   return shuffledArray
+}
+
+export function getNewsItemsForDay(
+  day: number,
+  usedNewsItemIds: Set<NewsItemID>
+): $ReadOnlyArray<NewsItem> {
+  const criticalNewsItems: Array<NewsItem> = []
+  let weatherNewsItem: NewsItem | null = null
+  const nonCriticalNewsItems: Array<NewsItem> = []
+  let containsRebelMessage = false
+
+  getShuffledNewsItems().forEach(newsItem => {
+    if (usedNewsItemIds.has(newsItem.id)) {
+      return
+    }
+
+    if (newsItem.messageType === 'weather') {
+      if (!weatherNewsItem) {
+        weatherNewsItem = newsItem
+      }
+      return
+    }
+
+    if (newsItem.dayRangeStart || newsItem.dayRangeEnd) {
+      if (
+        (day >= newsItem.dayRangeStart && day <= newsItem.dayRangeEnd) ||
+        (day === newsItem.dayRangeStart && newsItem.dayRangeEnd < 0)
+      ) {
+        if (newsItem.messageType === 'rebelLeader') containsRebelMessage = true
+        criticalNewsItems.push(newsItem)
+      }
+    } else {
+      nonCriticalNewsItems.push(newsItem)
+    }
+  })
+
+  const maxNumItems = 10
+  const randomNumItems = containsRebelMessage ? 2 : 3
+  const minNumItems = maxNumItems - randomNumItems
+  const randomItemCount =
+    minNumItems + Math.floor(Math.random() * randomNumItems)
+
+  return getShuffledNewsItems(
+    criticalNewsItems
+      .concat(weatherNewsItem || [], nonCriticalNewsItems)
+      .slice(0, randomItemCount)
+  )
 }

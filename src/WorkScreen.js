@@ -5,6 +5,7 @@ import WorkDayClock from './WorkDayClock'
 import Button from './Button'
 import Stats from './Stats'
 import NewsFeed from './NewsFeed'
+import { type GovernmentID, type GoalStatus } from './common-types'
 
 const updateFequencyInMilliseconds = 100
 const dayStart = new Date('2019-01-01T06:00:00Z')
@@ -17,11 +18,19 @@ function getNewGameDate(previousGameDate: Date, timeToAdd: number) {
 
 type Props = {|
   day: number,
+  goalStatus: GoalStatus,
+  governmentId: GovernmentID,
   loyaltyValue: number,
   readerCount: number,
 |}
 
-function WorkScreen({ day, loyaltyValue, readerCount }: Props) {
+function WorkScreen({
+  day,
+  goalStatus,
+  governmentId,
+  loyaltyValue,
+  readerCount,
+}: Props) {
   const [gameSpeedFactor, setGameSpeedFactor] = useState(360)
   const [gameDate, setGameDate] = useState(dayStart)
   const [timerTime, setTimerTime] = useState(performance.now())
@@ -51,7 +60,7 @@ function WorkScreen({ day, loyaltyValue, readerCount }: Props) {
       <WorkDayClock gameDate={gameDate} />
       <Button onClick={handleEndDayClick}>{t('End Day')}</Button>
       <Stats loyaltyValue={loyaltyValue} readerCount={readerCount} />
-      <NewsFeed />
+      <NewsFeed day={day} goalStatus={goalStatus} governmentId={governmentId} />
     </>
   )
 }

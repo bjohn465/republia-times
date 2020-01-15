@@ -6,6 +6,8 @@ import WorkScreen from '../WorkScreen'
 describe('WorkScreen', () => {
   const defaults = {
     day: 1,
+    goalStatus: 'notWorking',
+    governmentId: 'republia',
     loyaltyValue: 0,
     readerCount: 200,
   }
