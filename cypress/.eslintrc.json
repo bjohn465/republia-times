@@ -1,6 +1,3 @@
 {
-  "extends": ["plugin:cypress/recommended"],
-  "rules": {
-    "flowtype/require-valid-file-annotation": "off"
-  }
+  "extends": ["plugin:cypress/recommended"]
 }

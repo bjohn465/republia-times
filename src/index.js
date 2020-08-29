@@ -1,18 +1,14 @@
-// @flow strict-local
-import React, { StrictMode } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import './setupFormatMessage'
-import RepubliaTimes from './RepubliaTimes'
+import './index.css'
+import App from './App'
 // import * as serviceWorker from './serviceWorker'
 
-const rootElement = document.createElement('div')
-document.body && document.body.appendChild(rootElement)
-
 ReactDOM.render(
-  <StrictMode>
-    <RepubliaTimes />
-  </StrictMode>,
-  rootElement
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change
