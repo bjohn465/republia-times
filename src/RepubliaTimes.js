@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import MorningScreen from './MorningScreen'
+import WorkScreen from './WorkScreen'
 
 export default function RepubliaTimes() {
   const [screen, setScreen] = useState('morning')
@@ -10,7 +11,7 @@ export default function RepubliaTimes() {
   return (
     <>
       {screen === 'morning' && <MorningScreen onStartWork={onStartWork} />}
-      {screen === 'work' && <div />}
+      {screen === 'work' && <WorkScreen />}
     </>
   )
 }
