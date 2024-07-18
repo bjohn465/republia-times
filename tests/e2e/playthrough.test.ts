@@ -15,7 +15,7 @@ test('Initial load', async ({ page }) => {
 		}
 	})()
 
-	page.route(
+	await page.route(
 		/.*\.(?:j|t)sx?$/,
 		async (route) => {
 			await jsDelay.start(50)
