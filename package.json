@@ -37,7 +37,7 @@
     "react-router": "^7.0.2"
   },
   "devDependencies": {
-    "@epic-web/config": "^1.16.3",
+    "@epic-web/config": "^1.16.4",
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
