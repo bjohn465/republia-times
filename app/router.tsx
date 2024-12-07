@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router'
 import ErrorPage from './error-page.tsx'
 import Root from './routes/root.tsx'
 
