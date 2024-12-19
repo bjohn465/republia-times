@@ -1,7 +1,5 @@
 import { default as defaultConfig } from '@epic-web/config/eslint'
+import reactRefresh from 'eslint-plugin-react-refresh'
 
 /** @type {import("eslint").Linter.Config} */
-export default [
-	...defaultConfig,
-	// add custom config objects here:
-]
+export default [...defaultConfig, reactRefresh.configs.vite]
