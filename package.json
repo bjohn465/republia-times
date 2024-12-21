@@ -41,7 +41,7 @@
     "@epic-web/config": "^1.16.4",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.2",
-    "@types/react": "^19.0.1",
+    "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
