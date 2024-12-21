@@ -35,7 +35,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.0.2"
+    "react-router": "^7.1.0"
   },
   "devDependencies": {
     "@epic-web/config": "^1.16.4",
