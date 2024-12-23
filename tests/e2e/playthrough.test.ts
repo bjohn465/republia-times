@@ -1,5 +1,22 @@
 import { expect, test } from '@playwright/test'
 
+// Playwright can not find the text
+// within the `noscript` element
+// (see https://github.com/microsoft/playwright/issues/32542).
+// Skip this test until Playwright
+// allows us to test it.
+test.describe.skip('With JavaScript disabled', () => {
+	test.use({ javaScriptEnabled: false })
+
+	test('Display message about enabling JavaScript', async ({ page }) => {
+		await page.goto('/')
+		await expect(page.getByText('Loading...')).not.toBeVisible()
+		await expect(
+			page.getByText('Enable JavaScript to play this game.'),
+		).toBeVisible()
+	})
+})
+
 test('Initial load', async ({ page }) => {
 	const jsDelay = (() => {
 		let resolve: () => void
@@ -26,6 +43,9 @@ test('Initial load', async ({ page }) => {
 
 	await page.goto('/', { waitUntil: 'commit' })
 	await expect(page.getByText('Loading...')).toBeVisible()
+	await expect(
+		page.getByText('Enable JavaScript to play this game.'),
+	).not.toBeVisible()
 	await expect(
 		page.getByText('There was a problem loading the game.'),
 	).not.toBeVisible()

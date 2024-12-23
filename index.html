@@ -1,15 +1,19 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html class="noJs" lang="en" dir="ltr">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>The Republia Times</title>
+		<script>
+			document.documentElement.classList.remove('noJs')
+		</script>
 		<style>
 			@import url('/app/loading.css');
 		</style>
 	</head>
 	<body>
 		<div id="root">
+			<noscript>Enable JavaScript to play this game.</noscript>
 			<span id="initialLoadText">Loading...</span>
 			<span id="initialLoadError">There was a problem loading the game.</span>
 		</div>

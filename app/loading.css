@@ -1,5 +1,6 @@
 #initialLoadError,
-.initializationError #initialLoadText {
+.initializationError #initialLoadText,
+.noJs #initialLoadText {
 	display: none;
 }
 .initializationError #initialLoadError {
