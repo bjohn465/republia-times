@@ -4,9 +4,15 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>The Republia Times</title>
+		<style>
+			@import url('/app/loading.css');
+		</style>
 	</head>
 	<body>
-		<div id="root"><span id="initialLoadText">Loading...</span></div>
+		<div id="root">
+			<span id="initialLoadText">Loading...</span>
+			<span id="initialLoadError">There was a problem loading the game.</span>
+		</div>
 		<script type="module" src="/app/entry.tsx"></script>
 	</body>
 </html>

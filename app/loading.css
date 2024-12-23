@@ -1,0 +1,7 @@
+#initialLoadError,
+.initializationError #initialLoadText {
+	display: none;
+}
+.initializationError #initialLoadError {
+	display: initial;
+}
