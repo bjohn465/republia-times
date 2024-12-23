@@ -5,7 +5,17 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 /** @type {import("eslint").Linter.Config} */
 export default [
 	...defaultConfig,
-	reactRefresh.configs.vite,
+	{
+		plugins: {
+			'react-refresh': reactRefresh,
+		},
+		rules: {
+			'react-refresh/only-export-components': [
+				'error',
+				{ allowConstantExport: true },
+			],
+		},
+	},
 	{
 		plugins: {
 			lingui,
