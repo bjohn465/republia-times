@@ -22,6 +22,7 @@ msgid "by <0>Lucas Pope</0>"
 msgstr "by <0>Lucas Pope</0>"
 
 #: app/routes/morning.component.tsx:11
+#: app/routes/day.component.tsx:6
 msgid "Day 1"
 msgstr "Day 1"
 
