@@ -1,4 +1,6 @@
 import { Trans } from '@lingui/react/macro'
+import { Form } from 'react-router'
+import Intents from '#app/intents'
 
 export default function Morning() {
 	return (
@@ -45,6 +47,11 @@ export default function Morning() {
 						child in a safe location.
 					</Trans>
 				</p>
+				<Form action="/morning" method="post">
+					<button type="submit" name="intent" value={Intents.StartWork}>
+						<Trans>Start work</Trans>
+					</button>
+				</Form>
 			</main>
 			<footer>
 				<p>
