@@ -3,17 +3,21 @@ import { expect, test } from '@playwright/test'
 // Playwright can not find the text
 // within the `noscript` element
 // (see https://github.com/microsoft/playwright/issues/32542).
-// Skip this test until Playwright
-// allows us to test it.
-test.describe.skip('With JavaScript disabled', () => {
+// So, for now,
+// get the element by test ID
+// and check the `textContent` property.
+test.describe('With JavaScript disabled', () => {
 	test.use({ javaScriptEnabled: false })
 
 	test('Display message about enabling JavaScript', async ({ page }) => {
 		await page.goto('/')
 		await expect(page.getByText('Loading...')).not.toBeVisible()
-		await expect(
-			page.getByText('Enable JavaScript to play this game.'),
-		).toBeVisible()
+		const noscript = page.getByTestId('noscript')
+		await expect(noscript).toBeVisible()
+		await expect(noscript).toHaveJSProperty(
+			'textContent',
+			'Enable JavaScript to play this game.',
+		)
 	})
 })
 
@@ -43,6 +47,7 @@ test('Initial load', async ({ page }) => {
 
 	await page.goto('/', { waitUntil: 'commit' })
 	await expect(page.getByText('Loading...')).toBeVisible()
+	await expect(page.getByTestId('noscript')).not.toBeVisible()
 	await expect(
 		page.getByText('Enable JavaScript to play this game.'),
 	).not.toBeVisible()
