@@ -75,4 +75,5 @@ test('Game start', async ({ page }) => {
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(
 		'The Republia Times',
 	)
+	await expect(page.getByRole('heading', { level: 2 })).toHaveText('Day 1')
 })

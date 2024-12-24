@@ -13,6 +13,54 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/morning.component.tsx:6
+#: app/routes/morning.component.tsx:43
+msgid "As a precaution against influence, we are keeping your wife and child in a safe location."
+msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
+
+#: app/routes/morning.component.tsx:51
+msgid "by <0>Lucas Pope</0>"
+msgstr "by <0>Lucas Pope</0>"
+
+#: app/routes/morning.component.tsx:11
+msgid "Day 1"
+msgstr "Day 1"
+
+#: app/routes/morning.component.tsx:30
+msgid "It is your job to increase their loyalty by editing The Republia Times carefully."
+msgstr "It is your job to increase their loyalty by editing The Republia Times carefully."
+
+#: app/routes/morning.component.tsx:24
+msgid "Order is slowly returning to Republia."
+msgstr "Order is slowly returning to Republia."
+
+#: app/routes/morning.component.tsx:34
+msgid "Pick only stories that highlight the good things about Republia and its government."
+msgstr "Pick only stories that highlight the good things about Republia and its government."
+
+#: app/routes/morning.component.tsx:56
+msgid "ported by <0>Brandon Johnson</0>"
+msgstr "ported by <0>Brandon Johnson</0>"
+
+#: app/routes/morning.component.tsx:27
+msgid "The public is not loyal to the government."
+msgstr "The public is not loyal to the government."
+
+#: app/routes/morning.component.tsx:8
 msgid "The Republia Times"
 msgstr "The Republia Times"
+
+#: app/routes/morning.component.tsx:20
+msgid "The war with Antegria is over and the rebellion uprising has been crushed."
+msgstr "The war with Antegria is over and the rebellion uprising has been crushed."
+
+#: app/routes/morning.component.tsx:16
+msgid "Welcome to The Republia Times."
+msgstr "Welcome to The Republia Times."
+
+#: app/routes/morning.component.tsx:17
+msgid "You are the new editor-in-chief."
+msgstr "You are the new editor-in-chief."
+
+#: app/routes/morning.component.tsx:40
+msgid "You have 3 days to raise the public's loyalty to 20."
+msgstr "You have 3 days to raise the public's loyalty to 20."
