@@ -1,6 +1,6 @@
 #initialLoadError,
 .initializationError #initialLoadText,
-.noJs #initialLoadText {
+:root:not(.hasJs) #initialLoadText {
 	display: none;
 }
 .initializationError #initialLoadError {
