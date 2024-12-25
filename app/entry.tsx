@@ -1,3 +1,4 @@
+import { invariant } from '@epic-web/invariant'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
@@ -9,10 +10,10 @@ async function entry() {
 		document.documentElement.classList.add('initializationError')
 	}
 	const root = document.getElementById('root')
-	if (!root) {
+	invariant(root, () => {
 		addErrorClass()
-		throw new Error('The root element is missing')
-	}
+		return 'The root element is missing'
+	})
 	const locale = detectLocale()
 	try {
 		await dynamicActivate(locale)
