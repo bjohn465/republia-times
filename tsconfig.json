@@ -5,6 +5,7 @@
 		"paths": {
 			"#app/*": ["./app/*"],
 			"#tests/*": ["./tests/*"]
-		}
+		},
+		"types": ["vite/client"]
 	}
 }

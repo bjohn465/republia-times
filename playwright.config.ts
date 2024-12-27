@@ -28,7 +28,9 @@ export default defineConfig({
 	],
 
 	webServer: {
-		command: process.env.CI ? 'npm run preview' : 'npm run dev',
+		command: process.env.CI
+			? 'npm run preview -- --mode development'
+			: 'npm run dev',
 		port: Number(PORT),
 		reuseExistingServer: true,
 		stdout: 'pipe',
