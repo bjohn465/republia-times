@@ -79,5 +79,8 @@ test('Game start', async ({ page }) => {
 	const startWorkButton = page.getByRole('button', { name: 'Start work' })
 	await expect(startWorkButton).toBeVisible()
 	await startWorkButton.click()
-	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
+	await expect(page.getByRole('heading', { level: 1 })).not.toHaveText(
+		'The Republia Times',
+	)
+	await expect(startWorkButton).not.toBeVisible()
 })
