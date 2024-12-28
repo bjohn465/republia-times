@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/react/macro'
 import { Form } from 'react-router'
-import Intents from '#app/intents'
+import { Intents } from './morning.data'
 
 export default function Morning() {
 	return (

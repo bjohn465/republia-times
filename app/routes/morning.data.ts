@@ -1,6 +1,9 @@
 import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
-import Intents from '#app/intents.ts'
+
+export enum Intents {
+	StartWork = 'StartWork',
+}
 
 export async function action({ request }: ActionFunctionArgs) {
 	const data = await request.formData()
