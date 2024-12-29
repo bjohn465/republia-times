@@ -21,7 +21,14 @@ const emptyFunction = () => {}
 let consoleWarn: MockInstance<(typeof console)['warn']>
 
 beforeEach(() => {
+	const originalConsoleWarn = console.warn
 	consoleWarn = vi.spyOn(console, 'warn')
+	consoleWarn.mockImplementation((...args: Parameters<typeof console.warn>) => {
+		originalConsoleWarn(...args)
+		throw new Error(
+			'Console warn was called. Use consoleWarn.mockImplementation if this is expected.',
+		)
+	})
 })
 
 describe('getGameState', () => {
