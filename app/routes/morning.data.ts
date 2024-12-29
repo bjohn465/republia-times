@@ -1,5 +1,6 @@
 import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
+import { getURLPathFromGameState, startWork } from '#app/game-state.ts'
 
 export enum Intents {
 	StartWork = 'StartWork',
@@ -11,5 +12,6 @@ export async function action({ request }: ActionFunctionArgs) {
 	invariantResponse(intent === Intents.StartWork, 'Invalid intent', {
 		statusText: 'Bad Request',
 	})
-	throw replace('/day')
+	startWork()
+	throw replace(getURLPathFromGameState())
 }

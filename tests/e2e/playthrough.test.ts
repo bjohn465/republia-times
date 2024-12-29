@@ -84,3 +84,15 @@ test('Game start', async ({ page }) => {
 	)
 	await expect(startWorkButton).not.toBeVisible()
 })
+
+test('Work day', async ({ page }) => {
+	await page.goto(
+		`/?initialState=${btoa(
+			JSON.stringify({
+				screen: 'day',
+				v: 1,
+			}),
+		)}`,
+	)
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
+})
