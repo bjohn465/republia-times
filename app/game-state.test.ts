@@ -7,8 +7,12 @@ import {
 	vi,
 } from 'vitest'
 import {
+	encodeGameStateURLParamValue,
+	gameStateFromPartial,
+	gameStateToURLSearchParams,
+} from '#tests/utils.ts'
+import {
 	GameScreen,
-	type GameState,
 	gameStateURLParam,
 	getGameState,
 	getURLPathFromGameState,
@@ -29,6 +33,10 @@ beforeEach(() => {
 			'Console warn was called. Use consoleWarn.mockImplementation if this is expected.',
 		)
 	})
+})
+
+beforeEach(() => {
+	initializeGameState(gameStateFromPartial({ screen: GameScreen.Morning }))
 })
 
 describe('getGameState', () => {
@@ -63,37 +71,23 @@ describe('initializeGameState', () => {
 
 	test('Updates and returns current game state with valid value', () => {
 		const existingState = getGameState()
-		const initialState = {
-			...existingState,
-			screen:
-				existingState.screen === GameScreen.Morning
-					? GameScreen.Day
-					: GameScreen.Morning,
-		}
+		const initialState = gameStateFromPartial({ screen: GameScreen.Day })
 		const returnedState = initializeGameState(initialState)
 		expect(returnedState).toEqual(initialState)
 		expect(getGameState()).toEqual(returnedState)
+		expect(getGameState()).not.toEqual(existingState)
 	})
 })
 
 describe('startWork', () => {
 	test('Throws error if screen value is invalid', () => {
-		const existingState = getGameState()
-		initializeGameState({
-			...existingState,
-			screen: GameScreen.Day,
-		})
+		initializeGameState(gameStateFromPartial({ screen: GameScreen.Day }))
 		expect(() => {
 			startWork()
 		}).toThrowError('Invalid state for startWork')
 	})
 
 	test('Updates and returns screen value in game state', () => {
-		const existingState = getGameState()
-		initializeGameState({
-			...existingState,
-			screen: GameScreen.Morning,
-		})
 		const returnedState = startWork()
 		expect(returnedState).toHaveProperty('screen', GameScreen.Day)
 		expect(getGameState()).toHaveProperty('screen', GameScreen.Day)
@@ -126,7 +120,7 @@ describe('initializeGameStateFromURL', () => {
 	test('Returns current game state when URL param contains invalid JSON', () => {
 		consoleWarn.mockImplementation(emptyFunction)
 		const existingState = getGameState()
-		const paramValue = btoa('notJSON')
+		const paramValue = encodeGameStateURLParamValue('notJSON')
 		expect(
 			initializeGameStateFromURL(
 				new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
@@ -142,7 +136,9 @@ describe('initializeGameStateFromURL', () => {
 	test('Returns current game state when URL param contains invalid state', () => {
 		consoleWarn.mockImplementation(emptyFunction)
 		const existingState = getGameState()
-		const paramValue = btoa(JSON.stringify({ screen: 'invalid', v: 'nope' }))
+		const paramValue = encodeGameStateURLParamValue(
+			JSON.stringify({ screen: 'invalid', v: 'nope' }),
+		)
 		expect(
 			initializeGameStateFromURL(
 				new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
@@ -157,16 +153,11 @@ describe('initializeGameStateFromURL', () => {
 
 	test('Updates and returns game state', () => {
 		const existingState = getGameState()
-		const newState: GameState = {
-			screen:
-				existingState.screen === GameScreen.Morning
-					? GameScreen.Day
-					: GameScreen.Morning,
-			v: 1,
-		}
-		const paramValue = btoa(JSON.stringify(newState))
+		const newState = gameStateFromPartial({ screen: GameScreen.Day })
 		const returnedState = initializeGameStateFromURL(
-			new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
+			new URL(
+				`https://www.example.com/?${gameStateToURLSearchParams(newState).toString()}`,
+			),
 		)
 		expect(returnedState).not.toEqual(existingState)
 		expect(returnedState).toEqual(newState)

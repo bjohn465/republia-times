@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test'
+import { GameScreen } from '#app/game-state.ts'
+import {
+	gameStateFromPartial,
+	gameStateToURLSearchParams,
+} from '#tests/utils.ts'
 
 // Playwright can not find the text
 // within the `noscript` element
@@ -87,12 +92,11 @@ test('Game start', async ({ page }) => {
 
 test('Work day', async ({ page }) => {
 	await page.goto(
-		`/?initialState=${btoa(
-			JSON.stringify({
-				screen: 'day',
-				v: 1,
+		`/?${gameStateToURLSearchParams(
+			gameStateFromPartial({
+				screen: GameScreen.Day,
 			}),
-		)}`,
+		).toString()}`,
 	)
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
 })
