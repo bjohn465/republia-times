@@ -56,12 +56,12 @@ export default function Morning() {
 			<footer>
 				<p>
 					<Trans>
-						by <a href="https://dukope.com/">Lucas Pope</a>
+						Original by <a href="https://dukope.com/">Lucas Pope</a>
 					</Trans>
 				</p>
 				<p>
 					<Trans>
-						ported by <a href="https://github.com/bjohn465">Brandon Johnson</a>
+						Ported by <a href="https://github.com/bjohn465">Brandon Johnson</a>
 					</Trans>
 				</p>
 			</footer>

@@ -17,10 +17,6 @@ msgstr ""
 msgid "As a precaution against influence, we are keeping your wife and child in a safe location."
 msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
 
-#: app/routes/morning.component.tsx:58
-msgid "by <0>Lucas Pope</0>"
-msgstr "by <0>Lucas Pope</0>"
-
 #: app/routes/morning.component.tsx:13
 #: app/routes/day.component.tsx:6
 msgid "Day 1"
@@ -34,13 +30,17 @@ msgstr "It is your job to increase their loyalty by editing The Republia Times c
 msgid "Order is slowly returning to Republia."
 msgstr "Order is slowly returning to Republia."
 
+#: app/routes/morning.component.tsx:58
+msgid "Original by <0>Lucas Pope</0>"
+msgstr "Original by <0>Lucas Pope</0>"
+
 #: app/routes/morning.component.tsx:36
 msgid "Pick only stories that highlight the good things about Republia and its government."
 msgstr "Pick only stories that highlight the good things about Republia and its government."
 
 #: app/routes/morning.component.tsx:63
-msgid "ported by <0>Brandon Johnson</0>"
-msgstr "ported by <0>Brandon Johnson</0>"
+msgid "Ported by <0>Brandon Johnson</0>"
+msgstr "Ported by <0>Brandon Johnson</0>"
 
 #: app/routes/morning.component.tsx:52
 msgid "Start work"
