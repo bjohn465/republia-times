@@ -18,13 +18,25 @@ msgid "As a precaution against influence, we are keeping your wife and child in 
 msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
 
 #: app/routes/morning.component.tsx:13
-#: app/routes/day.component.tsx:6
+#: app/routes/day.component.tsx:11
 msgid "Day 1"
 msgstr "Day 1"
+
+#: app/news-items.ts:22
+msgid "HugginBoyz: Talentless After All!"
+msgstr "HugginBoyz: Talentless After All!"
 
 #: app/routes/morning.component.tsx:32
 msgid "It is your job to increase their loyalty by editing The Republia Times carefully."
 msgstr "It is your job to increase their loyalty by editing The Republia Times carefully."
+
+#: app/news-items.ts:21
+msgid "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
+msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
+
+#: app/routes/day.component.tsx:22
+msgid "News Feed"
+msgstr "News Feed"
 
 #: app/routes/morning.component.tsx:26
 msgid "Order is slowly returning to Republia."
@@ -45,6 +57,14 @@ msgstr "Ported by <0>Brandon Johnson</0>"
 #: app/routes/morning.component.tsx:52
 msgid "Start work"
 msgstr "Start work"
+
+#: app/news-items.ts:17
+msgid "Tennis Star Advances!"
+msgstr "Tennis Star Advances!"
+
+#: app/news-items.ts:16
+msgid "Tennis star Restojiu powers through semifinal brackets"
+msgstr "Tennis star Restojiu powers through semifinal brackets"
 
 #: app/routes/morning.component.tsx:29
 msgid "The public is not loyal to the government."

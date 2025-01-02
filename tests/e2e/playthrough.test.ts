@@ -99,4 +99,18 @@ test('Work day', async ({ page }) => {
 		).toString()}`,
 	)
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
+	await expect(page.getByRole('heading', { level: 2 })).toHaveText('News Feed')
+})
+
+test('News feed', async ({ page }) => {
+	await page.goto(
+		`/?${gameStateToURLSearchParams(
+			gameStateFromPartial({
+				screen: GameScreen.Day,
+			}),
+		).toString()}`,
+	)
+	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
+	await expect(newsFeedList).toBeVisible()
+	await expect(newsFeedList.getByRole('listitem')).toHaveCount(2)
 })
