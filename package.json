@@ -49,7 +49,7 @@
     "valibot": "^1.0.0-beta.9"
   },
   "devDependencies": {
-    "@epic-web/config": "^1.16.4",
+    "@epic-web/config": "^1.16.5",
     "@lingui/babel-plugin-lingui-macro": "^5.1.2",
     "@lingui/cli": "^5.1.2",
     "@lingui/vite-plugin": "^5.1.2",
