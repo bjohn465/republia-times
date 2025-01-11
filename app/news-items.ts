@@ -1,4 +1,5 @@
 import { t } from '@lingui/core/macro'
+import * as v from 'valibot'
 
 const newsItemsByID = new Map<NewsItemID, Readonly<NewsItem>>()
 
@@ -28,16 +29,17 @@ function generateNewsItems() {
 }
 
 function newsItemID(strings: TemplateStringsArray): NewsItemID {
-	return String.raw({ raw: strings }) as NewsItemID
-}
-
-export interface NewsItem {
-	id: NewsItemID
-	feedText: string
-	articleText: string
+	return v.parse(NewsItemIDSchema, String.raw({ raw: strings }))
 }
 
 // Use a "branded type" for the news item ID,
 // so not just any string is used for an ID.
-declare const newsItemIDSymbol: unique symbol
-type NewsItemID = string & { [newsItemIDSymbol]: void }
+const NewsItemIDSchema = v.pipe(v.string(), v.brand('NewsItemID'))
+type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
+
+export const NewsItemSchema = v.object({
+	id: NewsItemIDSchema,
+	feedText: v.string(),
+	articleText: v.string(),
+})
+export type NewsItem = v.InferOutput<typeof NewsItemSchema>
