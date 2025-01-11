@@ -27,11 +27,8 @@ function generateNewsItems() {
 	})
 }
 
-function newsItemID(
-	strings: TemplateStringsArray,
-	...params: unknown[]
-): NewsItemID {
-	return String.raw({ raw: strings }, ...params) as NewsItemID
+function newsItemID(strings: TemplateStringsArray): NewsItemID {
+	return String.raw({ raw: strings }) as NewsItemID
 }
 
 export interface NewsItem {
