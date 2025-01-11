@@ -12,12 +12,12 @@ export function getNewsItems() {
 function generateNewsItems() {
 	const newsItems: NewsItem[] = [
 		{
-			id: newsItemID`bBQbtcHtk6`,
+			id: newsItemID`bBQb`,
 			feedText: t`Tennis star Restojiu powers through semifinal brackets`,
 			articleText: t`Tennis Star Advances!`,
 		},
 		{
-			id: newsItemID`9MrFpfzwbc`,
+			id: newsItemID`9MrF`,
 			feedText: t`Mega-group HugginBoyz admits to not singing on any albums, can barely dance`,
 			articleText: t`HugginBoyz: Talentless After All!`,
 		},

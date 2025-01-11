@@ -16,7 +16,7 @@
     "dev": "vite",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "generate-id:news-feed-item": "nanoid --alphabet 6789BCDFGHJKLMNPQRTWbcdfghjkmnpqrtwz --size 10",
+    "generate-id:news-feed-item": "nanoid --alphabet 6789BCDFGHJKLMNPQRTWbcdfghjkmnpqrtwz --size 4",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "prepreview": "npm run build",
     "preview": "vite preview",
