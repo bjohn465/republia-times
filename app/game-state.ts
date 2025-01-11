@@ -6,10 +6,25 @@ export enum GameScreen {
 	Day = 'day',
 }
 
-const GameStateSchema = v.object({
+const BaseGameStateSchema = v.object({
 	screen: v.enum(GameScreen),
 	v: v.literal(1),
 })
+
+const MorningStateSchema = v.object({
+	...BaseGameStateSchema.entries,
+	screen: v.literal(GameScreen.Morning),
+})
+
+const DayStateSchema = v.object({
+	...BaseGameStateSchema.entries,
+	screen: v.literal(GameScreen.Day),
+})
+
+const GameStateSchema = v.variant('screen', [
+	MorningStateSchema,
+	DayStateSchema,
+])
 export type GameState = v.InferOutput<typeof GameStateSchema>
 
 let gameState: GameState = {
@@ -70,7 +85,7 @@ export function getURLPathFromGameState() {
 		}
 		/* c8 ignore next 3 */
 		default: {
-			return assertUnreachable(gameState.screen)
+			return assertUnreachable(gameState)
 		}
 	}
 }
