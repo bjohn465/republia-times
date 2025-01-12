@@ -22,7 +22,7 @@ msgstr "As a precaution against influence, we are keeping your wife and child in
 msgid "Day 1"
 msgstr "Day 1"
 
-#: app/news-items.ts:54
+#: app/news-items.ts:50
 msgid "HugginBoyz: Talentless After All!"
 msgstr "HugginBoyz: Talentless After All!"
 
@@ -30,7 +30,7 @@ msgstr "HugginBoyz: Talentless After All!"
 msgid "It is your job to increase their loyalty by editing The Republia Times carefully."
 msgstr "It is your job to increase their loyalty by editing The Republia Times carefully."
 
-#: app/news-items.ts:53
+#: app/news-items.ts:49
 msgid "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 
@@ -58,11 +58,11 @@ msgstr "Ported by <0>Brandon Johnson</0>"
 msgid "Start work"
 msgstr "Start work"
 
-#: app/news-items.ts:48
+#: app/news-items.ts:44
 msgid "Tennis Star Advances!"
 msgstr "Tennis Star Advances!"
 
-#: app/news-items.ts:47
+#: app/news-items.ts:43
 msgid "Tennis star Restojiu powers through semifinal brackets"
 msgstr "Tennis star Restojiu powers through semifinal brackets"
 

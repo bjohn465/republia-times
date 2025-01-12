@@ -1,11 +1,7 @@
 import { invariant } from '@epic-web/invariant'
 import { t } from '@lingui/core/macro'
 import * as v from 'valibot'
-
-// Use a "branded type" for the news item ID,
-// so not just any string is used for an ID.
-const NewsItemIDSchema = v.pipe(v.string(), v.brand('NewsItemID'))
-type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
+import { newsItemID, type NewsItemID, NewsItemIDSchema } from './news-item-id'
 
 const PreTranslatedTextSchema = v.pipe(
 	v.function(),
@@ -65,8 +61,4 @@ export function getNewsItem(id: NewsItemID) {
 	const item = newsItemsByID.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
 	return item
-}
-
-function newsItemID(strings: TemplateStringsArray): NewsItemID {
-	return v.parse(NewsItemIDSchema, String.raw({ raw: strings }))
 }
