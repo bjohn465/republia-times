@@ -1,5 +1,6 @@
 import { customAlphabet } from 'nanoid'
-import { newsItemIDAlphabet, newsItemIDLength } from '#app/news-item-id'
 
+const newsItemIDAlphabet = '6789BCDFGHJKLMNPQRTWbcdfghjkmnpqrtwz'
+const newsItemIDLength = 4
 const nanoid = customAlphabet(newsItemIDAlphabet, newsItemIDLength)
 console.log(nanoid())

@@ -43,7 +43,6 @@
     "@lingui/detect-locale": "^5.1.2",
     "@lingui/message-utils": "^5.1.2",
     "@lingui/react": "^5.1.2",
-    "escape-string-regexp": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.1",
