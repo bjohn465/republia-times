@@ -72,9 +72,6 @@
     "vite-plugin-minify": "^2.1.0",
     "vitest": "^3.0.1"
   },
-  "overrides": {
-    "vite": "^6.0.7"
-  },
   "engines": {
     "node": ">=22.13.0 <23",
     "npm": ">=10.9.2 <11"
