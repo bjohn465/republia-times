@@ -11,11 +11,13 @@ const MorningStateSchema = v.object({
 	...BaseGameStateSchema.entries,
 	screen: v.literal(GameScreen.Morning),
 })
+export type MorningState = v.InferOutput<typeof MorningStateSchema>
 
 const DayStateSchema = v.object({
 	...BaseGameStateSchema.entries,
 	screen: v.literal(GameScreen.Day),
 })
+export type DayState = v.InferOutput<typeof DayStateSchema>
 
 const GameStateSchema = v.variant('screen', [
 	MorningStateSchema,

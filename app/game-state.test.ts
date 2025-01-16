@@ -8,8 +8,9 @@ import {
 } from 'vitest'
 import {
 	encodeGameStateURLParamValue,
-	gameStateFromPartial,
 	gameStateToURLSearchParams,
+	getDayGameState,
+	getMorningGameState,
 } from '#tests/utils.ts'
 import { GameScreen } from './game-screen'
 import {
@@ -36,7 +37,7 @@ beforeEach(() => {
 })
 
 beforeEach(() => {
-	initializeGameState(gameStateFromPartial({ screen: GameScreen.Morning }))
+	initializeGameState(getMorningGameState())
 })
 
 describe('getGameState', () => {
@@ -71,7 +72,7 @@ describe('initializeGameState', () => {
 
 	test('Updates and returns current game state with valid value', () => {
 		const existingState = getGameState()
-		const initialState = gameStateFromPartial({ screen: GameScreen.Day })
+		const initialState = getDayGameState()
 		const returnedState = initializeGameState(initialState)
 		expect(returnedState).toEqual(initialState)
 		expect(getGameState()).toEqual(returnedState)
@@ -81,7 +82,7 @@ describe('initializeGameState', () => {
 
 describe('startWork', () => {
 	test('Throws error if screen value is invalid', () => {
-		initializeGameState(gameStateFromPartial({ screen: GameScreen.Day }))
+		initializeGameState(getDayGameState())
 		expect(() => {
 			startWork()
 		}).toThrowError('Invalid state for startWork')
@@ -153,7 +154,7 @@ describe('initializeGameStateFromURL', () => {
 
 	test('Updates and returns game state', () => {
 		const existingState = getGameState()
-		const newState = gameStateFromPartial({ screen: GameScreen.Day })
+		const newState = getDayGameState()
 		const returnedState = initializeGameStateFromURL(
 			new URL(
 				`https://www.example.com/?${gameStateToURLSearchParams(newState).toString()}`,
@@ -167,20 +168,12 @@ describe('initializeGameStateFromURL', () => {
 
 describe('getURLPathFromGameState', () => {
 	test('Returns path for morning state', () => {
-		const existingState = getGameState()
-		initializeGameState({
-			...existingState,
-			screen: GameScreen.Morning,
-		})
+		initializeGameState(getMorningGameState())
 		expect(getURLPathFromGameState()).toBe('/morning')
 	})
 
 	test('Returns path for day state', () => {
-		const existingState = getGameState()
-		initializeGameState({
-			...existingState,
-			screen: GameScreen.Day,
-		})
+		initializeGameState(getDayGameState())
 		expect(getURLPathFromGameState()).toBe('/day')
 	})
 })

@@ -1,16 +1,29 @@
 import { GameScreen } from '#app/game-screen'
-import { type GameState } from '#app/game-state'
+import {
+	type DayState,
+	type GameState,
+	type MorningState,
+} from '#app/game-state'
 
-export function gameStateFromPartial(
-	partialGameState: Partial<GameState>,
-): GameState {
-	const defaults: GameState = {
+export function getMorningGameState(overrides?: Partial<MorningState>) {
+	const defaults: MorningState = {
 		screen: GameScreen.Morning,
 		v: 1,
 	}
 	return {
 		...defaults,
-		...partialGameState,
+		...overrides,
+	}
+}
+
+export function getDayGameState(overrides?: Partial<DayState>) {
+	const defaults: DayState = {
+		screen: GameScreen.Day,
+		v: 1,
+	}
+	return {
+		...defaults,
+		...overrides,
 	}
 }
 

@@ -1,9 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { GameScreen } from '#app/game-screen'
-import {
-	gameStateFromPartial,
-	gameStateToURLSearchParams,
-} from '#tests/utils.ts'
+import { gameStateToURLSearchParams, getDayGameState } from '#tests/utils.ts'
 
 // Playwright can not find the text
 // within the `noscript` element
@@ -92,11 +88,7 @@ test('Game start', async ({ page }) => {
 
 test('Work day', async ({ page }) => {
 	await page.goto(
-		`/?${gameStateToURLSearchParams(
-			gameStateFromPartial({
-				screen: GameScreen.Day,
-			}),
-		).toString()}`,
+		`/?${gameStateToURLSearchParams(getDayGameState()).toString()}`,
 	)
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
 	await expect(page.getByRole('heading', { level: 2 })).toHaveText('News Feed')
@@ -104,11 +96,7 @@ test('Work day', async ({ page }) => {
 
 test('News feed', async ({ page }) => {
 	await page.goto(
-		`/?${gameStateToURLSearchParams(
-			gameStateFromPartial({
-				screen: GameScreen.Day,
-			}),
-		).toString()}`,
+		`/?${gameStateToURLSearchParams(getDayGameState()).toString()}`,
 	)
 	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
 	await expect(newsFeedList).toBeVisible()
