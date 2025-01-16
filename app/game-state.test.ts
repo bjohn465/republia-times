@@ -11,8 +11,8 @@ import {
 	gameStateFromPartial,
 	gameStateToURLSearchParams,
 } from '#tests/utils.ts'
+import { GameScreen } from './game-screen'
 import {
-	GameScreen,
 	gameStateURLParam,
 	getGameState,
 	getURLPathFromGameState,

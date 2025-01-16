@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { GameScreen } from '#app/game-state.ts'
+import { GameScreen } from '#app/game-screen'
 import {
 	gameStateFromPartial,
 	gameStateToURLSearchParams,
