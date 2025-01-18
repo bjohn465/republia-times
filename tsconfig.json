@@ -2,6 +2,8 @@
 	"include": ["**/*.ts", "**/*.tsx"],
 	"extends": ["@epic-web/config/typescript"],
 	"compilerOptions": {
+		"module": "node16",
+		"moduleResolution": "node16",
 		"paths": {
 			"#app/*": ["./app/*"],
 			"#tests/*": ["./tests/*"]

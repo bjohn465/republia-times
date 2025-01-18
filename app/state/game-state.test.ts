@@ -12,7 +12,7 @@ import {
 	getDayGameState,
 	getMorningGameState,
 } from '#tests/utils.ts'
-import { GameScreen } from './game-screen'
+import { GameScreen } from './game-screen.ts'
 import {
 	gameStateURLParam,
 	getGameState,
@@ -20,7 +20,7 @@ import {
 	initializeGameState,
 	initializeGameStateFromURL,
 	startWork,
-} from './game-state'
+} from './game-state.ts'
 
 const emptyFunction = () => {}
 let consoleWarn: MockInstance<(typeof console)['warn']>

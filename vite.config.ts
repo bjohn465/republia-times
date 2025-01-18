@@ -26,6 +26,9 @@ export default defineConfig({
 
 		sourcemap: true,
 	},
+	resolve: {
+		extensions: [],
+	},
 	server: {
 		watch: {
 			ignored: ['**/playwright-report/**'],
