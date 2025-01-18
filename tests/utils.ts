@@ -19,6 +19,9 @@ export function getMorningGameState(overrides?: Partial<MorningState>) {
 export function getDayGameState(overrides?: Partial<DayState>) {
 	const defaults: DayState = {
 		screen: GameScreen.Day,
+		paper: {
+			articles: [],
+		},
 		v: 1,
 	}
 	return {

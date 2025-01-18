@@ -1,6 +1,7 @@
 import { invariant } from '@epic-web/invariant'
 import * as v from 'valibot'
 import { GameScreen } from './game-screen.ts'
+import { PaperSchema } from './paper.ts'
 
 const BaseGameStateSchema = v.object({
 	screen: v.enum(GameScreen),
@@ -16,6 +17,7 @@ export type MorningState = v.InferOutput<typeof MorningStateSchema>
 const DayStateSchema = v.object({
 	...BaseGameStateSchema.entries,
 	screen: v.literal(GameScreen.Day),
+	paper: PaperSchema,
 })
 export type DayState = v.InferOutput<typeof DayStateSchema>
 
@@ -42,6 +44,9 @@ export function startWork(): GameState {
 	gameState = {
 		...gameState,
 		screen: GameScreen.Day,
+		paper: {
+			articles: [],
+		},
 	}
 	return getGameState()
 }
