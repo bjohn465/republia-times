@@ -1,9 +1,9 @@
-import { GameScreen } from '#app/game-screen'
+import { GameScreen } from '#app/state/game-screen.ts'
 import {
 	type DayState,
 	type GameState,
 	type MorningState,
-} from '#app/game-state'
+} from '#app/state/game-state.ts'
 
 export function getMorningGameState(overrides?: Partial<MorningState>) {
 	const defaults: MorningState = {

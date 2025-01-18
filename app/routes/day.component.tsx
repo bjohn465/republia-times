@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/react/macro'
 import { useLoaderData } from 'react-router'
-import { type NewsItem } from '#app/news-items.ts'
+import { type NewsItem } from '#app/state/news-items.ts'
 import { type loader } from './day.data'
 
 export default function Day() {

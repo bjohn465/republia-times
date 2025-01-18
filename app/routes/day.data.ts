@@ -1,4 +1,4 @@
-import { getNewsItems } from '#app/news-items.ts'
+import { getNewsItems } from '#app/state/news-items.ts'
 
 export function loader() {
 	return {

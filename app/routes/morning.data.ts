@@ -1,6 +1,6 @@
 import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
-import { getURLPathFromGameState, startWork } from '#app/game-state.ts'
+import { getURLPathFromGameState, startWork } from '#app/state/game-state.ts'
 
 export enum Intents {
 	StartWork = 'StartWork',
