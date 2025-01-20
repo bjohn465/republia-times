@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test'
 
+test.beforeEach(async ({ page }) => {
+	// Fail any requests to CSS files
+	// to ensure that all loading-related styling
+	// is inlined in the HTML
+	// and not dependent on any external stylesheets.
+	await page.route(/.*\.css$/, (route) => route.abort('failed'))
+})
+
 test.describe('With JavaScript disabled', () => {
 	test.use({ javaScriptEnabled: false })
 
@@ -23,25 +31,14 @@ test.describe('With JavaScript disabled', () => {
 })
 
 test('Initial load', async ({ page }) => {
-	const jsDelay = (() => {
-		let resolve: () => void
-		const promise = new Promise<void>((res) => {
-			resolve = res
-		})
-		return {
-			start(timeInMs: number) {
-				setTimeout(() => resolve(), timeInMs)
-				return promise
-			},
-			promise,
-		}
-	})()
+	const { promise: jsLoadPromise, resolve: resolveJsLoad } =
+		Promise.withResolvers<void>()
 
 	await page.route(
 		/.*\.(?:j|t)sx?$/,
 		async (route) => {
-			await jsDelay.start(50)
-			await route.continue()
+			await jsLoadPromise
+			return route.continue()
 		},
 		{ times: 1 },
 	)
@@ -55,7 +52,7 @@ test('Initial load', async ({ page }) => {
 	await expect(
 		page.getByText('There was a problem loading the game.'),
 	).not.toBeVisible()
-	await jsDelay.promise
+	resolveJsLoad()
 	await expect(page.getByText('Loading...')).not.toBeVisible()
 })
 
