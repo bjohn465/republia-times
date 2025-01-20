@@ -1,10 +1,10 @@
 import { invariant } from '@epic-web/invariant'
 import * as v from 'valibot'
-import { GameScreen } from './game-screen.ts'
+import { GameScreen, GameScreenSchema } from './game-screen.ts'
 import { PaperSchema } from './paper.ts'
 
 const BaseGameStateSchema = v.object({
-	screen: v.enum(GameScreen),
+	screen: GameScreenSchema,
 	v: v.literal(1),
 })
 
