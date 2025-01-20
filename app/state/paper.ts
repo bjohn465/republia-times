@@ -12,7 +12,23 @@ type ArticleNewsItem = Article['newsItem']
 
 export const PaperSchema = v.pipe(
 	v.object({
-		articles: v.pipe(v.array(ArticleSchema), v.readonly()),
+		articles: v.pipe(
+			v.array(ArticleSchema),
+			v.checkItems(
+				(article, index, articlesArray) => {
+					return (
+						articlesArray.findIndex(
+							(articleToCheck) =>
+								articleToCheck.newsItem.id === article.newsItem.id,
+						) === index
+					)
+				},
+				({ input }) => {
+					return `Each article must have a unique news item; Received duplicate item "${input.newsItem.id}"`
+				},
+			),
+			v.readonly(),
+		),
 	}),
 	v.readonly(),
 )
