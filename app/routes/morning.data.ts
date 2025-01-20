@@ -2,9 +2,9 @@ import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
 import { getURLPathFromGameState, startWork } from '#app/state/game-state.ts'
 
-export enum Intents {
-	StartWork = 'StartWork',
-}
+export const Intents = Object.freeze({
+	StartWork: 'StartWork',
+})
 
 export async function action({ request }: ActionFunctionArgs) {
 	const data = await request.formData()
