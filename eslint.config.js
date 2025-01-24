@@ -6,6 +6,11 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 export default [
 	...defaultConfig,
 	{
+		linterOptions: {
+			reportUnusedInlineConfigs: 'warn',
+		},
+	},
+	{
 		plugins: {
 			'react-refresh': reactRefresh,
 		},
