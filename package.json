@@ -17,7 +17,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "generate-id:news-feed-item": "tsx scripts/generate-news-feed-id.ts",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --max-warnings 0",
     "prepreview": "npm run build",
     "preview": "vite preview",
     "i18n:extract": "lingui extract",

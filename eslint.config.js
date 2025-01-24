@@ -7,6 +7,7 @@ export default [
 	...defaultConfig,
 	{
 		linterOptions: {
+			reportUnusedDisableDirectives: 'warn',
 			reportUnusedInlineConfigs: 'warn',
 		},
 	},
