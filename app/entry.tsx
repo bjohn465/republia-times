@@ -3,7 +3,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
 import { detectLocale, dynamicActivate } from './i18n.ts'
-import { router } from './router.ts'
+import { getRouter } from './router.ts'
 
 async function entry() {
 	function addErrorClass() {
@@ -25,7 +25,7 @@ async function entry() {
 	}
 	createRoot(root).render(
 		<StrictMode>
-			<RouterProvider router={router} />
+			<RouterProvider router={getRouter()} />
 		</StrictMode>,
 	)
 }
