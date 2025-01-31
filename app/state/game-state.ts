@@ -1,5 +1,6 @@
 import { invariant } from '@epic-web/invariant'
 import * as v from 'valibot'
+import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 import { GameScreen, GameScreenSchema } from './game-screen.ts'
 import { PaperSchema } from './paper.ts'
 
@@ -88,12 +89,7 @@ export function getURLPathFromGameState() {
 		}
 		/* c8 ignore next 3 */
 		default: {
-			return assertUnreachable(gameState)
+			throw new UnsupportedValueError(gameState)
 		}
 	}
-}
-
-/* c8 ignore next 3 */
-function assertUnreachable(_value: never): never {
-	throw new Error('Unreachable code reached')
 }
