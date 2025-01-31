@@ -10,10 +10,12 @@ async function entry() {
 		document.documentElement.classList.add('initializationError')
 	}
 	const root = document.getElementById('root')
-	invariant(root, () => {
+	try {
+		invariant(root, 'The root element is missing')
+	} catch (exception) {
 		addErrorClass()
-		return 'The root element is missing'
-	})
+		throw exception
+	}
 	const locale = detectLocale()
 	try {
 		await dynamicActivate(locale)
