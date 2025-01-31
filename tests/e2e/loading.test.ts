@@ -54,6 +54,9 @@ test('Initial load', async ({ page }) => {
 	).not.toBeVisible()
 	resolveJsLoad()
 	await expect(page.getByText('Loading...')).not.toBeVisible()
+	await expect(
+		page.getByText('There was a problem loading the game.'),
+	).not.toBeVisible()
 })
 
 test('Error loading locale', async ({ page }) => {
