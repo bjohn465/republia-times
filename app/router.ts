@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router'
+import { createBrowserRouter } from 'react-router'
 import ErrorPage from './error-page.tsx'
 import Day from './routes/day.component.tsx'
 import { loader as dayLoader } from './routes/day.data.ts'
@@ -8,7 +8,7 @@ import Root from './routes/root.component.tsx'
 import { loader as rootLoader } from './routes/root.data.ts'
 
 export function getRouter() {
-	return createHashRouter([
+	return createBrowserRouter([
 		{
 			path: '/',
 			Component: Root,
