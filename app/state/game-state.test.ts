@@ -1,11 +1,4 @@
-import {
-	beforeEach,
-	describe,
-	expect,
-	type MockInstance,
-	test,
-	vi,
-} from 'vitest'
+import { beforeEach, describe, expect, test } from 'vitest'
 import {
 	encodeGameStateURLParamValue,
 	gameStateToURLSearchParams,
@@ -14,27 +7,12 @@ import {
 } from '#tests/utils.ts'
 import { GameScreen } from './game-screen.ts'
 import {
-	gameStateURLParam,
 	getGameState,
+	getInitialGameStateFromURL,
 	getURLPathFromGameState,
 	initializeGameState,
-	initializeGameStateFromURL,
 	startWork,
 } from './game-state.ts'
-
-const emptyFunction = () => {}
-let consoleWarn: MockInstance<(typeof console)['warn']>
-
-beforeEach(() => {
-	const originalConsoleWarn = console.warn
-	consoleWarn = vi.spyOn(console, 'warn')
-	consoleWarn.mockImplementation((...args: Parameters<typeof console.warn>) => {
-		originalConsoleWarn(...args)
-		throw new Error(
-			'Console warn was called. Use consoleWarn.mockImplementation if this is expected.',
-		)
-	})
-})
 
 beforeEach(() => {
 	initializeGameState(getMorningGameState())
@@ -48,25 +26,9 @@ describe('getGameState', () => {
 })
 
 describe('initializeGameState', () => {
-	test('Returns current game state when initial state is not given', () => {
-		consoleWarn.mockImplementation(emptyFunction)
-		const existingState = getGameState()
-		expect(initializeGameState()).toEqual(existingState)
-		expect(consoleWarn).toHaveBeenCalledOnce()
-		expect(consoleWarn).toHaveBeenCalledWith(
-			'Unable to initialize game state: ',
-			expect.any(Array),
-		)
-	})
-
-	test('Returns current game state when initial state is invalid', () => {
-		consoleWarn.mockImplementation(emptyFunction)
-		const existingState = getGameState()
-		expect(initializeGameState({ screen: 'notValid' })).toEqual(existingState)
-		expect(consoleWarn).toHaveBeenCalledOnce()
-		expect(consoleWarn).toHaveBeenCalledWith(
-			'Unable to initialize game state: ',
-			expect.any(Array),
+	test('Throws when initial state is invalid', () => {
+		expect(() => initializeGameState({ screen: 'notValid' })).toThrowError(
+			/^Invalid type: Expected .+? but received "notValid"$/,
 		)
 	})
 
@@ -95,74 +57,54 @@ describe('startWork', () => {
 	})
 })
 
-describe('initializeGameStateFromURL', () => {
-	test('Returns current game state when URL param is missing', () => {
-		const existingState = getGameState()
-		expect(
-			initializeGameStateFromURL(new URL('https://www.example.com')),
-		).toEqual(existingState)
+describe('getInitialGameStateFromURL', () => {
+	const gameStateURLParam = 'initialState'
+
+	test('Throws when initial state URL param is missing', () => {
+		expect(() =>
+			getInitialGameStateFromURL(new URL('https://www.example.com')),
+		).toThrow(/^URL does not contain an initial game state$/)
 	})
 
-	test('Returns current game state when URL param contains invalid character', () => {
-		consoleWarn.mockImplementation(emptyFunction)
-		const existingState = getGameState()
-		expect(
-			initializeGameStateFromURL(
+	test('Throws when initial state URL param contains invalid character', () => {
+		expect(() =>
+			getInitialGameStateFromURL(
 				new URL(`https://www.example.com/?${gameStateURLParam}=-`),
 			),
-		).toEqual(existingState)
-		expect(consoleWarn).toHaveBeenCalledOnce()
-		expect(consoleWarn).toHaveBeenCalledWith(
-			'Unable to initialize game state from URL: ',
-			expect.any(DOMException),
-		)
+		).toThrow(/^Invalid character$/)
 	})
 
-	test('Returns current game state when URL param contains invalid JSON', () => {
-		consoleWarn.mockImplementation(emptyFunction)
-		const existingState = getGameState()
+	test('Throws when initial state URL param contains invalid JSON', () => {
 		const paramValue = encodeGameStateURLParamValue('notJSON')
-		expect(
-			initializeGameStateFromURL(
+		expect(() =>
+			getInitialGameStateFromURL(
 				new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
 			),
-		).toEqual(existingState)
-		expect(consoleWarn).toHaveBeenCalledOnce()
-		expect(consoleWarn).toHaveBeenCalledWith(
-			'Unable to initialize game state from URL: ',
-			expect.any(SyntaxError),
-		)
+		).toThrow(/^Unexpected token .+? "notJSON" is not valid JSON$/)
 	})
 
-	test('Returns current game state when URL param contains invalid state', () => {
-		consoleWarn.mockImplementation(emptyFunction)
-		const existingState = getGameState()
+	test('Throws when initial state URL param contains invalid state', () => {
 		const paramValue = encodeGameStateURLParamValue(
 			JSON.stringify({ screen: 'invalid', v: 'nope' }),
 		)
-		expect(
-			initializeGameStateFromURL(
+		expect(() =>
+			getInitialGameStateFromURL(
 				new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
 			),
-		).toEqual(existingState)
-		expect(consoleWarn).toHaveBeenCalledOnce()
-		expect(consoleWarn).toHaveBeenCalledWith(
-			'Unable to initialize game state: ',
-			expect.any(Array),
-		)
+		).toThrow(/^Invalid type: Expected .+? but received "invalid"$/)
 	})
 
-	test('Updates and returns game state', () => {
+	test('Returns initial game state without updating the current game state', () => {
 		const existingState = getGameState()
 		const newState = getDayGameState()
-		const returnedState = initializeGameStateFromURL(
+		const returnedState = getInitialGameStateFromURL(
 			new URL(
 				`https://www.example.com/?${gameStateToURLSearchParams(newState).toString()}`,
 			),
 		)
 		expect(returnedState).not.toEqual(existingState)
 		expect(returnedState).toEqual(newState)
-		expect(getGameState()).toEqual(returnedState)
+		expect(getGameState()).not.toEqual(returnedState)
 	})
 })
 

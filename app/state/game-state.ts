@@ -52,31 +52,24 @@ export function startWork(): GameState {
 	return getGameState()
 }
 
-export function initializeGameState(initialState?: unknown): GameState {
-	const parseResult = v.safeParse(GameStateSchema, initialState)
-	if (parseResult.success) {
-		gameState = parseResult.output
-	} else {
-		console.warn('Unable to initialize game state: ', parseResult.issues)
-	}
+export function initializeGameState(initialState: unknown): GameState {
+	gameState = v.parse(GameStateSchema, initialState)
 	return getGameState()
 }
 
 export const gameStateURLParam = 'initialState'
 
-export function initializeGameStateFromURL(url: URL): GameState {
-	const rawParamValue = url.searchParams.get(gameStateURLParam)
-	if (!rawParamValue) {
-		return getGameState()
-	}
-	try {
-		const decodedParamValue = atob(rawParamValue)
-		const parsedParamValue = JSON.parse(decodedParamValue)
-		return initializeGameState(parsedParamValue)
-	} catch (ex) {
-		console.warn('Unable to initialize game state from URL: ', ex)
-		return getGameState()
-	}
+export function getInitialStateURLParamValue(url: URL) {
+	const paramValue = url.searchParams.get(gameStateURLParam)
+	invariant(paramValue, 'URL does not contain an initial game state')
+	return paramValue
+}
+
+export function getInitialGameStateFromURL(url: URL): GameState {
+	const rawParamValue = getInitialStateURLParamValue(url)
+	const decodedParamValue = atob(rawParamValue)
+	const parsedParamValue = JSON.parse(decodedParamValue)
+	return v.parse(GameStateSchema, parsedParamValue)
 }
 
 export function getURLPathFromGameState() {
