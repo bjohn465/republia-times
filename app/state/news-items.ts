@@ -25,7 +25,7 @@ export function getNewsItem(id: NewsItemID): NewsItem {
 	const item = newsItemsByID.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
 	return {
-		...item,
+		id: item.id,
 		articleText: item.getArticleText(),
 		feedText: item.getFeedText(),
 	}
