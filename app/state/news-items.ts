@@ -21,7 +21,7 @@ const newsItemsByID = new Map(
 	).map((item) => [item.id, item]),
 )
 
-export function getNewsItem(id: NewsItemID): NewsItem {
+export function getNewsItem(id: NewsItemID) {
 	const item = newsItemsByID.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
 	return {
@@ -40,8 +40,10 @@ export const NewsItemIDSchema = v.picklist(
 )
 type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
 
-export type NewsItem = {
-	id: NewsItemID
-	feedText: string
-	articleText: string
-}
+export const NewsItemSchema = v.pipe(
+	NewsItemIDSchema,
+	v.transform((id) => getNewsItem(id)),
+	v.readonly(),
+)
+export type NewsItemInput = v.InferInput<typeof NewsItemSchema>
+export type NewsItem = v.InferOutput<typeof NewsItemSchema>
