@@ -2,6 +2,7 @@ import { invariant } from '@epic-web/invariant'
 import * as v from 'valibot'
 import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 import { GameScreen, GameScreenSchema } from './game-screen.ts'
+import { NewsItemSchema } from './news-items.ts'
 import { PaperSchema } from './paper.ts'
 
 const BaseGameStateSchema = v.object({
@@ -17,15 +18,32 @@ export type MorningState = v.InferOutput<typeof MorningStateSchema>
 
 const DayStateSchema = v.object({
 	...BaseGameStateSchema.entries,
+	newsItems: v.pipe(
+		v.array(NewsItemSchema),
+		v.checkItems(
+			(newsItem, index, newsItemsArray) => {
+				return (
+					newsItemsArray.findIndex(
+						(newsItemToCheck) => newsItemToCheck.id === newsItem.id,
+					) === index
+				)
+			},
+			({ input }) => {
+				return `Each news item must be unique; Received duplicate item "${input.id}"`
+			},
+		),
+	),
 	screen: v.literal(GameScreen.Day),
 	paper: PaperSchema,
 })
+export type DayStateInput = v.InferInput<typeof DayStateSchema>
 export type DayState = v.InferOutput<typeof DayStateSchema>
 
 const GameStateSchema = v.variant('screen', [
 	MorningStateSchema,
 	DayStateSchema,
 ])
+export type GameStateInput = v.InferInput<typeof GameStateSchema>
 export type GameState = v.InferOutput<typeof GameStateSchema>
 
 let gameState: GameState = {
@@ -44,6 +62,7 @@ export function startWork(): GameState {
 	)
 	gameState = {
 		...gameState,
+		newsItems: v.parse(DayStateSchema.entries.newsItems, ['bBQb', '9MrF']),
 		screen: GameScreen.Day,
 		paper: {
 			articles: [],
@@ -65,11 +84,10 @@ export function getInitialStateURLParamValue(url: URL) {
 	return paramValue
 }
 
-export function getInitialGameStateFromURL(url: URL): GameState {
+export function getInitialGameStateFromURL(url: URL): unknown {
 	const rawParamValue = getInitialStateURLParamValue(url)
 	const decodedParamValue = atob(rawParamValue)
-	const parsedParamValue = JSON.parse(decodedParamValue)
-	return v.parse(GameStateSchema, parsedParamValue)
+	return JSON.parse(decodedParamValue)
 }
 
 export function getURLPathFromGameState() {

@@ -1,7 +1,7 @@
 import { GameScreen } from '#app/state/game-screen.ts'
 import {
-	type DayState,
-	type GameState,
+	type GameStateInput,
+	type DayStateInput,
 	type MorningState,
 } from '#app/state/game-state.ts'
 
@@ -16,8 +16,9 @@ export function getMorningGameState(overrides?: Partial<MorningState>) {
 	}
 }
 
-export function getDayGameState(overrides?: Partial<DayState>) {
-	const defaults: DayState = {
+export function getDayGameStateInput(overrides?: Partial<DayStateInput>) {
+	const defaults: DayStateInput = {
+		newsItems: ['bBQb', '9MrF'],
 		screen: GameScreen.Day,
 		paper: {
 			articles: [],
@@ -34,7 +35,9 @@ export function encodeGameStateURLParamValue(value: string): string {
 	return btoa(value)
 }
 
-export function gameStateToURLSearchParams(state: GameState): URLSearchParams {
+export function gameStateToURLSearchParams(
+	state: GameStateInput,
+): URLSearchParams {
 	return new URLSearchParams([
 		['initialState', encodeGameStateURLParamValue(JSON.stringify(state))],
 	])

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test } from 'vitest'
 import {
 	encodeGameStateURLParamValue,
 	gameStateToURLSearchParams,
-	getDayGameState,
+	getDayGameStateInput,
 	getMorningGameState,
 } from '#tests/utils.ts'
 import { GameScreen } from './game-screen.ts'
@@ -34,9 +34,9 @@ describe('initializeGameState', () => {
 
 	test('Updates and returns current game state with valid value', () => {
 		const existingState = getGameState()
-		const initialState = getDayGameState()
+		const initialState = getDayGameStateInput()
 		const returnedState = initializeGameState(initialState)
-		expect(returnedState).toEqual(initialState)
+		expect(returnedState).toHaveProperty('screen', initialState.screen)
 		expect(getGameState()).toEqual(returnedState)
 		expect(getGameState()).not.toEqual(existingState)
 	})
@@ -44,7 +44,7 @@ describe('initializeGameState', () => {
 
 describe('startWork', () => {
 	test('Throws error if screen value is invalid', () => {
-		initializeGameState(getDayGameState())
+		initializeGameState(getDayGameStateInput())
 		expect(() => {
 			startWork()
 		}).toThrowError('Invalid state for startWork')
@@ -83,28 +83,33 @@ describe('getInitialGameStateFromURL', () => {
 		).toThrow(/^Unexpected token .+? "notJSON" is not valid JSON$/)
 	})
 
-	test('Throws when initial state URL param contains invalid state', () => {
+	test('Does not throw when initial state URL param contains invalid state', () => {
 		const paramValue = encodeGameStateURLParamValue(
 			JSON.stringify({ screen: 'invalid', v: 'nope' }),
 		)
-		expect(() =>
-			getInitialGameStateFromURL(
-				new URL(`https://www.example.com/?${gameStateURLParam}=${paramValue}`),
-			),
-		).toThrow(/^Invalid type: Expected .+? but received "invalid"$/)
+		let result: ReturnType<typeof getInitialGameStateFromURL>
+		expect(
+			() =>
+				(result = getInitialGameStateFromURL(
+					new URL(
+						`https://www.example.com/?${gameStateURLParam}=${paramValue}`,
+					),
+				)),
+		).not.toThrow()
+		expect(result).toEqual({ screen: 'invalid', v: 'nope' })
 	})
 
 	test('Returns initial game state without updating the current game state', () => {
 		const existingState = getGameState()
-		const newState = getDayGameState()
+		const newStateInput = getDayGameStateInput()
 		const returnedState = getInitialGameStateFromURL(
 			new URL(
-				`https://www.example.com/?${gameStateToURLSearchParams(newState).toString()}`,
+				`https://www.example.com/?${gameStateToURLSearchParams(newStateInput).toString()}`,
 			),
 		)
 		expect(returnedState).not.toEqual(existingState)
-		expect(returnedState).toEqual(newState)
-		expect(getGameState()).not.toEqual(returnedState)
+		expect(returnedState).toEqual(newStateInput)
+		expect(getGameState()).toEqual(existingState)
 	})
 })
 
@@ -115,7 +120,7 @@ describe('getURLPathFromGameState', () => {
 	})
 
 	test('Returns path for day state', () => {
-		initializeGameState(getDayGameState())
+		initializeGameState(getDayGameStateInput())
 		expect(getURLPathFromGameState()).toBe('/day')
 	})
 })
