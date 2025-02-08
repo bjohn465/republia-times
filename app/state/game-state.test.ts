@@ -40,6 +40,26 @@ describe('initializeGameState', () => {
 		expect(getGameState()).toEqual(returnedState)
 		expect(getGameState()).not.toEqual(existingState)
 	})
+
+	describe('for day state', () => {
+		test('Throws when newsItems contains duplicate IDs', () => {
+			const initialState = getDayGameStateInput()
+			const duplicateID = 'bBQb'
+			initialState.newsItems = [duplicateID, duplicateID]
+			expect(() => initializeGameState(initialState)).toThrowError(
+				'Each news item must be unique; Received duplicate item "bBQb"',
+			)
+		})
+
+		test('Throws when an article contains a newsItem that does not exist in the newsItems array', () => {
+			const initialState = getDayGameStateInput()
+			initialState.newsItems = ['bBQb']
+			initialState.paper.articles = [{ newsItem: '9MrF' }]
+			expect(() => initializeGameState(initialState)).toThrowError(
+				'All articles must reference news items in the newsItems array.',
+			)
+		})
+	})
 })
 
 describe('startWork', () => {

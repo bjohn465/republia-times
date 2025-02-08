@@ -16,26 +16,36 @@ const MorningStateSchema = v.object({
 })
 export type MorningState = v.InferOutput<typeof MorningStateSchema>
 
-const DayStateSchema = v.object({
-	...BaseGameStateSchema.entries,
-	newsItems: v.pipe(
-		v.array(NewsItemSchema),
-		v.checkItems(
-			(newsItem, index, newsItemsArray) => {
-				return (
-					newsItemsArray.findIndex(
-						(newsItemToCheck) => newsItemToCheck.id === newsItem.id,
-					) === index
-				)
-			},
-			({ input }) => {
-				return `Each news item must be unique; Received duplicate item "${input.id}"`
-			},
+const DayStateSchema = v.pipe(
+	v.object({
+		...BaseGameStateSchema.entries,
+		newsItems: v.pipe(
+			v.array(NewsItemSchema),
+			v.checkItems(
+				(newsItem, index, newsItemsArray) => {
+					return (
+						newsItemsArray.findIndex(
+							(newsItemToCheck) => newsItemToCheck.id === newsItem.id,
+						) === index
+					)
+				},
+				({ input }) => {
+					return `Each news item must be unique; Received duplicate item "${input.id}"`
+				},
+			),
 		),
+		screen: v.literal(GameScreen.Day),
+		paper: PaperSchema,
+	}),
+	v.forward(
+		v.check(({ newsItems, paper: { articles } }) => {
+			return articles.every((article) => {
+				return newsItems.some((newsItem) => newsItem.id === article.newsItem.id)
+			})
+		}, 'All articles must reference news items in the newsItems array.'),
+		['paper', 'articles'],
 	),
-	screen: v.literal(GameScreen.Day),
-	paper: PaperSchema,
-})
+)
 export type DayStateInput = v.InferInput<typeof DayStateSchema>
 export type DayState = v.InferOutput<typeof DayStateSchema>
 
