@@ -70,14 +70,14 @@ export function startWork(): GameState {
 		gameState.screen === GameScreen.Morning,
 		'Invalid state for startWork',
 	)
-	gameState = {
+	gameState = v.parse(DayStateSchema, {
 		...gameState,
-		newsItems: v.parse(DayStateSchema.entries.newsItems, ['bBQb', '9MrF']),
+		newsItems: ['bBQb', '9MrF'],
 		screen: GameScreen.Day,
 		paper: {
 			articles: [],
 		},
-	}
+	} satisfies DayStateInput)
 	return getGameState()
 }
 
