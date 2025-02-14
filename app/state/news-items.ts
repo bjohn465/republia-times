@@ -24,11 +24,11 @@ const newsItemsByID = new Map(
 export function getNewsItem(id: NewsItemID) {
 	const item = newsItemsByID.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
-	return {
+	return Object.freeze({
 		id: item.id,
 		articleText: item.getArticleText(),
 		feedText: item.getFeedText(),
-	}
+	})
 }
 
 export const NewsItemIDSchema = v.picklist(
@@ -43,7 +43,6 @@ type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
 export const NewsItemSchema = v.pipe(
 	NewsItemIDSchema,
 	v.transform((id) => getNewsItem(id)),
-	v.readonly(),
 )
 export type NewsItemInput = v.InferInput<typeof NewsItemSchema>
 export type NewsItem = v.InferOutput<typeof NewsItemSchema>
