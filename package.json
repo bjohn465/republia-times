@@ -29,7 +29,7 @@
     "test:e2e:install": "npx playwright install --with-deps chromium",
     "test:unit": "vitest",
     "test:unit:coverage": "vitest run --coverage",
-    "typecheck": "tsc --project . --project ./tests",
+    "typecheck": "tsc",
     "validate": "run-p format:check lint typecheck test:unit:coverage test:e2e:run"
   },
   "eslintIgnore": [
