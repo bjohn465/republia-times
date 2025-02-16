@@ -1,6 +1,7 @@
 import { i18n } from '@lingui/core'
 import { beforeEach, vi, type MockInstance } from 'vitest'
 import { messages } from '#app/locales/en.po'
+import './custom-matchers.ts'
 
 i18n.loadAndActivate({ locale: 'en', messages })
 
