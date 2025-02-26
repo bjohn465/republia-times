@@ -72,6 +72,11 @@
     "vite-plugin-minify": "^2.1.0",
     "vitest": "^3.0.7"
   },
+  "overrides": {
+    "@lingui/cli": {
+      "esbuild": "0.25.0"
+    }
+  },
   "engines": {
     "node": ">=22.14.0 <23",
     "npm": ">=10.9.2 <11"
