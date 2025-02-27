@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/react/macro'
 import { useLoaderData } from 'react-router'
-import { type NewsItem } from '#app/state/news-items.ts'
 import { type loader } from './day.data.ts'
 
 export default function Day() {
@@ -15,27 +14,29 @@ export default function Day() {
 	)
 }
 
-function NewsFeed({ newsItems }: NewsFeedProps) {
+function NewsFeed({ newsItems }: { newsItems: NewsItems }) {
 	return (
 		<>
 			<h2 id="newsFeedHeading">
 				<Trans>News Feed</Trans>
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
-				{newsItems.map((newsItem) => (
-					<NewsFeedItem key={newsItem.id} newsItem={newsItem} />
-				))}
+				{
+					// When `Iterator.prototype.map` is supported more generally,
+					// we can skip the conversion to an array with `Array.from` here.
+					// See https://caniuse.com/mdn-javascript_builtins_iterator_map
+					Array.from(newsItems.values()).map((newsItem) => (
+						<NewsFeedItem key={newsItem.id} newsItem={newsItem} />
+					))
+				}
 			</ul>
 		</>
 	)
 }
-interface NewsFeedProps {
-	newsItems: readonly Readonly<NewsItem>[]
-}
 
-function NewsFeedItem({ newsItem }: NewsFeedItemProps) {
+function NewsFeedItem({ newsItem }: { newsItem: NewsItem }) {
 	return <li>{newsItem.feedText}</li>
 }
-interface NewsFeedItemProps {
-	newsItem: Readonly<NewsItem>
-}
+
+type NewsItems = ReturnType<typeof useLoaderData<typeof loader>>['newsItems']
+type NewsItem = NewsItems extends ReadonlyMap<unknown, infer V> ? V : never
