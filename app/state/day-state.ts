@@ -15,9 +15,10 @@ const DayStateObjectSchema = v.pipe(
 					return `Each news item must be unique; Received duplicate item "${input}"`
 				},
 			),
-			v.transform((idsArray) =>
-				toReadonlyMap(new Map(idsArray.map((id) => [id, getNewsItem(id)]))),
+			v.transform(
+				(idsArray) => new Map(idsArray.map((id) => [id, getNewsItem(id)])),
 			),
+			v.readonly(),
 		),
 		paper: v.object({
 			articles: v.array(v.object({ newsItem: NewsItemIDSchema })),
@@ -77,8 +78,4 @@ export class DayState {
 	get url() {
 		return '/day' as const
 	}
-}
-
-function toReadonlyMap<K, V>(map: Map<K, V>): ReadonlyMap<K, V> {
-	return map
 }
