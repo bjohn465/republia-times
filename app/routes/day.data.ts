@@ -7,6 +7,7 @@ export function loader() {
 	invariantResponse(
 		gameState.screen === GameScreen.Day,
 		'Invalid game state for "day" loader',
+		{ statusText: 'Bad Request' },
 	)
 	return {
 		newsItems: gameState.newsItems,
