@@ -54,7 +54,7 @@
     "@lingui/cli": "^5.2.0",
     "@lingui/vite-plugin": "^5.2.0",
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.5",
+    "@types/node": "^22.13.7",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
