@@ -1,8 +1,5 @@
 import { expect, test } from '@playwright/test'
-import {
-	gameStateToURLSearchParams,
-	getDayGameStateInput,
-} from '#tests/utils.ts'
+import { gameStateToURLSearchParams, getDayStateInput } from '#tests/utils.ts'
 
 test('Game start', async ({ page }) => {
 	await page.goto('/')
@@ -21,7 +18,7 @@ test('Game start', async ({ page }) => {
 
 test('Work day', async ({ page }) => {
 	await page.goto(
-		`/?${gameStateToURLSearchParams(getDayGameStateInput()).toString()}`,
+		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
 	)
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
 	await expect(page.getByRole('heading', { level: 2 })).toHaveText('News Feed')
@@ -29,7 +26,7 @@ test('Work day', async ({ page }) => {
 
 test('News feed', async ({ page }) => {
 	await page.goto(
-		`/?${gameStateToURLSearchParams(getDayGameStateInput()).toString()}`,
+		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
 	)
 	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
 	await expect(newsFeedList).toBeVisible()

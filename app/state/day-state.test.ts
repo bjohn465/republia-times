@@ -1,7 +1,6 @@
-import { type DeepPartial } from 'utility-types'
 import { describe, expect, test } from 'vitest'
+import { getDayStateInput } from '#tests/utils.ts'
 import { DayState } from './day-state.ts'
-import { GameScreen } from './game-screen.ts'
 
 describe('DayState.fromMorningState', () => {
 	test('Returns DayState with correct values', () => {
@@ -61,18 +60,3 @@ describe('DayState.parse', () => {
 		expect(state).toBeInstanceOf(DayState)
 	})
 })
-
-function getDayStateInput(
-	overrides?: DeepPartial<{
-		newsItems: Array<string>
-		screen: string
-		paper: { articles: Array<{ newsItem: string }> }
-	}>,
-) {
-	const defaults = {
-		newsItems: ['bBQb', '9MrF'],
-		screen: GameScreen.Day,
-		paper: { articles: [] },
-	}
-	return { ...defaults, ...overrides }
-}

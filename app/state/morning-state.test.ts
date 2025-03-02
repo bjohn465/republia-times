@@ -1,7 +1,6 @@
-import { type DeepPartial } from 'utility-types'
 import { describe, expect, test } from 'vitest'
+import { getMorningStateInput } from '#tests/utils.ts'
 import { DayState } from './day-state.ts'
-import { GameScreen } from './game-screen.ts'
 import { MorningState } from './morning-state.ts'
 
 describe('MorningState.parse', () => {
@@ -22,11 +21,3 @@ test('startWork method returns DayState', () => {
 	const returnedState = state.startWork()
 	expect(returnedState).toBeInstanceOf(DayState)
 })
-
-function getMorningStateInput(overrides?: DeepPartial<{ screen: string }>) {
-	const defaults = {
-		screen: GameScreen.Morning,
-		v: 1,
-	}
-	return { ...defaults, ...overrides }
-}
