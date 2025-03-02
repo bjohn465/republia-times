@@ -24,7 +24,6 @@
     "setup": "npm run build && playwright install",
     "test:e2e": "npm run test:e2e:dev --silent",
     "test:e2e:dev": "playwright test --ui",
-    "pretest:e2e:run": "npm run build",
     "test:e2e:run": "cross-env CI=true playwright test",
     "test:e2e:install": "npx playwright install --with-deps chromium",
     "test:unit": "vitest",
