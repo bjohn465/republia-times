@@ -1,8 +1,8 @@
 import { describe, expect, test, vi } from 'vitest'
-import { initializeGameState as originalInitializeGameState } from './game-state.classes.ts'
+import { initializeGameState as originalInitializeGameState } from './game-state.ts'
 import { assertURLIsCorrectForGameState } from './url-utils.ts'
 
-vi.mock('./game-state.classes.ts', () => ({
+vi.mock('./game-state.ts', () => ({
 	getGameState: vi
 		.fn(() => ({
 			url: '/morning',

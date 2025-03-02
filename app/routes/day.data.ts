@@ -4,7 +4,7 @@ import {
 	type useLoaderData,
 } from 'react-router'
 import { GameScreen } from '#app/state/game-screen.ts'
-import { getGameState } from '#app/state/game-state.classes.ts'
+import { getGameState } from '#app/state/game-state.ts'
 
 export function loader() {
 	const gameState = getGameState()
