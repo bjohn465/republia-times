@@ -14,23 +14,29 @@ export function loader() {
 		{ statusText: 'Bad Request' },
 	)
 	return {
-		// `ReadonlyMap` will not serialize correctly
-		// (until https://github.com/remix-run/react-router/pull/13092 is merged),
-		// so work around that by casting it to a `SerializesTo<ReadonlyMap>`
-		// (as long as the keys and values of the map are serializable).
-		newsItems: gameState.newsItems as ReadonlyMapSerializationWorkaround<
-			typeof gameState.newsItems
-		>,
+		newsItems: toSerializableReadonlyMap(gameState.newsItems),
 	}
 }
 
-type ReadonlyMapSerializationWorkaround<
-	T extends ReadonlyMap<unknown, unknown>,
-> =
+/**
+ * A workaround for https://github.com/remix-run/react-router/issues/13092
+ * that casts a `ReadonlyMap` to a `SerializesTo<ReadonlyMap>`
+ * so the map's type serializes correctly when the route loader data is used
+ * via `useLoaderData`.
+ * @param readonlyMap The `ReadonlyMap` to cast
+ * @returns The `ReadonlyMap` as a `SerializesTo<ReadonlyMap>`
+ */
+function toSerializableReadonlyMap<T>(
+	readonlyMap: SerializableReadonlyMap<T>,
+): SerializesTo<T> {
+	return readonlyMap as unknown as SerializesTo<T>
+}
+
+type SerializableReadonlyMap<T> =
 	// Get the types of the keys and values
 	T extends ReadonlyMap<infer K, infer V>
 		? // Ensure `T` as a `Map` serializes
 			ReturnType<typeof useLoaderData<() => Map<K, V>>> extends Map<K, V>
-			? SerializesTo<T>
+			? T
 			: never
 		: never
