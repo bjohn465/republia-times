@@ -1,10 +1,10 @@
-import { default as defaultConfig } from '@epic-web/config/eslint'
+import { config as epicWebConfig } from '@epic-web/config/eslint'
 import lingui from 'eslint-plugin-lingui'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 /** @type {import("eslint").Linter.Config} */
 export default [
-	...defaultConfig,
+	...epicWebConfig,
 	{
 		linterOptions: {
 			reportUnusedDisableDirectives: 'warn',
