@@ -12,15 +12,6 @@ export default function Day() {
 			<h1>
 				<Trans>Day 1</Trans>
 			</h1>
-			<NewsFeed newsItems={newsItems} />
-			<Paper paper={paper} />
-		</>
-	)
-}
-
-function NewsFeed({ newsItems }: { newsItems: NewsItems }) {
-	return (
-		<>
 			<h2 id="newsFeedHeading">
 				<Trans>News Feed</Trans>
 			</h2>
@@ -30,20 +21,14 @@ function NewsFeed({ newsItems }: { newsItems: NewsItems }) {
 					// we can skip the conversion to an array with `Array.from` here.
 					// See https://caniuse.com/mdn-javascript_builtins_iterator_map
 					Array.from(newsItems.values()).map((newsItem) => (
-						<NewsFeedItem key={newsItem.id} newsItem={newsItem} />
+						<li key={newsItem.id}>{newsItem.feedText}</li>
 					))
 				}
 			</ul>
+			<Paper paper={paper} />
 		</>
 	)
 }
-
-function NewsFeedItem({ newsItem }: { newsItem: NewsItem }) {
-	return <li>{newsItem.feedText}</li>
-}
-
-type NewsItems = ReturnType<typeof useLoaderData<typeof loader>>['newsItems']
-type NewsItem = NewsItems extends ReadonlyMap<unknown, infer V> ? V : never
 
 function Paper({ paper }: { paper: Paper }) {
 	return (

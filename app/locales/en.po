@@ -34,7 +34,7 @@ msgstr "It is your job to increase their loyalty by editing The Republia Times c
 msgid "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 
-#: app/routes/day.component.tsx:25
+#: app/routes/day.component.tsx:16
 msgid "News Feed"
 msgstr "News Feed"
 
@@ -71,7 +71,7 @@ msgid "The public is not loyal to the government."
 msgstr "The public is not loyal to the government."
 
 #: app/routes/morning.component.tsx:10
-#: app/routes/day.component.tsx:52
+#: app/routes/day.component.tsx:32
 msgid "The Republia Times"
 msgstr "The Republia Times"
 
