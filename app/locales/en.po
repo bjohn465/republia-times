@@ -71,7 +71,7 @@ msgid "The public is not loyal to the government."
 msgstr "The public is not loyal to the government."
 
 #: app/routes/morning.component.tsx:10
-#: app/routes/day.component.tsx:32
+#: app/routes/day.component.tsx:29
 msgid "The Republia Times"
 msgstr "The Republia Times"
 

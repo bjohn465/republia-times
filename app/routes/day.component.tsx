@@ -25,29 +25,14 @@ export default function Day() {
 					))
 				}
 			</ul>
-			<Paper paper={paper} />
-		</>
-	)
-}
-
-function Paper({ paper }: { paper: Paper }) {
-	return (
-		<>
 			<h2 id="paperHeading">
 				<Trans>The Republia Times</Trans>
 			</h2>
 			<ol aria-labelledby="paperHeading">
 				{paper.articles.map((article) => (
-					<Article key={article.newsItem.id} article={article} />
+					<li key={article.newsItem.id}>{article.newsItem.articleText}</li>
 				))}
 			</ol>
 		</>
 	)
 }
-
-function Article({ article }: { article: Article }) {
-	return <li>{article.newsItem.articleText}</li>
-}
-
-type Paper = ReturnType<typeof hydratePaper>
-type Article = Paper['articles'][number]
