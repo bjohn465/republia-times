@@ -5,6 +5,7 @@ import {
 } from 'react-router'
 import { GameScreen } from '#app/state/game-screen.ts'
 import { getGameState } from '#app/state/game-state.ts'
+import { dehydratePaper } from '#app/state/state-utils.ts'
 
 export function loader() {
 	const gameState = getGameState()
@@ -15,6 +16,7 @@ export function loader() {
 	)
 	return {
 		newsItems: toSerializableReadonlyMap(gameState.newsItems),
+		paper: dehydratePaper(gameState.paper),
 	}
 }
 

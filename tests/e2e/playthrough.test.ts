@@ -21,7 +21,12 @@ test('Work day', async ({ page }) => {
 		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
 	)
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText('Day 1')
-	await expect(page.getByRole('heading', { level: 2 })).toHaveText('News Feed')
+	await expect(
+		page.getByRole('heading', { level: 2, name: 'News Feed' }),
+	).toBeVisible()
+	await expect(
+		page.getByRole('heading', { level: 2, name: 'The Republia Times' }),
+	).toBeVisible()
 })
 
 test('News feed', async ({ page }) => {
@@ -31,4 +36,12 @@ test('News feed', async ({ page }) => {
 	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
 	await expect(newsFeedList).toBeVisible()
 	await expect(newsFeedList.getByRole('listitem')).toHaveCount(2)
+})
+
+test('Paper', async ({ page }) => {
+	await page.goto(
+		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
+	)
+	const paperList = page.getByRole('list', { name: 'News Feed' })
+	await expect(paperList).toBeVisible()
 })
