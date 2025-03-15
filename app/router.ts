@@ -7,25 +7,38 @@ import { action as morningAction } from './routes/morning.data.ts'
 import Root from './routes/root.component.tsx'
 import { loader as rootLoader } from './routes/root.data.ts'
 
+declare module 'react-router' {
+	interface Future {
+		unstable_middleware: true
+	}
+}
+
 export function getRouter() {
-	return createBrowserRouter([
+	return createBrowserRouter(
+		[
+			{
+				path: '/',
+				Component: Root,
+				ErrorBoundary: ErrorPage,
+				loader: rootLoader,
+				children: [
+					{
+						path: 'morning',
+						Component: Morning,
+						action: morningAction,
+					},
+					{
+						path: 'day',
+						Component: Day,
+						loader: dayLoader,
+					},
+				],
+			},
+		],
 		{
-			path: '/',
-			Component: Root,
-			ErrorBoundary: ErrorPage,
-			loader: rootLoader,
-			children: [
-				{
-					path: 'morning',
-					Component: Morning,
-					action: morningAction,
-				},
-				{
-					path: 'day',
-					Component: Day,
-					loader: dayLoader,
-				},
-			],
+			future: {
+				unstable_middleware: true,
+			},
 		},
-	])
+	)
 }
