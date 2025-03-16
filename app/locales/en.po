@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/morning.component.tsx:45
+#: app/routes/morning.component.tsx:48
 msgid "As a precaution against influence, we are keeping your wife and child in a safe location."
 msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
 
-#: app/routes/morning.component.tsx:13
+#: app/routes/morning.component.tsx:16
 #: app/routes/day.component.tsx:13
 msgid "Day 1"
 msgstr "Day 1"
@@ -26,7 +26,7 @@ msgstr "Day 1"
 msgid "HugginBoyz: Talentless After All!"
 msgstr "HugginBoyz: Talentless After All!"
 
-#: app/routes/morning.component.tsx:32
+#: app/routes/morning.component.tsx:35
 msgid "It is your job to increase their loyalty by editing The Republia Times carefully."
 msgstr "It is your job to increase their loyalty by editing The Republia Times carefully."
 
@@ -38,25 +38,29 @@ msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely da
 msgid "News Feed"
 msgstr "News Feed"
 
-#: app/routes/morning.component.tsx:26
+#: app/routes/morning.component.tsx:29
 msgid "Order is slowly returning to Republia."
 msgstr "Order is slowly returning to Republia."
 
-#: app/routes/morning.component.tsx:58
+#: app/routes/morning.component.tsx:70
 msgid "Original by <0>Lucas Pope</0>"
 msgstr "Original by <0>Lucas Pope</0>"
 
-#: app/routes/morning.component.tsx:36
+#: app/routes/morning.component.tsx:39
 msgid "Pick only stories that highlight the good things about Republia and its government."
 msgstr "Pick only stories that highlight the good things about Republia and its government."
 
-#: app/routes/morning.component.tsx:63
+#: app/routes/morning.component.tsx:75
 msgid "Ported by <0>Brandon Johnson</0>"
 msgstr "Ported by <0>Brandon Johnson</0>"
 
-#: app/routes/morning.component.tsx:52
+#: app/routes/morning.component.tsx:63
 msgid "Start work"
 msgstr "Start work"
+
+#: app/routes/morning.component.tsx:61
+msgid "Starting work…"
+msgstr "Starting work…"
 
 #: app/state/news-items.ts:12
 msgid "Tennis Star Advances!"
@@ -66,27 +70,27 @@ msgstr "Tennis Star Advances!"
 msgid "Tennis star Restojiu powers through semifinal brackets"
 msgstr "Tennis star Restojiu powers through semifinal brackets"
 
-#: app/routes/morning.component.tsx:29
+#: app/routes/morning.component.tsx:32
 msgid "The public is not loyal to the government."
 msgstr "The public is not loyal to the government."
 
-#: app/routes/morning.component.tsx:10
+#: app/routes/morning.component.tsx:13
 #: app/routes/day.component.tsx:29
 msgid "The Republia Times"
 msgstr "The Republia Times"
 
-#: app/routes/morning.component.tsx:22
+#: app/routes/morning.component.tsx:25
 msgid "The war with Antegria is over and the rebellion uprising has been crushed."
 msgstr "The war with Antegria is over and the rebellion uprising has been crushed."
 
-#: app/routes/morning.component.tsx:18
+#: app/routes/morning.component.tsx:21
 msgid "Welcome to The Republia Times."
 msgstr "Welcome to The Republia Times."
 
-#: app/routes/morning.component.tsx:19
+#: app/routes/morning.component.tsx:22
 msgid "You are the new editor-in-chief."
 msgstr "You are the new editor-in-chief."
 
-#: app/routes/morning.component.tsx:42
+#: app/routes/morning.component.tsx:45
 msgid "You have 3 days to raise the public's loyalty to 20."
 msgstr "You have 3 days to raise the public's loyalty to 20."

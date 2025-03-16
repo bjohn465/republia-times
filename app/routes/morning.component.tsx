@@ -1,8 +1,11 @@
 import { Trans } from '@lingui/react/macro'
-import { Form } from 'react-router'
+import { Form, useNavigation } from 'react-router'
 import { Intents } from './morning.data.ts'
 
 export default function Morning() {
+	const navigation = useNavigation()
+	const isStartingWork =
+		navigation.formData?.get('intent') === Intents.StartWork
 	return (
 		<>
 			<header>
@@ -48,8 +51,17 @@ export default function Morning() {
 					</Trans>
 				</p>
 				<Form action="/morning" method="post">
-					<button type="submit" name="intent" value={Intents.StartWork}>
-						<Trans>Start work</Trans>
+					<button
+						type="submit"
+						name="intent"
+						value={Intents.StartWork}
+						disabled={isStartingWork}
+					>
+						{isStartingWork ? (
+							<Trans>Starting work…</Trans>
+						) : (
+							<Trans>Start work</Trans>
+						)}
 					</button>
 				</Form>
 			</main>

@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test'
 import { gameStateToURLSearchParams, getDayStateInput } from '#tests/utils.ts'
 
-test('Game start', async ({ page }) => {
+test('Game start', async ({ baseURL, browser }) => {
+	const browserContext = await browser.newContext()
+	const page = await browserContext.newPage()
 	await page.goto('/')
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(
 		'The Republia Times',
@@ -9,7 +11,17 @@ test('Game start', async ({ page }) => {
 	await expect(page.getByRole('heading', { level: 2 })).toHaveText('Day 1')
 	const startWorkButton = page.getByRole('button', { name: 'Start work' })
 	await expect(startWorkButton).toBeVisible()
+	// Give the browser enough time to display the "Starting work" button
+	// and playwright enough time to find it.
+	await browserContext.addCookies([
+		{ name: 'simulatedRTT', value: '10', url: baseURL },
+	])
 	await startWorkButton.click()
+	const startingWorkButton = page.getByRole('button', {
+		name: 'Starting work…',
+	})
+	await expect(startingWorkButton).toBeVisible()
+	await expect(startingWorkButton).toBeDisabled()
 	await expect(page.getByRole('heading', { level: 1 })).not.toHaveText(
 		'The Republia Times',
 	)
