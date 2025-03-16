@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import ErrorPage from './error-page.tsx'
+import { cookieMiddleware } from './middleware/cookie.ts'
 import Day from './routes/day.component.tsx'
 import { loader as dayLoader } from './routes/day.data.ts'
 import Morning from './routes/morning.component.tsx'
@@ -18,6 +19,7 @@ export function getRouter() {
 		[
 			{
 				path: '/',
+				unstable_middleware: [cookieMiddleware],
 				Component: Root,
 				ErrorBoundary: ErrorPage,
 				loader: rootLoader,
