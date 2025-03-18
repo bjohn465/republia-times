@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import ErrorPage from './error-page.tsx'
+import HydrateFallback from './hydrate-fallback.tsx'
 import { cookieMiddleware } from './middleware/cookie.ts'
 import { simulatedRTTMiddleware } from './middleware/simulated-rtt.ts'
 import Day from './routes/day.component.tsx'
@@ -23,6 +24,7 @@ export function getRouter() {
 				unstable_middleware: [cookieMiddleware, simulatedRTTMiddleware],
 				Component: Root,
 				ErrorBoundary: ErrorPage,
+				HydrateFallback,
 				loader: rootLoader,
 				children: [
 					{
