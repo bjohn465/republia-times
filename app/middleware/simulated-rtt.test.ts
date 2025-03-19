@@ -83,7 +83,9 @@ test('Simulates round-trip time', async () => {
 	const middlewareSpy = vi.fn(simulatedRTTMiddleware)
 	const middlewarePromise = middlewareSpy(args, next)
 
-	expect(consoleDebug).toHaveBeenCalledWith('🐌 Simulating RTT of 1000ms')
+	expect(consoleDebug).toHaveBeenCalledWith(
+		'🐌 Simulating RTT of 1000ms for GET request to https://www.example.com/',
+	)
 
 	expect(next).not.toHaveBeenCalled()
 	vi.advanceTimersByTime(500)
