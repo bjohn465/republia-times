@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test'
 
+const loadingText = 'Loading…'
+
 test.beforeEach(async ({ page }) => {
 	// Fail any requests to CSS files
 	// to ensure that all loading-related styling
@@ -13,7 +15,7 @@ test.describe('With JavaScript disabled', () => {
 
 	test('Display message about enabling JavaScript', async ({ page }) => {
 		await page.goto('/')
-		await expect(page.getByText('Loading...')).not.toBeVisible()
+		await expect(page.getByText(loadingText)).not.toBeVisible()
 
 		// Playwright can not find the text
 		// within the `noscript` element
@@ -44,7 +46,7 @@ test('Initial load', async ({ page }) => {
 	)
 
 	await page.goto('/', { waitUntil: 'commit' })
-	await expect(page.getByText('Loading...')).toBeVisible()
+	await expect(page.getByText(loadingText)).toBeVisible()
 	await expect(page.getByTestId('noscript')).not.toBeVisible()
 	await expect(
 		page.getByText('Enable JavaScript to play this game.'),
@@ -53,7 +55,7 @@ test('Initial load', async ({ page }) => {
 		page.getByText('There was a problem loading the game.'),
 	).not.toBeVisible()
 	resolveJsLoad()
-	await expect(page.getByText('Loading...')).not.toBeVisible()
+	await expect(page.getByText(loadingText)).not.toBeVisible()
 	await expect(
 		page.getByText('There was a problem loading the game.'),
 	).not.toBeVisible()
@@ -65,7 +67,7 @@ test('Error loading locale', async ({ page }) => {
 	// And this is the locale in the production environment
 	await page.route(/en-[A-Za-z0-9]+?\.js$/, (route) => route.abort('failed'))
 	await page.goto('/')
-	await expect(page.getByText('Loading...')).not.toBeVisible()
+	await expect(page.getByText(loadingText)).not.toBeVisible()
 	await expect(
 		page.getByText('There was a problem loading the game.'),
 	).toBeVisible()
