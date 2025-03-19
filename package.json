@@ -44,7 +44,7 @@
     "cookie": "^1.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.3.0",
+    "react-router": "^7.4.0",
     "utility-types": "^3.11.0",
     "valibot": "^1.0.0"
   },
