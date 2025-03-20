@@ -8,28 +8,34 @@ export function hydratePaper({
 	newsItems: ReadonlyMap<NewsItem['id'], NewsItem>
 	paper: { articles: ReadonlyArray<Readonly<{ newsItem: NewsItem['id'] }>> }
 }) {
-	return {
+	return Object.freeze({
 		...paper,
-		articles: paper.articles.map((article) => {
-			const newsItem = newsItems.get(article.newsItem)
-			invariant(
-				newsItem,
-				`Unable to find news item with ID "${article.newsItem}"`,
-			)
-			return {
-				...article,
-				newsItem,
-			}
-		}),
-	}
+		articles: Object.freeze(
+			paper.articles.map((article) => {
+				const newsItem = newsItems.get(article.newsItem)
+				invariant(
+					newsItem,
+					`Unable to find news item with ID "${article.newsItem}"`,
+				)
+				return Object.freeze({
+					...article,
+					newsItem,
+				})
+			}),
+		),
+	})
 }
 
 export function dehydratePaper(paper: ReturnType<typeof hydratePaper>) {
-	return {
+	return Object.freeze({
 		...paper,
-		articles: paper.articles.map((article) => ({
-			...article,
-			newsItem: article.newsItem.id,
-		})),
-	}
+		articles: Object.freeze(
+			paper.articles.map((article) =>
+				Object.freeze({
+					...article,
+					newsItem: article.newsItem.id,
+				}),
+			),
+		),
+	})
 }
