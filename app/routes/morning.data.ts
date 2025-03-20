@@ -1,11 +1,8 @@
 import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
+import { Intents } from '#app/intents.ts'
 import { GameScreen } from '#app/state/game-screen.ts'
 import { getGameState, updateGameState } from '#app/state/game-state.ts'
-
-export const Intents = Object.freeze({
-	StartWork: 'StartWork',
-})
 
 export async function action({ request }: ActionFunctionArgs) {
 	const gameState = getGameState()

@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/react/macro'
 import { Form, useNavigation } from 'react-router'
-import { Intents } from './morning.data.ts'
+import { Intents } from '#app/intents.ts'
 
 export default function Morning() {
 	const navigation = useNavigation()
