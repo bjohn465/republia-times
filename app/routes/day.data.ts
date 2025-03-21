@@ -1,19 +1,14 @@
-import { invariantResponse } from '@epic-web/invariant'
 import {
 	type unstable_SerializesTo as SerializesTo,
 	type useLoaderData,
 } from 'react-router'
-import { GameScreen } from '#app/state/game-screen.ts'
+import { assertDayState } from '#app/state/day-state.ts'
 import { getGameState } from '#app/state/game-state.ts'
 import { dehydratePaper } from '#app/state/state-utils.ts'
 
 export function loader() {
 	const gameState = getGameState()
-	invariantResponse(
-		gameState.screen === GameScreen.Day,
-		'Invalid game state for "day" loader',
-		{ statusText: 'Bad Request' },
-	)
+	assertDayState(gameState, 'Invalid game state for "day" loader')
 	return {
 		newsItems: toSerializableReadonlyMap(gameState.newsItems),
 		paper: dehydratePaper(gameState.paper),
