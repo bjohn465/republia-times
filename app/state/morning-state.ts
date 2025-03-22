@@ -3,15 +3,6 @@ import { BaseGameStateSchema } from './base-game-state.ts'
 import { DayState } from './day-state.ts'
 import { GameScreen } from './game-screen.ts'
 
-const MorningStateObjectSchema = v.pipe(
-	v.object({
-		...BaseGameStateSchema.entries,
-		screen: v.literal(GameScreen.Morning),
-	}),
-	v.readonly(),
-)
-type MorningStateObject = v.InferOutput<typeof MorningStateObjectSchema>
-
 export class MorningState {
 	static parse(state: unknown) {
 		return new MorningState(v.parse(MorningStateObjectSchema, state))
@@ -35,3 +26,12 @@ export class MorningState {
 		return DayState.fromMorningState()
 	}
 }
+
+const MorningStateObjectSchema = v.pipe(
+	v.object({
+		...BaseGameStateSchema.entries,
+		screen: v.literal(GameScreen.Morning),
+	}),
+	v.readonly(),
+)
+type MorningStateObject = v.InferOutput<typeof MorningStateObjectSchema>

@@ -4,6 +4,42 @@ import { GameScreen } from './game-screen.ts'
 import { getNewsItem, NewsItemIDSchema } from './news-items.ts'
 import { hydratePaper } from './state-utils.ts'
 
+export class DayState {
+	static fromMorningState() {
+		return DayState.parse({
+			newsItems: ['bBQb', '9MrF'],
+			screen: GameScreen.Day,
+			paper: { articles: [] },
+		} satisfies DayStateObjectInput)
+	}
+
+	static parse(state: unknown): DayState {
+		return new DayState(v.parse(DayStateObjectSchema, state))
+	}
+
+	#state: DayStateObjectOutput
+
+	constructor(state: DayStateObjectOutput) {
+		this.#state = state
+	}
+
+	get newsItems() {
+		return this.#state.newsItems
+	}
+
+	get paper() {
+		return this.#state.paper
+	}
+
+	get screen() {
+		return this.#state.screen
+	}
+
+	get url() {
+		return '/day' as const
+	}
+}
+
 const DayStateObjectSchema = v.pipe(
 	v.object({
 		...BaseGameStateSchema.entries,
@@ -43,39 +79,3 @@ const DayStateObjectSchema = v.pipe(
 )
 type DayStateObjectInput = v.InferInput<typeof DayStateObjectSchema>
 type DayStateObjectOutput = v.InferOutput<typeof DayStateObjectSchema>
-
-export class DayState {
-	static fromMorningState() {
-		return DayState.parse({
-			newsItems: ['bBQb', '9MrF'],
-			screen: GameScreen.Day,
-			paper: { articles: [] },
-		} satisfies DayStateObjectInput)
-	}
-
-	static parse(state: unknown): DayState {
-		return new DayState(v.parse(DayStateObjectSchema, state))
-	}
-
-	#state: DayStateObjectOutput
-
-	constructor(state: DayStateObjectOutput) {
-		this.#state = state
-	}
-
-	get newsItems() {
-		return this.#state.newsItems
-	}
-
-	get paper() {
-		return this.#state.paper
-	}
-
-	get screen() {
-		return this.#state.screen
-	}
-
-	get url() {
-		return '/day' as const
-	}
-}
