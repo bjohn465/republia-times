@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
+import { getThrownValue } from '#tests/utils.ts'
 import { initializeGameState as originalInitializeGameState } from './game-state.ts'
 import { assertURLIsCorrectForGameState } from './url-utils.ts'
 
@@ -86,16 +87,6 @@ describe('assertURLIsCorrectForGameState', () => {
 		expect(thrownValue).toHaveReplaceRedirect(expectedUrl.toString())
 	})
 })
-
-function getThrownValue(func: Function) {
-	let thrownValue: unknown
-	try {
-		func()
-	} catch (error) {
-		thrownValue = error
-	}
-	return thrownValue
-}
 
 function serializeStateURLParam(state: unknown) {
 	return btoa(JSON.stringify(state))

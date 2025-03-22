@@ -34,3 +34,13 @@ export function gameStateToURLSearchParams(state: unknown): URLSearchParams {
 		['initialState', encodeGameStateURLParamValue(JSON.stringify(state))],
 	])
 }
+
+export function getThrownValue(func: () => unknown) {
+	let thrownValue: unknown
+	try {
+		func()
+	} catch (error) {
+		thrownValue = error
+	}
+	return thrownValue
+}
