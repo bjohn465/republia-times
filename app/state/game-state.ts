@@ -1,6 +1,6 @@
-import { invariantResponse } from '@epic-web/invariant'
 import { type Class } from 'utility-types'
 import * as v from 'valibot'
+import { invariantResponse } from '#app/invariant.ts'
 import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { DayState } from './day-state.ts'

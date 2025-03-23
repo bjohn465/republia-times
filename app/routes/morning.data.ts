@@ -1,6 +1,6 @@
-import { invariantResponse } from '@epic-web/invariant'
 import { replace, type ActionFunctionArgs } from 'react-router'
 import { Intents } from '#app/intents.ts'
+import { invariantResponse } from '#app/invariant.ts'
 import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
 import { MorningState } from '#app/state/morning-state.ts'
 

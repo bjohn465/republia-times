@@ -1,6 +1,6 @@
-import { invariant } from '@epic-web/invariant'
 import { t } from '@lingui/core/macro'
 import * as v from 'valibot'
+import { invariant } from '#app/invariant.ts'
 
 const newsItemsByID = new Map(
 	(

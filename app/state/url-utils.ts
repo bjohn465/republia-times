@@ -1,5 +1,5 @@
-import { invariant } from '@epic-web/invariant'
 import { replace } from 'react-router'
+import { invariant } from '#app/invariant.ts'
 import { getGameState, initializeGameState } from './game-state.ts'
 
 const gameStateURLParam = 'initialState'

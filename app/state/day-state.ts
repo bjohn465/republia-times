@@ -1,5 +1,5 @@
-import { invariantResponse } from '@epic-web/invariant'
 import * as v from 'valibot'
+import { invariantResponse } from '#app/invariant.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
 import { getNewsItem, type NewsItemID, NewsItemIDSchema } from './news-items.ts'

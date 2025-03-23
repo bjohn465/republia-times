@@ -1,7 +1,7 @@
-import { invariant } from '@epic-web/invariant'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router'
+import { invariant } from '#app/invariant.ts'
 import { detectLocale, dynamicActivate } from './i18n.ts'
 import { getRouter } from './router.ts'
 

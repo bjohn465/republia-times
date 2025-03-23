@@ -1,4 +1,4 @@
-import { invariant } from '@epic-web/invariant'
+import { invariant } from '#app/invariant.ts'
 import { type NewsItem } from './news-items.ts'
 
 export function hydratePaper({
