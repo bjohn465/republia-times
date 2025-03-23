@@ -60,3 +60,25 @@ describe('DayState.parse', () => {
 		expect(state).toBeInstanceOf(DayState)
 	})
 })
+
+describe('addToPaper', () => {
+	test('Returns new DayState with correct values', () => {
+		const state = DayState.parse(
+			getDayStateInput({
+				newsItems: ['bBQb'],
+			}),
+		)
+		const newState = state.addToPaper('bBQb')
+		expect(newState).toBeInstanceOf(DayState)
+		expect(newState).not.toBe(state)
+		expect(Array.from(newState.newsItems.keys())).toEqual(['bBQb'])
+		expect(newState.paper).toEqual({
+			articles: [{ newsItem: expect.objectContaining({ id: 'bBQb' }) }],
+		})
+	})
+
+	test('Throws when news item ID is not in the newsItems collection', () => {
+		const state = DayState.parse(getDayStateInput({ newsItems: ['bBQb'] }))
+		expect(() => state.addToPaper('9MrF')).toThrowError()
+	})
+})

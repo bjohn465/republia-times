@@ -1,7 +1,8 @@
+import { invariantResponse } from '@epic-web/invariant'
 import * as v from 'valibot'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
-import { getNewsItem, NewsItemIDSchema } from './news-items.ts'
+import { getNewsItem, type NewsItemID, NewsItemIDSchema } from './news-items.ts'
 import { hydratePaper } from './state-utils.ts'
 
 export class DayState {
@@ -37,6 +38,20 @@ export class DayState {
 
 	get url() {
 		return '/day' as const
+	}
+
+	addToPaper(newsItemID: NewsItemID) {
+		const newsItem = this.#state.newsItems.get(newsItemID)
+		invariantResponse(newsItem, 'Invalid news item', {
+			statusText: 'Bad Request',
+		})
+		return new DayState({
+			...this.#state,
+			paper: {
+				...this.#state.paper,
+				articles: [...this.#state.paper.articles, { newsItem }],
+			},
+		})
 	}
 }
 
