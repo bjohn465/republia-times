@@ -5,7 +5,12 @@ import {
 	getThrownValue,
 } from '#tests/utils.ts'
 import { DayState } from './day-state.ts'
-import { getExpectedGameState, updateGameState } from './game-state.ts'
+import {
+	getExpectedGameState,
+	getGameState,
+	initializeGameState,
+	updateGameState,
+} from './game-state.ts'
 import { MorningState } from './morning-state.ts'
 
 describe('getExpectedGameState', () => {
@@ -47,5 +52,13 @@ describe('getExpectedGameState', () => {
 		updateGameState(expectedState)
 		const state = getExpectedGameState(DayState, 'Expected DayState')
 		expect(state).toBe(expectedState)
+	})
+})
+
+describe('initializeGameState', () => {
+	test('Throws and does not update the current state if the initial state does not contain a valid screen value', () => {
+		const startingState = getGameState()
+		expect(() => initializeGameState({ screen: 'notValid' })).toThrowError()
+		expect(getGameState()).toBe(startingState)
 	})
 })
