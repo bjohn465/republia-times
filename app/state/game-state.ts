@@ -1,3 +1,5 @@
+import { invariantResponse } from '@epic-web/invariant'
+import { type Class } from 'utility-types'
 import * as v from 'valibot'
 import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
@@ -13,6 +15,19 @@ let currentState: GameState = new MorningState({
 
 export function getGameState(): GameState {
 	return currentState
+}
+
+export function getExpectedGameState<T extends GameState>(
+	expectedGameState: Class<T>,
+	message: string,
+	responseInit?: ResponseInit,
+): T {
+	const state = getGameState()
+	invariantResponse(state instanceof expectedGameState, message, {
+		statusText: 'Bad Request',
+		...responseInit,
+	})
+	return state
 }
 
 export function updateGameState(newState: GameState) {
