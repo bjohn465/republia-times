@@ -5,6 +5,15 @@ import { type loader } from './day.data.ts'
 
 export default function Day() {
 	const { newsItems, paper: dehydratedPaper } = useLoaderData<typeof loader>()
+	const usedNewsItemIDs = new Set(
+		dehydratedPaper.articles.map((article) => article.newsItem),
+	)
+	// When `Iterator.prototype.filter` is supported more generally,
+	// we can skip the conversion to an array with `Array.from` here.
+	// See https://caniuse.com/mdn-javascript_builtins_iterator_filter
+	const displayedNewsItems = Array.from(newsItems.values()).filter(
+		(newsItem) => !usedNewsItemIDs.has(newsItem.id),
+	)
 	const paper = hydratePaper({ newsItems, paper: dehydratedPaper })
 
 	return (
@@ -16,14 +25,9 @@ export default function Day() {
 				<Trans>News Feed</Trans>
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
-				{
-					// When `Iterator.prototype.map` is supported more generally,
-					// we can skip the conversion to an array with `Array.from` here.
-					// See https://caniuse.com/mdn-javascript_builtins_iterator_map
-					Array.from(newsItems.values()).map((newsItem) => (
-						<li key={newsItem.id}>{newsItem.feedText}</li>
-					))
-				}
+				{displayedNewsItems.map((newsItem) => (
+					<li key={newsItem.id}>{newsItem.feedText}</li>
+				))}
 			</ul>
 			<h2 id="paperHeading">
 				<Trans>The Republia Times</Trans>
