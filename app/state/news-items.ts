@@ -38,7 +38,7 @@ export const NewsItemIDSchema = v.picklist(
 	// outputs all of the picklist values.
 	({ received }) => `Invalid News Item ID: Received ${received}`,
 )
-type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
+export type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
 
 export const NewsItemSchema = v.pipe(
 	NewsItemIDSchema,
