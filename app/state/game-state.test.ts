@@ -29,24 +29,6 @@ describe('getExpectedGameState', () => {
 		await expect(thrownValue.text()).resolves.toBe('Expected DayState')
 	})
 
-	test('Allows Response to be configured', async () => {
-		updateGameState(DayState.parse(getDayStateInput()))
-		const thrownValue = getThrownValue(() =>
-			getExpectedGameState(MorningState, 'Expected MorningState', {
-				status: 404,
-				statusText: 'Not Found',
-			}),
-		)
-		assert.instanceOf(thrownValue, Response)
-		expect(thrownValue).toEqual(
-			expect.objectContaining({
-				status: 404,
-				statusText: 'Not Found',
-			}),
-		)
-		await expect(thrownValue.text()).resolves.toBe('Expected MorningState')
-	})
-
 	test('Returns current state when current state is the expected state', () => {
 		const expectedState = DayState.parse(getDayStateInput())
 		updateGameState(expectedState)

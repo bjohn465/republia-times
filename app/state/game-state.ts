@@ -20,10 +20,9 @@ export function getGameState(): GameState {
 export function getExpectedGameState<T extends GameState>(
 	expectedGameState: Class<T>,
 	message: string,
-	responseInit?: ResponseInit,
 ): T {
 	const state = getGameState()
-	invariantResponse(state instanceof expectedGameState, message, responseInit)
+	invariantResponse(state instanceof expectedGameState, message)
 	return state
 }
 
