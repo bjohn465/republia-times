@@ -1,7 +1,19 @@
+import { invariantResponse } from '@epic-web/invariant'
 import * as v from 'valibot'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { DayState } from './day-state.ts'
 import { GameScreen } from './game-screen.ts'
+
+export function assertMorningState(
+	state: unknown,
+	message: string,
+	responseInit?: ResponseInit,
+): asserts state is MorningState {
+	invariantResponse(state instanceof MorningState, message, {
+		statusText: 'Bad Request',
+		...responseInit,
+	})
+}
 
 export class MorningState {
 	static parse(state: unknown) {
