@@ -11,8 +11,6 @@ export async function action({ request }: ActionFunctionArgs) {
 	)
 	const data = await request.formData()
 	const intent = data.get('intent')
-	invariantResponse(intent === Intents.StartWork, 'Invalid intent', {
-		statusText: 'Bad Request',
-	})
+	invariantResponse(intent === Intents.StartWork, 'Invalid intent')
 	throw replace(updateGameState(gameState.startWork()).url)
 }

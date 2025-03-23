@@ -23,10 +23,7 @@ export function getExpectedGameState<T extends GameState>(
 	responseInit?: ResponseInit,
 ): T {
 	const state = getGameState()
-	invariantResponse(state instanceof expectedGameState, message, {
-		statusText: 'Bad Request',
-		...responseInit,
-	})
+	invariantResponse(state instanceof expectedGameState, message, responseInit)
 	return state
 }
 

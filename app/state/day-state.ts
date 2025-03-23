@@ -42,9 +42,7 @@ export class DayState {
 
 	addToPaper(newsItemID: NewsItemID) {
 		const newsItem = this.#state.newsItems.get(newsItemID)
-		invariantResponse(newsItem, 'Invalid news item', {
-			statusText: 'Bad Request',
-		})
+		invariantResponse(newsItem, 'Invalid news item')
 		return new DayState({
 			...this.#state,
 			paper: {
