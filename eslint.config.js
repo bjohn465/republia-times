@@ -34,4 +34,16 @@ export default [
 			'lingui/t-call-in-function': 'error',
 		},
 	},
+	{
+		ignores: ['app/invariant.ts'],
+		rules: {
+			'no-restricted-imports': [
+				'error',
+				{
+					name: '@epic-web/invariant',
+					message: "Please use '#app/invariant.ts' instead.",
+				},
+			],
+		},
+	},
 ]
