@@ -1,9 +1,13 @@
 import {
+	type ActionFunctionArgs,
 	type unstable_SerializesTo as SerializesTo,
 	type useLoaderData,
 } from 'react-router'
+import { Intents } from '#app/intents.ts'
+import { invariantResponse } from '#app/invariant.ts'
 import { DayState } from '#app/state/day-state.ts'
-import { getExpectedGameState } from '#app/state/game-state.ts'
+import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
+import { parseAsNewsItemID } from '#app/state/news-items.ts'
 import { dehydratePaper } from '#app/state/state-utils.ts'
 
 export function loader() {
@@ -15,6 +19,19 @@ export function loader() {
 		newsItems: toSerializableReadonlyMap(gameState.newsItems),
 		paper: dehydratePaper(gameState.paper),
 	}
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+	const gameState = getExpectedGameState(
+		DayState,
+		'Invalid game state for "day" action',
+	)
+	const data = await request.formData()
+	const intent = data.get('intent')
+	invariantResponse(intent === Intents.AddToPaper, 'Invalid intent')
+	const newsItemID = parseAsNewsItemID(data.get('id'))
+	updateGameState(gameState.addToPaper(newsItemID))
+	return { ok: true }
 }
 
 /**

@@ -4,7 +4,7 @@ import HydrateFallback from './hydrate-fallback.tsx'
 import { cookieMiddleware } from './middleware/cookie.ts'
 import { simulatedRTTMiddleware } from './middleware/simulated-rtt.ts'
 import Day from './routes/day.component.tsx'
-import { loader as dayLoader } from './routes/day.data.ts'
+import { action as dayAction, loader as dayLoader } from './routes/day.data.ts'
 import Morning from './routes/morning.component.tsx'
 import { action as morningAction } from './routes/morning.data.ts'
 import Root from './routes/root.component.tsx'
@@ -36,6 +36,7 @@ export function getRouter() {
 						path: 'day',
 						Component: Day,
 						loader: dayLoader,
+						action: dayAction,
 					},
 				],
 			},

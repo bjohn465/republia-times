@@ -41,19 +41,26 @@ test('Work day', async ({ page }) => {
 	).toBeVisible()
 })
 
-test('News feed', async ({ page }) => {
+test('Add to Paper', async ({ page }) => {
 	await page.goto(
 		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
 	)
 	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
 	await expect(newsFeedList).toBeVisible()
-	await expect(newsFeedList.getByRole('listitem')).toHaveCount(2)
-})
+	const newsFeedListItems = newsFeedList.getByRole('listitem')
+	await expect(newsFeedListItems).toHaveCount(2)
 
-test('Paper', async ({ page }) => {
-	await page.goto(
-		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
-	)
-	const paperList = page.getByRole('list', { name: 'News Feed' })
-	await expect(paperList).toBeVisible()
+	const paperList = page.getByRole('list', { name: 'The Republia Times' })
+	await expect(paperList).toBeAttached()
+	const paperListItems = paperList.getByRole('listitem')
+	await expect(paperListItems).toHaveCount(0)
+
+	await newsFeedListItems
+		.filter({ hasText: /Tennis star/i })
+		.getByRole('button', { name: 'Add to paper' })
+		.click()
+
+	await expect(newsFeedListItems).toHaveCount(1)
+	await expect(paperListItems).toHaveCount(1)
+	await expect(paperListItems.filter({ hasText: /Tennis star/i })).toBeVisible()
 })

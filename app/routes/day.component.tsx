@@ -1,5 +1,7 @@
 import { Trans } from '@lingui/react/macro'
-import { useLoaderData } from 'react-router'
+import { useFetcher, useLoaderData } from 'react-router'
+import { Intents } from '#app/intents.ts'
+import { type NewsItemID } from '#app/state/news-items.ts'
 import { hydratePaper } from '#app/state/state-utils.ts'
 import { type loader } from './day.data.ts'
 
@@ -26,7 +28,9 @@ export default function Day() {
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
 				{displayedNewsItems.map((newsItem) => (
-					<li key={newsItem.id}>{newsItem.feedText}</li>
+					<NewsFeedItem key={newsItem.id} id={newsItem.id}>
+						{newsItem.feedText}
+					</NewsFeedItem>
 				))}
 			</ul>
 			<h2 id="paperHeading">
@@ -38,5 +42,26 @@ export default function Day() {
 				))}
 			</ol>
 		</>
+	)
+}
+
+function NewsFeedItem({
+	children,
+	id,
+}: {
+	children: React.ReactNode
+	id: NewsItemID
+}) {
+	const fetcher = useFetcher()
+	return (
+		<li>
+			<fetcher.Form method="post">
+				{children}
+				<input type="hidden" name="id" value={id} />
+				<button type="submit" name="intent" value={Intents.AddToPaper}>
+					<Trans>Add to paper</Trans>
+				</button>
+			</fetcher.Form>
+		</li>
 	)
 }
