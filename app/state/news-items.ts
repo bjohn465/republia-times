@@ -1,6 +1,6 @@
 import { t } from '@lingui/core/macro'
 import * as v from 'valibot'
-import { invariant } from '#app/invariant.ts'
+import { invariant, invariantResponse } from '#app/invariant.ts'
 
 const newsItemsByID = new Map(
 	(
@@ -29,6 +29,12 @@ export function getNewsItem(id: NewsItemID) {
 		articleText: item.getArticleText(),
 		feedText: item.getFeedText(),
 	})
+}
+
+export function parseAsNewsItemID(input: unknown): NewsItemID {
+	const result = v.safeParse(NewsItemIDSchema, input)
+	invariantResponse(result.success, 'Invalid news item ID')
+	return result.output
 }
 
 export const NewsItemIDSchema = v.picklist(
