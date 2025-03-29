@@ -3,12 +3,14 @@ import {
 	type unstable_SerializesTo as SerializesTo,
 	type useLoaderData,
 } from 'react-router'
-import { Intents } from '#app/intents.ts'
-import { invariantResponse } from '#app/invariant.ts'
+import * as v from 'valibot'
+import { parseFormData } from '#app/form-data.ts'
+import { Intents, intentSchema } from '#app/intents.ts'
 import { DayState } from '#app/state/day-state.ts'
 import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
-import { parseAsNewsItemID } from '#app/state/news-items.ts'
+import { NewsItemIDSchema } from '#app/state/news-items.ts'
 import { dehydratePaper } from '#app/state/state-utils.ts'
+import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 
 export function loader() {
 	const gameState = getExpectedGameState(
@@ -26,13 +28,21 @@ export async function action({ request }: ActionFunctionArgs) {
 		DayState,
 		'Invalid game state for "day" action',
 	)
-	const data = await request.formData()
-	const intent = data.get('intent')
-	invariantResponse(intent === Intents.AddToPaper, 'Invalid intent')
-	const newsItemID = parseAsNewsItemID(data.get('id'))
-	updateGameState(gameState.addToPaper(newsItemID))
-	return { ok: true }
+	const data = parseFormData(DayActionFormDataSchema, await request.formData())
+	switch (data.intent) {
+		case Intents.AddToPaper: {
+			updateGameState(gameState.addToPaper(data.id))
+			return { ok: true }
+		}
+		default:
+			throw new UnsupportedValueError(data.intent)
+	}
 }
+
+const DayActionFormDataSchema = v.object({
+	intent: intentSchema(Intents.AddToPaper),
+	id: NewsItemIDSchema,
+})
 
 /**
  * A workaround for https://github.com/remix-run/react-router/issues/13092
