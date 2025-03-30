@@ -47,7 +47,10 @@ test('Work day', async ({ page }) => {
 	).toBeVisible()
 })
 
-test('Add to Paper', async ({ page }) => {
+test('Add to Paper', async ({ baseURL, browser }) => {
+	const browserContext = await browser.newContext()
+	const page = await browserContext.newPage()
+	await page.clock.install({ time: new Date('2025-03-30T10:00:00Z') })
 	await page.goto(
 		`/?${gameStateToURLSearchParams(getDayStateInput()).toString()}`,
 	)
@@ -61,12 +64,23 @@ test('Add to Paper', async ({ page }) => {
 	const paperListItems = paperList.getByRole('listitem')
 	await expect(paperListItems).toHaveCount(0)
 
+	await browserContext.addCookies([
+		{ name: 'simulatedRTT', value: '100', url: baseURL },
+	])
+	await page.clock.pauseAt(new Date('2025-03-30T10:01:00Z'))
 	await newsFeedListItems
 		.filter({ hasText: /Tennis star/i })
 		.getByRole('button', { name: 'Add to paper' })
 		.click()
 
+	await expect(paperList).toBeVisible()
 	await expect(newsFeedListItems).toHaveCount(1)
 	await expect(paperListItems).toHaveCount(1)
-	await expect(paperListItems.filter({ hasText: /Tennis star/i })).toBeVisible()
+	const paperItem = paperListItems.filter({ hasText: /Tennis star/i })
+	await expect(paperItem).toBeVisible()
+	await expect(paperItem).toContainText('(Pending)')
+
+	await page.clock.resume()
+
+	await expect(paperItem).not.toContainText('(Pending)')
 })

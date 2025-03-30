@@ -1,12 +1,29 @@
 import { Trans } from '@lingui/react/macro'
-import { useFetcher, useLoaderData } from 'react-router'
+import { useFetcher, useFetchers, useLoaderData } from 'react-router'
 import { Intents } from '#app/intents.ts'
 import { type NewsItemID } from '#app/state/news-items.ts'
-import { hydratePaper } from '#app/state/state-utils.ts'
+import {
+	getNewsItemFromCollection,
+	hydratePaper,
+} from '#app/state/state-utils.ts'
 import { type loader } from './day.data.ts'
 
 export default function Day() {
 	const { newsItems, paper: dehydratedPaper } = useLoaderData<typeof loader>()
+	const fetchers = useFetchers()
+	const pendingArticles = fetchers.reduce((ids, fetcher) => {
+		if (
+			!fetcher.formData ||
+			fetcher.formData.get('intent') !== Intents.AddToPaper
+		) {
+			return ids
+		}
+		const potentialId = fetcher.formData.get('id')
+		if (typeof potentialId === 'string' && newsItems.has(potentialId)) {
+			ids.add(potentialId as NewsItemID)
+		}
+		return ids
+	}, new Set<NewsItemID>())
 	const usedNewsItemIDs = new Set(
 		dehydratedPaper.articles.map((article) => article.newsItem),
 	)
@@ -17,6 +34,11 @@ export default function Day() {
 		(newsItem) => !usedNewsItemIDs.has(newsItem.id),
 	)
 	const paper = hydratePaper({ newsItems, paper: dehydratedPaper })
+	const displayedArticles = paper.articles.concat(
+		Array.from(pendingArticles).map((id) => ({
+			newsItem: getNewsItemFromCollection(newsItems, id),
+		})),
+	)
 
 	return (
 		<>
@@ -28,7 +50,15 @@ export default function Day() {
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
 				{displayedNewsItems.map((newsItem) => (
-					<NewsFeedItem key={newsItem.id} id={newsItem.id}>
+					<NewsFeedItem
+						key={newsItem.id}
+						id={newsItem.id}
+						state={
+							pendingArticles.has(newsItem.id)
+								? NewsItemStates.AddingToPaper
+								: NewsItemStates.InFeed
+						}
+					>
 						{newsItem.feedText}
 					</NewsFeedItem>
 				))}
@@ -37,8 +67,15 @@ export default function Day() {
 				<Trans>The Republia Times</Trans>
 			</h2>
 			<ol aria-labelledby="paperHeading">
-				{paper.articles.map((article) => (
-					<ArticleItem key={article.newsItem.id}>
+				{displayedArticles.map((article) => (
+					<ArticleItem
+						key={article.newsItem.id}
+						state={
+							pendingArticles.has(article.newsItem.id)
+								? ArticleStates.Pending
+								: ArticleStates.Added
+						}
+					>
 						{article.newsItem.articleText}
 					</ArticleItem>
 				))}
@@ -50,13 +87,15 @@ export default function Day() {
 function NewsFeedItem({
 	children,
 	id,
+	state,
 }: {
 	children: React.ReactNode
 	id: NewsItemID
+	state: NewsItemState
 }) {
 	const fetcher = useFetcher()
 	return (
-		<li>
+		<li hidden={state === NewsItemStates.AddingToPaper}>
 			<fetcher.Form method="post">
 				{children}
 				<input type="hidden" name="id" value={id} />
@@ -68,6 +107,33 @@ function NewsFeedItem({
 	)
 }
 
-function ArticleItem({ children }: { children: React.ReactNode }) {
-	return <li>{children}</li>
+function ArticleItem({
+	children,
+	state,
+}: {
+	children: React.ReactNode
+	state: ArticleState
+}) {
+	return (
+		<li>
+			{children}
+			{state === ArticleStates.Pending && (
+				<small>
+					<Trans>(Pending)</Trans>
+				</small>
+			)}
+		</li>
+	)
 }
+
+const NewsItemStates = Object.freeze({
+	InFeed: 'inFeed',
+	AddingToPaper: 'addingToPaper',
+})
+type NewsItemState = (typeof NewsItemStates)[keyof typeof NewsItemStates]
+
+const ArticleStates = Object.freeze({
+	Pending: 'pending',
+	Added: 'added',
+})
+type ArticleState = (typeof ArticleStates)[keyof typeof ArticleStates]
