@@ -38,7 +38,9 @@ export default function Day() {
 			</h2>
 			<ol aria-labelledby="paperHeading">
 				{paper.articles.map((article) => (
-					<li key={article.newsItem.id}>{article.newsItem.articleText}</li>
+					<ArticleItem key={article.newsItem.id}>
+						{article.newsItem.articleText}
+					</ArticleItem>
 				))}
 			</ol>
 		</>
@@ -64,4 +66,8 @@ function NewsFeedItem({
 			</fetcher.Form>
 		</li>
 	)
+}
+
+function ArticleItem({ children }: { children: React.ReactNode }) {
+	return <li>{children}</li>
 }

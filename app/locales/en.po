@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/day.component.tsx:62
+#: app/routes/day.component.tsx:64
 msgid "Add to paper"
 msgstr "Add to paper"
 
