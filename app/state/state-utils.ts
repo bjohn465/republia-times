@@ -1,22 +1,27 @@
 import { invariant } from '#app/invariant.ts'
-import { type NewsItem } from './news-items.ts'
+import { type NewsItem, type NewsItemID } from './news-items.ts'
+
+export function getNewsItemFromCollection(
+	newsItems: NewsItemsCollection,
+	id: NewsItemID,
+) {
+	const item = newsItems.get(id)
+	invariant(item, `Unable to find news item with ID "${id}"`)
+	return item
+}
 
 export function hydratePaper({
 	newsItems,
 	paper,
 }: {
-	newsItems: ReadonlyMap<NewsItem['id'], NewsItem>
-	paper: { articles: ReadonlyArray<Readonly<{ newsItem: NewsItem['id'] }>> }
+	newsItems: NewsItemsCollection
+	paper: { articles: ReadonlyArray<Readonly<{ newsItem: NewsItemID }>> }
 }) {
 	return Object.freeze({
 		...paper,
 		articles: Object.freeze(
 			paper.articles.map((article) => {
-				const newsItem = newsItems.get(article.newsItem)
-				invariant(
-					newsItem,
-					`Unable to find news item with ID "${article.newsItem}"`,
-				)
+				const newsItem = getNewsItemFromCollection(newsItems, article.newsItem)
 				return Object.freeze({
 					...article,
 					newsItem,
@@ -39,3 +44,5 @@ export function dehydratePaper(paper: ReturnType<typeof hydratePaper>) {
 		),
 	})
 }
+
+type NewsItemsCollection = ReadonlyMap<NewsItemID, NewsItem>
