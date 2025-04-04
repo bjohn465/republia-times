@@ -62,7 +62,7 @@ describe('DayState.parse', () => {
 })
 
 describe('addToPaper', () => {
-	test('Returns new DayState with correct values', () => {
+	test('Returns new DayState with news item added to paper', () => {
 		const state = DayState.parse(
 			getDayStateInput({
 				newsItems: ['bBQb'],
@@ -80,5 +80,15 @@ describe('addToPaper', () => {
 	test('Throws when news item ID is not in the newsItems collection', () => {
 		const state = DayState.parse(getDayStateInput({ newsItems: ['bBQb'] }))
 		expect(() => state.addToPaper('9MrF')).toThrowError()
+	})
+
+	test('Returns same state when news item ID is already in the paper', () => {
+		const state = DayState.parse(
+			getDayStateInput({
+				newsItems: ['bBQb'],
+				paper: { articles: [{ newsItem: 'bBQb' }] },
+			}),
+		)
+		expect(state.addToPaper('bBQb')).toBe(state)
 	})
 })

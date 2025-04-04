@@ -43,13 +43,18 @@ export class DayState {
 	addToPaper(newsItemID: NewsItemID) {
 		const newsItem = this.#state.newsItems.get(newsItemID)
 		invariantResponse(newsItem, 'Invalid news item')
-		return new DayState({
-			...this.#state,
-			paper: {
-				...this.#state.paper,
-				articles: [...this.#state.paper.articles, { newsItem }],
-			},
-		})
+		const hasNewsItemAlready = this.#state.paper.articles.some(
+			(article) => article.newsItem.id === newsItemID,
+		)
+		return hasNewsItemAlready
+			? this
+			: new DayState({
+					...this.#state,
+					paper: {
+						...this.#state.paper,
+						articles: [...this.#state.paper.articles, { newsItem }],
+					},
+				})
 	}
 }
 
