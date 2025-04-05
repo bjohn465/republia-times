@@ -40,9 +40,14 @@ export class DayState {
 		return '/day' as const
 	}
 
-	addToPaper(newsItemID: NewsItemID) {
-		const newsItem = this.#state.newsItems.get(newsItemID)
+	#getNewsItemById(id: NewsItemID) {
+		const newsItem = this.#state.newsItems.get(id)
 		invariantResponse(newsItem, 'Invalid news item')
+		return newsItem
+	}
+
+	addToPaper(newsItemID: NewsItemID) {
+		const newsItem = this.#getNewsItemById(newsItemID)
 		const hasNewsItemAlready = this.#state.paper.articles.some(
 			(article) => article.newsItem.id === newsItemID,
 		)
