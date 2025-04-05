@@ -105,3 +105,41 @@ describe('addToPaper', () => {
 		expect(state.addToPaper('bBQb')).toBe(state)
 	})
 })
+
+describe('removeFromPaper', () => {
+	test('Returns new DayState with news item removed from paper', () => {
+		const state = DayState.parse(
+			getDayStateInput({
+				newsItems: ['bBQb'],
+				paper: { articles: [{ newsItem: 'bBQb' }] },
+			}),
+		)
+		const newState = state.removeFromPaper('bBQb')
+		expect(newState).toBeInstanceOf(DayState)
+		expect(newState).not.toBe(state)
+		expect(Array.from(newState.newsItems.keys())).toEqual(['bBQb'])
+		expect(newState.paper).toEqual({
+			articles: [],
+		})
+	})
+
+	test('Throws when news item ID is not in the newsItems collection', () => {
+		const state = DayState.parse(
+			getDayStateInput({
+				newsItems: ['bBQb'],
+				paper: { articles: [{ newsItem: 'bBQb' }] },
+			}),
+		)
+		expect(() => state.removeFromPaper('9MrF')).toThrowError()
+	})
+
+	test('Returns same state when news item ID is not in the paper', () => {
+		const state = DayState.parse(
+			getDayStateInput({
+				newsItems: ['bBQb', '9MrF'],
+				paper: { articles: [{ newsItem: 'bBQb' }] },
+			}),
+		)
+		expect(state.removeFromPaper('9MrF')).toBe(state)
+	})
+})

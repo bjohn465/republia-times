@@ -61,6 +61,24 @@ export class DayState {
 					},
 				})
 	}
+
+	removeFromPaper(newsItemID: NewsItemID) {
+		const newsItem = this.#getNewsItemById(newsItemID)
+		const updatedArticles = this.#state.paper.articles.filter(
+			(article) => article.newsItem.id !== newsItem.id,
+		)
+		const wasItemRemoved =
+			updatedArticles.length < this.#state.paper.articles.length
+		return wasItemRemoved
+			? new DayState({
+					...this.#state,
+					paper: {
+						...this.#state.paper,
+						articles: updatedArticles,
+					},
+				})
+			: this
+	}
 }
 
 const DayStateObjectSchema = v.pipe(
