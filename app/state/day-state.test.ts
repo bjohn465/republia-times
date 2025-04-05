@@ -30,7 +30,7 @@ describe('DayState.parse', () => {
 		expect(() =>
 			DayState.parse(getDayStateInput({ newsItems: ['bBQb', 'bBQb'] })),
 		).toThrowError(
-			'Each news item must be unique; Received duplicate item "bBQb"',
+			'Each news item must be unique\. Received duplicate item "bBQb"\.',
 		)
 	})
 
@@ -51,7 +51,7 @@ describe('DayState.parse', () => {
 				}),
 			),
 		).toThrowError(
-			/^All articles must reference news items in the newsItems array.$/,
+			/^All articles must reference news items in the newsItems array\.$/,
 		)
 	})
 

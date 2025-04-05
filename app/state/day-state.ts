@@ -71,7 +71,7 @@ const DayStateObjectSchema = v.pipe(
 			v.checkItems(
 				(id, index, idsArray) => idsArray.indexOf(id) === index,
 				({ input }) => {
-					return `Each news item must be unique; Received duplicate item "${input}"`
+					return `Each news item must be unique. Received duplicate item "${input}".`
 				},
 			),
 			v.transform(
