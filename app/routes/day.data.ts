@@ -34,15 +34,25 @@ export async function action({ request }: ActionFunctionArgs) {
 			updateGameState(gameState.addToPaper(data.id))
 			return { ok: true }
 		}
+		case Intents.RemoveFromPaper: {
+			updateGameState(gameState.removeFromPaper(data.id))
+			return { ok: true }
+		}
 		default:
-			throw new UnsupportedValueError(data.intent)
+			throw new UnsupportedValueError(data)
 	}
 }
 
-const DayActionFormDataSchema = v.object({
-	intent: intentSchema(Intents.AddToPaper),
-	id: NewsItemIDSchema,
-})
+const DayActionFormDataSchema = v.variant('intent', [
+	v.object({
+		intent: intentSchema(Intents.AddToPaper),
+		id: NewsItemIDSchema,
+	}),
+	v.object({
+		intent: intentSchema(Intents.RemoveFromPaper),
+		id: NewsItemIDSchema,
+	}),
+])
 
 /**
  * A workaround for https://github.com/remix-run/react-router/issues/13092
