@@ -55,6 +55,19 @@ describe('DayState.parse', () => {
 		)
 	})
 
+	test('Throws when two articles reference the same news item', () => {
+		expect(() =>
+			DayState.parse(
+				getDayStateInput({
+					newsItems: ['bBQb'],
+					paper: { articles: [{ newsItem: 'bBQb' }, { newsItem: 'bBQb' }] },
+				}),
+			),
+		).toThrowError(
+			/^Each article must reference a unique news item\. Received duplicate item "bBQb"\.$/,
+		)
+	})
+
 	test('Returns DayState instance', () => {
 		const state = DayState.parse(getDayStateInput())
 		expect(state).toBeInstanceOf(DayState)

@@ -80,7 +80,21 @@ const DayStateObjectSchema = v.pipe(
 			v.readonly(),
 		),
 		paper: v.object({
-			articles: v.array(v.object({ newsItem: NewsItemIDSchema })),
+			articles: v.pipe(
+				v.array(v.object({ newsItem: NewsItemIDSchema })),
+				v.checkItems(
+					({ newsItem }, index, articlesArray) => {
+						return (
+							articlesArray.findIndex(
+								(article) => article.newsItem === newsItem,
+							) === index
+						)
+					},
+					({ input: { newsItem } }) => {
+						return `Each article must reference a unique news item. Received duplicate item "${newsItem}".`
+					},
+				),
+			),
 		}),
 		screen: v.literal(GameScreen.Day),
 	}),
