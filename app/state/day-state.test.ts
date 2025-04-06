@@ -51,9 +51,7 @@ describe('DayState.parse', () => {
 					paper: { articles: [{ newsItem: '9MrF' }] },
 				}),
 			),
-		).toThrowError(
-			/^All articles must reference news items in the newsItems array\.$/,
-		)
+		).toThrowError(/^Unable to find news item with ID "9MrF"$/)
 	})
 
 	test('Throws when two articles reference the same news item', () => {

@@ -3,7 +3,11 @@ import { invariantResponse } from '#app/invariant.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
 import { getNewsItem } from './news-item-data.ts'
-import { type NewsItemId, NewsItemIdSchema } from './news-item.ts'
+import {
+	type NewsItemId,
+	NewsItemSchema,
+	NewsItemIdSchema,
+} from './news-item.ts'
 import { hydratePaper } from './state-utils.ts'
 
 export class DayState {
@@ -12,17 +16,19 @@ export class DayState {
 			newsItems: ['bBQb', '9MrF'],
 			screen: GameScreen.Day,
 			paper: { articles: [] },
-		} satisfies DayStateObjectInput)
+		} satisfies DayStateShorthand)
 	}
 
 	static parse(state: unknown): DayState {
-		return new DayState(v.parse(DayStateObjectSchema, state))
+		return new DayState(v.parse(DayStateShorthandSchema, state))
 	}
 
-	readonly #state: DayStateObjectOutput
+	readonly #state: DayStateObject
 
-	constructor(state: DayStateObjectOutput) {
-		this.#state = state
+	constructor(state: DayStateObject) {
+		// `state` will be the correct type,
+		// but parse it so we can validate the data.
+		this.#state = v.parse(DayStateObjectSchema, state)
 	}
 
 	get newsItems() {
@@ -82,7 +88,7 @@ export class DayState {
 	}
 }
 
-const DayStateObjectSchema = v.pipe(
+const DayStateShorthandSchema = v.pipe(
 	v.object({
 		...BaseGameStateSchema.entries,
 		newsItems: v.pipe(
@@ -99,29 +105,10 @@ const DayStateObjectSchema = v.pipe(
 			v.readonly(),
 		),
 		paper: v.object({
-			articles: v.pipe(
-				v.array(v.object({ newsItem: NewsItemIdSchema })),
-				v.checkItems(
-					({ newsItem }, index, articlesArray) => {
-						return (
-							articlesArray.findIndex(
-								(article) => article.newsItem === newsItem,
-							) === index
-						)
-					},
-					({ input: { newsItem } }) => {
-						return `Each article must reference a unique news item. Received duplicate item "${newsItem}".`
-					},
-				),
-			),
+			articles: v.array(v.object({ newsItem: NewsItemIdSchema })),
 		}),
 		screen: v.literal(GameScreen.Day),
 	}),
-	v.check(({ newsItems, paper: { articles } }) => {
-		return articles.every((article) => {
-			return newsItems.has(article.newsItem)
-		})
-	}, 'All articles must reference news items in the newsItems array.'),
 	v.transform((state) => {
 		return {
 			...state,
@@ -133,5 +120,51 @@ const DayStateObjectSchema = v.pipe(
 	}),
 	v.readonly(),
 )
-type DayStateObjectInput = v.InferInput<typeof DayStateObjectSchema>
-type DayStateObjectOutput = v.InferOutput<typeof DayStateObjectSchema>
+type DayStateShorthand = v.InferInput<typeof DayStateShorthandSchema>
+
+const DayStateObjectSchema = v.pipe(
+	v.object({
+		...BaseGameStateSchema.entries,
+		newsItems: v.pipe(
+			v.map(NewsItemIdSchema, NewsItemSchema),
+			v.check(
+				(newsItems) =>
+					Array.from(newsItems.entries()).every(
+						([id, newsItem]) => id === newsItem.id,
+					),
+				'Each news item Map key must match its ID.',
+			),
+			v.readonly(),
+		),
+		paper: v.pipe(
+			v.object({
+				articles: v.pipe(
+					v.array(v.pipe(v.object({ newsItem: NewsItemSchema }), v.readonly())),
+					v.checkItems(
+						({ newsItem }, index, articlesArray) =>
+							articlesArray.findIndex(
+								(article) => article.newsItem.id === newsItem.id,
+							) === index,
+						({
+							input: {
+								newsItem: { id },
+							},
+						}) => {
+							return `Each article must reference a unique news item. Received duplicate item "${id}".`
+						},
+					),
+					v.readonly(),
+				),
+			}),
+			v.readonly(),
+		),
+		screen: v.literal(GameScreen.Day),
+	}),
+	v.check(({ newsItems, paper: { articles } }) => {
+		return articles.every(({ newsItem: { id } }) => {
+			return newsItems.has(id)
+		})
+	}, 'All articles must reference news items in the newsItems array.'),
+	v.readonly(),
+)
+type DayStateObject = v.InferOutput<typeof DayStateObjectSchema>
