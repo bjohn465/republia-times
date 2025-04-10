@@ -69,7 +69,7 @@
     "prettier": "3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
-    "vite": "^6.2.5",
+    "vite": "^6.2.6",
     "vite-plugin-minify": "^2.1.0",
     "vitest": "^3.1.1"
   },
