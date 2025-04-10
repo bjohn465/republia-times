@@ -1,10 +1,9 @@
 import { t } from '@lingui/core/macro'
-import * as v from 'valibot'
 import { invariant } from '#app/invariant.ts'
 import {
 	newsItemIdTag as newsItemId,
+	type NewsItem,
 	type NewsItemId,
-	NewsItemIdSchema,
 } from './news-item.ts'
 
 const newsItemsById = new Map(
@@ -26,7 +25,7 @@ const newsItemsById = new Map(
 	).map((item) => [item.id, item]),
 )
 
-export function getNewsItem(id: NewsItemId) {
+export function getNewsItem(id: NewsItemId): NewsItem {
 	const item = newsItemsById.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
 	return Object.freeze({
@@ -35,10 +34,3 @@ export function getNewsItem(id: NewsItemId) {
 		feedText: item.getFeedText(),
 	})
 }
-
-export const NewsItemSchema = v.pipe(
-	NewsItemIdSchema,
-	v.transform((id) => getNewsItem(id)),
-)
-export type NewsItemInput = v.InferInput<typeof NewsItemSchema>
-export type NewsItem = v.InferOutput<typeof NewsItemSchema>

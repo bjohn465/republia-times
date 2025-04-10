@@ -30,7 +30,7 @@ msgstr "As a precaution against influence, we are keeping your wife and child in
 msgid "Day 1"
 msgstr "Day 1"
 
-#: app/state/news-item-data.ts:23
+#: app/state/news-item-data.ts:22
 msgid "HugginBoyz: Talentless After All!"
 msgstr "HugginBoyz: Talentless After All!"
 
@@ -38,7 +38,7 @@ msgstr "HugginBoyz: Talentless After All!"
 msgid "It is your job to increase their loyalty by editing The Republia Times carefully."
 msgstr "It is your job to increase their loyalty by editing The Republia Times carefully."
 
-#: app/state/news-item-data.ts:22
+#: app/state/news-item-data.ts:21
 msgid "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 
@@ -70,11 +70,11 @@ msgstr "Start work"
 msgid "Starting work…"
 msgstr "Starting work…"
 
-#: app/state/news-item-data.ts:17
+#: app/state/news-item-data.ts:16
 msgid "Tennis Star Advances!"
 msgstr "Tennis Star Advances!"
 
-#: app/state/news-item-data.ts:16
+#: app/state/news-item-data.ts:15
 msgid "Tennis star Restojiu powers through semifinal brackets"
 msgstr "Tennis star Restojiu powers through semifinal brackets"
 

@@ -31,3 +31,9 @@ export function newsItemIdTag(
 	)
 	return toNewsItemId(combinedStrings.join(''))
 }
+
+export type NewsItem = {
+	id: NewsItemId
+	articleText: string
+	feedText: string
+}

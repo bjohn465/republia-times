@@ -1,6 +1,5 @@
 import { invariant } from '#app/invariant.ts'
-import { type NewsItem } from './news-item-data.ts'
-import { type NewsItemId } from './news-item.ts'
+import { type NewsItem, type NewsItemId } from './news-item.ts'
 
 export function getNewsItemFromCollection(
 	newsItems: NewsItemsCollection,
