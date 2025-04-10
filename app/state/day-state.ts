@@ -2,7 +2,8 @@ import * as v from 'valibot'
 import { invariantResponse } from '#app/invariant.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
-import { getNewsItem, type NewsItemID, NewsItemIDSchema } from './news-items.ts'
+import { type NewsItemId, NewsItemIdSchema } from './news-item-id.ts'
+import { getNewsItem } from './news-items.ts'
 import { hydratePaper } from './state-utils.ts'
 
 export class DayState {
@@ -40,13 +41,13 @@ export class DayState {
 		return '/day' as const
 	}
 
-	#getNewsItemById(id: NewsItemID) {
+	#getNewsItemById(id: NewsItemId) {
 		const newsItem = this.#state.newsItems.get(id)
 		invariantResponse(newsItem, 'Invalid news item')
 		return newsItem
 	}
 
-	addToPaper(newsItemID: NewsItemID) {
+	addToPaper(newsItemID: NewsItemId) {
 		const newsItem = this.#getNewsItemById(newsItemID)
 		const hasNewsItemAlready = this.#state.paper.articles.some(
 			(article) => article.newsItem.id === newsItemID,
@@ -62,7 +63,7 @@ export class DayState {
 				})
 	}
 
-	removeFromPaper(newsItemID: NewsItemID) {
+	removeFromPaper(newsItemID: NewsItemId) {
 		const newsItem = this.#getNewsItemById(newsItemID)
 		const updatedArticles = this.#state.paper.articles.filter(
 			(article) => article.newsItem.id !== newsItem.id,
@@ -85,7 +86,7 @@ const DayStateObjectSchema = v.pipe(
 	v.object({
 		...BaseGameStateSchema.entries,
 		newsItems: v.pipe(
-			v.array(NewsItemIDSchema),
+			v.array(NewsItemIdSchema),
 			v.checkItems(
 				(id, index, idsArray) => idsArray.indexOf(id) === index,
 				({ input }) => {
@@ -99,7 +100,7 @@ const DayStateObjectSchema = v.pipe(
 		),
 		paper: v.object({
 			articles: v.pipe(
-				v.array(v.object({ newsItem: NewsItemIDSchema })),
+				v.array(v.object({ newsItem: NewsItemIdSchema })),
 				v.checkItems(
 					({ newsItem }, index, articlesArray) => {
 						return (

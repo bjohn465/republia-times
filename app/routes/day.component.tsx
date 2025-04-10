@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/react/macro'
 import { useFetcher, useFetchers, useLoaderData } from 'react-router'
 import { Intents } from '#app/intents.ts'
-import { type NewsItemID } from '#app/state/news-items.ts'
+import { toNewsItemId, type NewsItemId } from '#app/state/news-item-id.ts'
 import {
 	getNewsItemFromCollection,
 	hydratePaper,
@@ -20,10 +20,10 @@ export default function Day() {
 		}
 		const potentialId = fetcher.formData.get('id')
 		if (typeof potentialId === 'string' && newsItems.has(potentialId)) {
-			ids.add(potentialId as NewsItemID)
+			ids.add(toNewsItemId(potentialId))
 		}
 		return ids
-	}, new Set<NewsItemID>())
+	}, new Set<NewsItemId>())
 	const usedNewsItemIDs = new Set(
 		dehydratedPaper.articles.map((article) => article.newsItem),
 	)
@@ -90,7 +90,7 @@ function NewsFeedItem({
 	state,
 }: {
 	children: React.ReactNode
-	id: NewsItemID
+	id: NewsItemId
 	state: NewsItemState
 }) {
 	const fetcher = useFetcher()

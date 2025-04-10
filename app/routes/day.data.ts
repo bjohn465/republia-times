@@ -8,7 +8,7 @@ import { parseFormData } from '#app/form-data.ts'
 import { Intents, intentSchema } from '#app/intents.ts'
 import { DayState } from '#app/state/day-state.ts'
 import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
-import { NewsItemIDSchema } from '#app/state/news-items.ts'
+import { NewsItemIdSchema } from '#app/state/news-item-id.ts'
 import { dehydratePaper } from '#app/state/state-utils.ts'
 import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 
@@ -46,11 +46,11 @@ export async function action({ request }: ActionFunctionArgs) {
 const DayActionFormDataSchema = v.variant('intent', [
 	v.object({
 		intent: intentSchema(Intents.AddToPaper),
-		id: NewsItemIDSchema,
+		id: NewsItemIdSchema,
 	}),
 	v.object({
 		intent: intentSchema(Intents.RemoveFromPaper),
-		id: NewsItemIDSchema,
+		id: NewsItemIdSchema,
 	}),
 ])
 

@@ -1,18 +1,23 @@
 import { t } from '@lingui/core/macro'
 import * as v from 'valibot'
 import { invariant } from '#app/invariant.ts'
+import {
+	newsItemIdTag as newsItemId,
+	type NewsItemId,
+	NewsItemIdSchema,
+} from './news-item-id.ts'
 
-const newsItemsByID = new Map(
+const newsItemsById = new Map(
 	(
 		[
 			{
-				id: 'bBQb',
+				id: newsItemId`bBQb`,
 				getFeedText: () =>
 					t`Tennis star Restojiu powers through semifinal brackets`,
 				getArticleText: () => t`Tennis Star Advances!`,
 			},
 			{
-				id: '9MrF',
+				id: newsItemId`9MrF`,
 				getFeedText: () =>
 					t`Mega-group HugginBoyz admits to not singing on any albums, can barely dance`,
 				getArticleText: () => t`HugginBoyz: Talentless After All!`,
@@ -21,8 +26,8 @@ const newsItemsByID = new Map(
 	).map((item) => [item.id, item]),
 )
 
-export function getNewsItem(id: NewsItemID) {
-	const item = newsItemsByID.get(id)
+export function getNewsItem(id: NewsItemId) {
+	const item = newsItemsById.get(id)
 	invariant(item, `Unable to find news item with ID ${id}`)
 	return Object.freeze({
 		id: item.id,
@@ -31,17 +36,8 @@ export function getNewsItem(id: NewsItemID) {
 	})
 }
 
-export const NewsItemIDSchema = v.picklist(
-	Array.from(newsItemsByID.keys()),
-	// Specify our own message,
-	// since the default message
-	// outputs all of the picklist values.
-	({ received }) => `Invalid News Item ID: Received ${received}`,
-)
-export type NewsItemID = v.InferOutput<typeof NewsItemIDSchema>
-
 export const NewsItemSchema = v.pipe(
-	NewsItemIDSchema,
+	NewsItemIdSchema,
 	v.transform((id) => getNewsItem(id)),
 )
 export type NewsItemInput = v.InferInput<typeof NewsItemSchema>
