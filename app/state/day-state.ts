@@ -3,7 +3,7 @@ import { invariantResponse } from '#app/invariant.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
 import { getNewsItem } from './news-item-data.ts'
-import { type NewsItemId, NewsItemIdSchema } from './news-item-id.ts'
+import { type NewsItemId, NewsItemIdSchema } from './news-item.ts'
 import { hydratePaper } from './state-utils.ts'
 
 export class DayState {

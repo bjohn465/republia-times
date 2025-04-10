@@ -5,7 +5,7 @@ import {
 	newsItemIdTag as newsItemId,
 	type NewsItemId,
 	NewsItemIdSchema,
-} from './news-item-id.ts'
+} from './news-item.ts'
 
 const newsItemsById = new Map(
 	(

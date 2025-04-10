@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { newsItemIdTag, toNewsItemId } from './news-item-id.ts'
+import { newsItemIdTag, toNewsItemId } from './news-item.ts'
 
 describe('toNewsItemId', () => {
 	test('Returns a valid news item ID', () => {

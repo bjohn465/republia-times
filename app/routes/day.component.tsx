@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/react/macro'
 import { useFetcher, useFetchers, useLoaderData } from 'react-router'
 import { Intents } from '#app/intents.ts'
-import { toNewsItemId, type NewsItemId } from '#app/state/news-item-id.ts'
+import { toNewsItemId, type NewsItemId } from '#app/state/news-item.ts'
 import {
 	getNewsItemFromCollection,
 	hydratePaper,

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { getDayStateInput } from '#tests/utils.ts'
 import { DayState } from './day-state.ts'
-import { newsItemIdTag as newsItemId } from './news-item-id.ts'
+import { newsItemIdTag as newsItemId } from './news-item.ts'
 
 describe('DayState.fromMorningState', () => {
 	test('Returns DayState with correct values', () => {

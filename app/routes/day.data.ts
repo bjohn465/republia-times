@@ -8,7 +8,7 @@ import { parseFormData } from '#app/form-data.ts'
 import { Intents, intentSchema } from '#app/intents.ts'
 import { DayState } from '#app/state/day-state.ts'
 import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
-import { NewsItemIdSchema } from '#app/state/news-item-id.ts'
+import { NewsItemIdSchema } from '#app/state/news-item.ts'
 import { dehydratePaper } from '#app/state/state-utils.ts'
 import { UnsupportedValueError } from '#app/unsupported-value-error.ts'
 
