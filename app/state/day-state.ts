@@ -2,8 +2,8 @@ import * as v from 'valibot'
 import { invariantResponse } from '#app/invariant.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
+import { getNewsItem } from './news-item-data.ts'
 import { type NewsItemId, NewsItemIdSchema } from './news-item-id.ts'
-import { getNewsItem } from './news-items.ts'
 import { hydratePaper } from './state-utils.ts'
 
 export class DayState {
