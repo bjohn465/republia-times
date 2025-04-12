@@ -32,8 +32,13 @@ export function newsItemIdTag(
 	return toNewsItemId(combinedStrings.join(''))
 }
 
-export type NewsItem = {
-	id: NewsItemId
-	articleText: string
-	feedText: string
-}
+export const NewsItemSchema = v.pipe(
+	v.object({
+		id: NewsItemIdSchema,
+		articleText: v.string(),
+		feedText: v.string(),
+	}),
+	v.readonly(),
+)
+
+export type NewsItem = v.InferOutput<typeof NewsItemSchema>
