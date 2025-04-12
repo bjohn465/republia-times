@@ -19,7 +19,7 @@ export class DayState {
 		return new DayState(v.parse(DayStateObjectSchema, state))
 	}
 
-	#state: DayStateObjectOutput
+	readonly #state: DayStateObjectOutput
 
 	constructor(state: DayStateObjectOutput) {
 		this.#state = state

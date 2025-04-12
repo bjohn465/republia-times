@@ -8,7 +8,7 @@ export class MorningState {
 		return new MorningState(v.parse(MorningStateObjectSchema, state))
 	}
 
-	#state: MorningStateObject
+	readonly #state: MorningStateObject
 
 	constructor(state: MorningStateObject) {
 		this.#state = state
