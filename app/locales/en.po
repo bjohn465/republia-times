@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/day.component.tsx:133
+#: app/routes/day.component.tsx:136
 msgid "(Pending)"
 msgstr "(Pending)"
 
-#: app/routes/day.component.tsx:115
+#: app/routes/day.component.tsx:116
 msgid "Add to paper"
 msgstr "Add to paper"
 
@@ -61,6 +61,10 @@ msgstr "Pick only stories that highlight the good things about Republia and its 
 #: app/routes/morning.component.tsx:75
 msgid "Ported by <0>Brandon Johnson</0>"
 msgstr "Ported by <0>Brandon Johnson</0>"
+
+#: app/routes/day.component.tsx:146
+msgid "Remove from paper"
+msgstr "Remove from paper"
 
 #: app/routes/morning.component.tsx:63
 msgid "Start work"

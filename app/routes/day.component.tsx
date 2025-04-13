@@ -69,6 +69,7 @@ export default function Day() {
 				{paperArticles.map((article) => (
 					<ArticleItem
 						key={article.newsItem.id}
+						newsItemId={article.newsItem.id}
 						state={
 							pendingArticleNewsItemIds.has(article.newsItem.id)
 								? ArticleStates.Pending
@@ -120,9 +121,11 @@ function NewsFeedItem({
 
 function ArticleItem({
 	children,
+	newsItemId,
 	state,
 }: {
 	children: React.ReactNode
+	newsItemId: NewsItemId
 	state: ArticleState
 }) {
 	return (
@@ -132,6 +135,16 @@ function ArticleItem({
 				<small>
 					<Trans>(Pending)</Trans>
 				</small>
+			)}
+			{state === ArticleStates.Added && (
+				<button
+					type="submit"
+					form={getNewsItemFormID(newsItemId)}
+					name="intent"
+					value={Intents.RemoveFromPaper}
+				>
+					<Trans>Remove from paper</Trans>
+				</button>
 			)}
 		</li>
 	)

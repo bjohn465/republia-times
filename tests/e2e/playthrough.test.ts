@@ -84,3 +84,30 @@ test('Add to Paper', async ({ baseURL, browser }) => {
 
 	await expect(paperItem).not.toContainText('(Pending)')
 })
+
+test('Remove from paper', async ({ page }) => {
+	await page.goto(
+		`/?${gameStateToURLSearchParams(
+			getDayStateInput({
+				newsItems: ['bBQb', '9MrF'],
+				paper: { articles: [{ newsItem: 'bBQb' }] },
+			}),
+		).toString()}`,
+	)
+	const paperList = page.getByRole('list', { name: 'The Republia Times' })
+	await expect(paperList).toBeVisible()
+	const paperListItems = paperList.getByRole('listitem')
+	await expect(paperListItems).toHaveCount(1)
+
+	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
+	await expect(newsFeedList).toBeVisible()
+	const newsFeedListItems = newsFeedList.getByRole('listitem')
+	await expect(newsFeedListItems).toHaveCount(1)
+
+	await paperListItems
+		.filter({ hasText: /Tennis Star/i })
+		.getByRole('button', { name: 'Remove from paper' })
+		.click()
+	await expect(paperListItems).toHaveCount(0)
+	await expect(newsFeedListItems).toHaveCount(2)
+})
