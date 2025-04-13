@@ -26,12 +26,15 @@ export default function Day() {
 		return ids
 	}, new Set<NewsItemId>())
 	const newsItemIdsInPaper = new Set(
-		dehydratedPaper.articles.map((article) => article.newsItem),
+		dehydratedPaper.articles
+			.map((article) => article.newsItem)
+			.concat(Array.from(pendingArticleNewsItemIds)),
 	)
 	// When `Iterator.prototype.filter` is supported more generally,
 	// we can skip the conversion to an array with `Array.from` here.
 	// See https://caniuse.com/mdn-javascript_builtins_iterator_filter
-	const newsItemsInNewsFeed = Array.from(newsItems.values()).filter(
+	const newsItemsArray = Array.from(newsItems.values())
+	const newsItemsInNewsFeed = newsItemsArray.filter(
 		(newsItem) => !newsItemIdsInPaper.has(newsItem.id),
 	)
 	const paper = hydratePaper({ newsItems, paper: dehydratedPaper })
@@ -46,20 +49,15 @@ export default function Day() {
 			<h1>
 				<Trans>Day 1</Trans>
 			</h1>
+			{newsItemsArray.map((newsItem) => (
+				<NewsItemForm key={newsItem.id} newsItemID={newsItem.id} />
+			))}
 			<h2 id="newsFeedHeading">
 				<Trans>News Feed</Trans>
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
 				{newsItemsInNewsFeed.map((newsItem) => (
-					<NewsFeedItem
-						key={newsItem.id}
-						id={newsItem.id}
-						state={
-							pendingArticleNewsItemIds.has(newsItem.id)
-								? NewsItemStates.AddingToPaper
-								: NewsItemStates.InFeed
-						}
-					>
+					<NewsFeedItem key={newsItem.id} id={newsItem.id}>
 						{newsItem.feedText}
 					</NewsFeedItem>
 				))}
@@ -85,25 +83,37 @@ export default function Day() {
 	)
 }
 
+function NewsItemForm({ newsItemID }: { newsItemID: NewsItemId }) {
+	const fetcher = useFetcher()
+	return (
+		<fetcher.Form id={getNewsItemFormID(newsItemID)} method="post">
+			<input type="hidden" name="id" value={newsItemID} />
+		</fetcher.Form>
+	)
+}
+
+function getNewsItemFormID(id: NewsItemId) {
+	return `news-item-${id}-form`
+}
+
 function NewsFeedItem({
 	children,
 	id,
-	state,
 }: {
 	children: React.ReactNode
 	id: NewsItemId
-	state: NewsItemState
 }) {
-	const fetcher = useFetcher()
 	return (
-		<li hidden={state === NewsItemStates.AddingToPaper}>
-			<fetcher.Form method="post">
-				{children}
-				<input type="hidden" name="id" value={id} />
-				<button type="submit" name="intent" value={Intents.AddToPaper}>
-					<Trans>Add to paper</Trans>
-				</button>
-			</fetcher.Form>
+		<li>
+			{children}
+			<button
+				type="submit"
+				form={getNewsItemFormID(id)}
+				name="intent"
+				value={Intents.AddToPaper}
+			>
+				<Trans>Add to paper</Trans>
+			</button>
 		</li>
 	)
 }
@@ -126,12 +136,6 @@ function ArticleItem({
 		</li>
 	)
 }
-
-const NewsItemStates = Object.freeze({
-	InFeed: 'inFeed',
-	AddingToPaper: 'addingToPaper',
-})
-type NewsItemState = (typeof NewsItemStates)[keyof typeof NewsItemStates]
 
 const ArticleStates = Object.freeze({
 	Pending: 'pending',
