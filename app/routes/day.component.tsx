@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/react/macro'
 import { useFetcher, useFetchers, useLoaderData } from 'react-router'
+import * as v from 'valibot'
 import { Intents } from '#app/intents.ts'
-import { toNewsItemId, type NewsItemId } from '#app/state/news-item.ts'
+import { NewsItemIdSchema, type NewsItemId } from '#app/state/news-item.ts'
 import {
 	getNewsItemFromCollection,
 	hydratePaper,
@@ -11,31 +12,31 @@ import { type loader } from './day.data.ts'
 export default function Day() {
 	const { newsItems, paper: dehydratedPaper } = useLoaderData<typeof loader>()
 	const fetchers = useFetchers()
-	const pendingArticles = fetchers.reduce((ids, fetcher) => {
-		if (
-			!fetcher.formData ||
-			fetcher.formData.get('intent') !== Intents.AddToPaper
-		) {
+	const pendingArticleNewsItemIds = fetchers.reduce((ids, fetcher) => {
+		if (fetcher.formData?.get('intent') !== Intents.AddToPaper) {
 			return ids
 		}
-		const potentialId = fetcher.formData.get('id')
-		if (typeof potentialId === 'string' && newsItems.has(potentialId)) {
-			ids.add(toNewsItemId(potentialId))
+		const potentialIdResult = v.safeParse(
+			NewsItemIdSchema,
+			fetcher.formData.get('id'),
+		)
+		if (potentialIdResult.success && newsItems.has(potentialIdResult.output)) {
+			ids.add(potentialIdResult.output)
 		}
 		return ids
 	}, new Set<NewsItemId>())
-	const usedNewsItemIDs = new Set(
+	const newsItemIdsInPaper = new Set(
 		dehydratedPaper.articles.map((article) => article.newsItem),
 	)
 	// When `Iterator.prototype.filter` is supported more generally,
 	// we can skip the conversion to an array with `Array.from` here.
 	// See https://caniuse.com/mdn-javascript_builtins_iterator_filter
-	const displayedNewsItems = Array.from(newsItems.values()).filter(
-		(newsItem) => !usedNewsItemIDs.has(newsItem.id),
+	const newsItemsInNewsFeed = Array.from(newsItems.values()).filter(
+		(newsItem) => !newsItemIdsInPaper.has(newsItem.id),
 	)
 	const paper = hydratePaper({ newsItems, paper: dehydratedPaper })
-	const displayedArticles = paper.articles.concat(
-		Array.from(pendingArticles).map((id) => ({
+	const paperArticles = paper.articles.concat(
+		Array.from(pendingArticleNewsItemIds).map((id) => ({
 			newsItem: getNewsItemFromCollection(newsItems, id),
 		})),
 	)
@@ -49,12 +50,12 @@ export default function Day() {
 				<Trans>News Feed</Trans>
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
-				{displayedNewsItems.map((newsItem) => (
+				{newsItemsInNewsFeed.map((newsItem) => (
 					<NewsFeedItem
 						key={newsItem.id}
 						id={newsItem.id}
 						state={
-							pendingArticles.has(newsItem.id)
+							pendingArticleNewsItemIds.has(newsItem.id)
 								? NewsItemStates.AddingToPaper
 								: NewsItemStates.InFeed
 						}
@@ -67,11 +68,11 @@ export default function Day() {
 				<Trans>The Republia Times</Trans>
 			</h2>
 			<ol aria-labelledby="paperHeading">
-				{displayedArticles.map((article) => (
+				{paperArticles.map((article) => (
 					<ArticleItem
 						key={article.newsItem.id}
 						state={
-							pendingArticles.has(article.newsItem.id)
+							pendingArticleNewsItemIds.has(article.newsItem.id)
 								? ArticleStates.Pending
 								: ArticleStates.Added
 						}
