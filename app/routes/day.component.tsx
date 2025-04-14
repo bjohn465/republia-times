@@ -1,32 +1,29 @@
 import { Trans } from '@lingui/react/macro'
+import { useMemo } from 'react'
 import { useFetcher, useFetchers, useLoaderData } from 'react-router'
 import * as v from 'valibot'
-import { Intents } from '#app/intents.ts'
-import { NewsItemIdSchema, type NewsItemId } from '#app/state/news-item.ts'
+import { Intents, type Intent } from '#app/intents.ts'
 import {
-	getNewsItemFromCollection,
-	hydratePaper,
-} from '#app/state/state-utils.ts'
+	type NewsItem,
+	NewsItemIdSchema,
+	type NewsItemId,
+} from '#app/state/news-item.ts'
+import { hydratePaper } from '#app/state/state-utils.ts'
 import { type loader } from './day.data.ts'
 
 export default function Day() {
 	const { newsItems, paper: dehydratedPaper } = useLoaderData<typeof loader>()
-	const fetchers = useFetchers()
-	const pendingArticleNewsItemIds = fetchers.reduce((ids, fetcher) => {
-		if (fetcher.formData?.get('intent') !== Intents.AddToPaper) {
-			return ids
-		}
-		const potentialIdResult = v.safeParse(
-			NewsItemIdSchema,
-			fetcher.formData.get('id'),
-		)
-		if (potentialIdResult.success && newsItems.has(potentialIdResult.output)) {
-			ids.add(potentialIdResult.output)
-		}
-		return ids
-	}, new Set<NewsItemId>())
+	const pendingArticleNewsItemIds = usePendingNewsItemIds(
+		Intents.AddToPaper,
+		newsItems,
+	)
+	const pendingNewsFeedItemIds = usePendingNewsItemIds(
+		Intents.RemoveFromPaper,
+		newsItems,
+	)
 	const newsItemIdsInPaper = new Set(
 		dehydratedPaper.articles
+			.filter((article) => !pendingNewsFeedItemIds.has(article.newsItem))
 			.map((article) => article.newsItem)
 			.concat(Array.from(pendingArticleNewsItemIds)),
 	)
@@ -37,12 +34,13 @@ export default function Day() {
 	const newsItemsInNewsFeed = newsItemsArray.filter(
 		(newsItem) => !newsItemIdsInPaper.has(newsItem.id),
 	)
-	const paper = hydratePaper({ newsItems, paper: dehydratedPaper })
-	const paperArticles = paper.articles.concat(
-		Array.from(pendingArticleNewsItemIds).map((id) => ({
-			newsItem: getNewsItemFromCollection(newsItems, id),
-		})),
-	)
+	const paper = hydratePaper({
+		newsItems,
+		paper: {
+			...dehydratedPaper,
+			articles: Array.from(newsItemIdsInPaper).map((id) => ({ newsItem: id })),
+		},
+	})
 
 	return (
 		<>
@@ -57,7 +55,15 @@ export default function Day() {
 			</h2>
 			<ul aria-labelledby="newsFeedHeading">
 				{newsItemsInNewsFeed.map((newsItem) => (
-					<NewsFeedItem key={newsItem.id} id={newsItem.id}>
+					<NewsFeedItem
+						key={newsItem.id}
+						id={newsItem.id}
+						state={
+							pendingNewsFeedItemIds.has(newsItem.id)
+								? NewsFeedItemStates.Pending
+								: NewsFeedItemStates.Displayed
+						}
+					>
 						{newsItem.feedText}
 					</NewsFeedItem>
 				))}
@@ -66,7 +72,7 @@ export default function Day() {
 				<Trans>The Republia Times</Trans>
 			</h2>
 			<ol aria-labelledby="paperHeading">
-				{paperArticles.map((article) => (
+				{paper.articles.map((article) => (
 					<ArticleItem
 						key={article.newsItem.id}
 						newsItemId={article.newsItem.id}
@@ -82,6 +88,34 @@ export default function Day() {
 			</ol>
 		</>
 	)
+}
+
+function usePendingNewsItemIds(
+	intent: Intent,
+	newsItems: ReadonlyMap<NewsItemId, NewsItem>,
+) {
+	const fetchers = useFetchers()
+	const pendingNewsItemIds = useMemo(
+		() =>
+			fetchers.reduce((ids, fetcher) => {
+				if (fetcher.formData?.get('intent') !== intent) {
+					return ids
+				}
+				const potentialIdResult = v.safeParse(
+					NewsItemIdSchema,
+					fetcher.formData.get('id'),
+				)
+				if (
+					potentialIdResult.success &&
+					newsItems.has(potentialIdResult.output)
+				) {
+					ids.add(potentialIdResult.output)
+				}
+				return ids
+			}, new Set<NewsItemId>()),
+		[fetchers, intent, newsItems],
+	)
+	return pendingNewsItemIds
 }
 
 function NewsItemForm({ newsItemID }: { newsItemID: NewsItemId }) {
@@ -100,21 +134,30 @@ function getNewsItemFormID(id: NewsItemId) {
 function NewsFeedItem({
 	children,
 	id,
+	state,
 }: {
 	children: React.ReactNode
 	id: NewsItemId
+	state: NewsFeedItemState
 }) {
 	return (
 		<li>
 			{children}
-			<button
-				type="submit"
-				form={getNewsItemFormID(id)}
-				name="intent"
-				value={Intents.AddToPaper}
-			>
-				<Trans>Add to paper</Trans>
-			</button>
+			{state === NewsFeedItemStates.Pending && (
+				<small>
+					<Trans>(Pending)</Trans>
+				</small>
+			)}
+			{state === NewsFeedItemStates.Displayed && (
+				<button
+					type="submit"
+					form={getNewsItemFormID(id)}
+					name="intent"
+					value={Intents.AddToPaper}
+				>
+					<Trans>Add to paper</Trans>
+				</button>
+			)}
 		</li>
 	)
 }
@@ -149,6 +192,13 @@ function ArticleItem({
 		</li>
 	)
 }
+
+const NewsFeedItemStates = Object.freeze({
+	Pending: 'pending',
+	Displayed: 'displayed',
+})
+type NewsFeedItemState =
+	(typeof NewsFeedItemStates)[keyof typeof NewsFeedItemStates]
 
 const ArticleStates = Object.freeze({
 	Pending: 'pending',
