@@ -13,21 +13,29 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/routes/day.component.tsx:148
-#: app/routes/day.component.tsx:179
+#: app/routes/day.component.tsx:181
+#: app/routes/day.component.tsx:232
 msgid "(Pending)"
 msgstr "(Pending)"
 
-#: app/routes/day.component.tsx:158
-msgid "Add to paper"
-msgstr "Add to paper"
+#: app/routes/day.component.tsx:208
+msgid "Add to paper as large article"
+msgstr "Add to paper as large article"
+
+#: app/routes/day.component.tsx:200
+msgid "Add to paper as medium article"
+msgstr "Add to paper as medium article"
+
+#: app/routes/day.component.tsx:192
+msgid "Add to paper as small article"
+msgstr "Add to paper as small article"
 
 #: app/routes/morning.component.tsx:48
 msgid "As a precaution against influence, we are keeping your wife and child in a safe location."
 msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
 
 #: app/routes/morning.component.tsx:16
-#: app/routes/day.component.tsx:48
+#: app/routes/day.component.tsx:49
 msgid "Day 1"
 msgstr "Day 1"
 
@@ -43,7 +51,7 @@ msgstr "It is your job to increase their loyalty by editing The Republia Times c
 msgid "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 msgstr "Mega-group HugginBoyz admits to not singing on any albums, can barely dance"
 
-#: app/routes/day.component.tsx:54
+#: app/routes/day.component.tsx:55
 msgid "News Feed"
 msgstr "News Feed"
 
@@ -63,7 +71,7 @@ msgstr "Pick only stories that highlight the good things about Republia and its 
 msgid "Ported by <0>Brandon Johnson</0>"
 msgstr "Ported by <0>Brandon Johnson</0>"
 
-#: app/routes/day.component.tsx:189
+#: app/routes/day.component.tsx:242
 msgid "Remove from paper"
 msgstr "Remove from paper"
 
@@ -88,7 +96,7 @@ msgid "The public is not loyal to the government."
 msgstr "The public is not loyal to the government."
 
 #: app/routes/morning.component.tsx:13
-#: app/routes/day.component.tsx:72
+#: app/routes/day.component.tsx:73
 msgid "The Republia Times"
 msgstr "The Republia Times"
 

@@ -14,7 +14,7 @@ export function getDayStateInput(
 	overrides?: DeepPartial<{
 		newsItems: Array<string>
 		screen: string
-		paper: { articles: Array<{ newsItem: string }> }
+		paper: { articles: Array<{ newsItem: string; size: string }> }
 	}>,
 ) {
 	const defaults = {

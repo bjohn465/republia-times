@@ -47,7 +47,7 @@ test('Work day', async ({ page }) => {
 	).toBeVisible()
 })
 
-test('Add to Paper', async ({ baseURL, browser }) => {
+test('Add and remove from paper', async ({ baseURL, browser }) => {
 	const browserContext = await browser.newContext()
 	const page = await browserContext.newPage()
 	await page.clock.install({ time: new Date('2025-03-30T10:00:00Z') })
@@ -70,7 +70,7 @@ test('Add to Paper', async ({ baseURL, browser }) => {
 	await page.clock.pauseAt(new Date('2025-03-30T10:01:00Z'))
 	await newsFeedListItems
 		.filter({ hasText: /Tennis star/i })
-		.getByRole('button', { name: 'Add to paper' })
+		.getByRole('button', { name: 'Add to paper as small article' })
 		.click()
 
 	await expect(paperList).toBeVisible()
@@ -79,42 +79,14 @@ test('Add to Paper', async ({ baseURL, browser }) => {
 	const paperItem = paperListItems.filter({ hasText: /Tennis star/i })
 	await expect(paperItem).toBeVisible()
 	await expect(paperItem).toContainText('(Pending)')
+	await expect(paperItem).toHaveClass('small')
 
 	await page.clock.resume()
 
 	await expect(paperItem).not.toContainText('(Pending)')
-})
 
-test('Remove from paper', async ({ baseURL, browser }) => {
-	const browserContext = await browser.newContext()
-	const page = await browserContext.newPage()
-	await page.clock.install({ time: new Date('2025-04-13T10:00:00Z') })
-	await page.goto(
-		`/?${gameStateToURLSearchParams(
-			getDayStateInput({
-				newsItems: ['bBQb', '9MrF'],
-				paper: { articles: [{ newsItem: 'bBQb' }] },
-			}),
-		).toString()}`,
-	)
-	const paperList = page.getByRole('list', { name: 'The Republia Times' })
-	await expect(paperList).toBeVisible()
-	const paperListItems = paperList.getByRole('listitem')
-	await expect(paperListItems).toHaveCount(1)
-
-	const newsFeedList = page.getByRole('list', { name: 'News Feed' })
-	await expect(newsFeedList).toBeVisible()
-	const newsFeedListItems = newsFeedList.getByRole('listitem')
-	await expect(newsFeedListItems).toHaveCount(1)
-
-	await browserContext.addCookies([
-		{ name: 'simulatedRTT', value: '100', url: baseURL },
-	])
-	await page.clock.pauseAt(new Date('2025-04-13T10:01:00Z'))
-	await paperListItems
-		.filter({ hasText: /Tennis Star/i })
-		.getByRole('button', { name: 'Remove from paper' })
-		.click()
+	await page.clock.pauseAt(new Date('2025-04-13T10:02:00Z'))
+	await paperItem.getByRole('button', { name: 'Remove from paper' }).click()
 	await expect(paperListItems).toHaveCount(0)
 	await expect(newsFeedListItems).toHaveCount(2)
 	const newsFeedItem = newsFeedListItems.filter({ hasText: /Tennis star/i })
@@ -124,4 +96,20 @@ test('Remove from paper', async ({ baseURL, browser }) => {
 	await page.clock.resume()
 
 	await expect(newsFeedItem).not.toContainText('(Pending)')
+
+	await browserContext.clearCookies({ name: 'simulatedRTT' })
+
+	await newsFeedItem
+		.getByRole('button', { name: 'Add to paper as medium article' })
+		.click()
+	await expect(paperItem).toBeVisible()
+	await expect(paperItem).toHaveClass('medium')
+
+	await paperItem.getByRole('button', { name: 'Remove from paper' }).click()
+
+	await newsFeedItem
+		.getByRole('button', { name: 'Add to paper as large article' })
+		.click()
+	await expect(paperItem).toBeVisible()
+	await expect(paperItem).toHaveClass('large')
 })

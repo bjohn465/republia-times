@@ -1,7 +1,9 @@
 import * as v from 'valibot'
 
 export const Intents = Object.freeze({
-	AddToPaper: 'AddToPaper',
+	AddToPaperAsSmallArticle: 'AddToPaperAsSmallArticle',
+	AddToPaperAsMediumArticle: 'AddToPaperAsMediumArticle',
+	AddToPaperAsLargeArticle: 'AddToPaperAsLargeArticle',
 	RemoveFromPaper: 'RemoveFromPaper',
 	StartWork: 'StartWork',
 })

@@ -1,4 +1,5 @@
 import { invariant } from '#app/invariant.ts'
+import { type ArticleSize } from './article-size.ts'
 import { type NewsItem, type NewsItemId } from './news-item.ts'
 
 export function getNewsItemFromCollection(
@@ -15,7 +16,11 @@ export function hydratePaper({
 	paper,
 }: {
 	newsItems: NewsItemsCollection
-	paper: { articles: ReadonlyArray<Readonly<{ newsItem: NewsItemId }>> }
+	paper: {
+		articles: ReadonlyArray<
+			Readonly<{ newsItem: NewsItemId; size: ArticleSize }>
+		>
+	}
 }) {
 	return Object.freeze({
 		...paper,
@@ -39,6 +44,7 @@ export function dehydratePaper(paper: ReturnType<typeof hydratePaper>) {
 				Object.freeze({
 					...article,
 					newsItem: article.newsItem.id,
+					size: article.size,
 				}),
 			),
 		),

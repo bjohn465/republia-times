@@ -6,6 +6,7 @@ import {
 import * as v from 'valibot'
 import { parseFormData } from '#app/form-data.ts'
 import { Intents, intentSchema } from '#app/intents.ts'
+import { ArticleSize } from '#app/state/article-size.ts'
 import { DayState } from '#app/state/day-state.ts'
 import { getExpectedGameState, updateGameState } from '#app/state/game-state.ts'
 import { NewsItemIdSchema } from '#app/state/news-item.ts'
@@ -30,8 +31,16 @@ export async function action({ request }: ActionFunctionArgs) {
 	)
 	const data = parseFormData(DayActionFormDataSchema, await request.formData())
 	switch (data.intent) {
-		case Intents.AddToPaper: {
-			updateGameState(gameState.addToPaper(data.id))
+		case Intents.AddToPaperAsSmallArticle: {
+			updateGameState(gameState.addToPaper(data.id, ArticleSize.Small))
+			return { ok: true }
+		}
+		case Intents.AddToPaperAsMediumArticle: {
+			updateGameState(gameState.addToPaper(data.id, ArticleSize.Medium))
+			return { ok: true }
+		}
+		case Intents.AddToPaperAsLargeArticle: {
+			updateGameState(gameState.addToPaper(data.id, ArticleSize.Large))
 			return { ok: true }
 		}
 		case Intents.RemoveFromPaper: {
@@ -45,7 +54,15 @@ export async function action({ request }: ActionFunctionArgs) {
 
 const DayActionFormDataSchema = v.variant('intent', [
 	v.object({
-		intent: intentSchema(Intents.AddToPaper),
+		intent: intentSchema(Intents.AddToPaperAsSmallArticle),
+		id: NewsItemIdSchema,
+	}),
+	v.object({
+		intent: intentSchema(Intents.AddToPaperAsMediumArticle),
+		id: NewsItemIdSchema,
+	}),
+	v.object({
+		intent: intentSchema(Intents.AddToPaperAsLargeArticle),
 		id: NewsItemIdSchema,
 	}),
 	v.object({

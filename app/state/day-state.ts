@@ -1,5 +1,6 @@
 import * as v from 'valibot'
 import { invariantResponse } from '#app/invariant.ts'
+import { type ArticleSize, ArticleSizeSchema } from './article-size.ts'
 import { BaseGameStateSchema } from './base-game-state.ts'
 import { GameScreen } from './game-screen.ts'
 import { getNewsItem } from './news-item-data.ts'
@@ -53,7 +54,7 @@ export class DayState {
 		return newsItem
 	}
 
-	addToPaper(newsItemID: NewsItemId) {
+	addToPaper(newsItemID: NewsItemId, size: ArticleSize) {
 		const newsItem = this.#getNewsItemById(newsItemID)
 		const hasNewsItemAlready = this.#state.paper.articles.some(
 			(article) => article.newsItem.id === newsItemID,
@@ -64,7 +65,7 @@ export class DayState {
 					...this.#state,
 					paper: {
 						...this.#state.paper,
-						articles: [...this.#state.paper.articles, { newsItem }],
+						articles: [...this.#state.paper.articles, { newsItem, size }],
 					},
 				})
 	}
@@ -105,7 +106,12 @@ const DayStateShorthandSchema = v.pipe(
 			v.readonly(),
 		),
 		paper: v.object({
-			articles: v.array(v.object({ newsItem: NewsItemIdSchema })),
+			articles: v.array(
+				v.object({
+					newsItem: NewsItemIdSchema,
+					size: ArticleSizeSchema,
+				}),
+			),
 		}),
 		screen: v.literal(GameScreen.Day),
 	}),
@@ -139,7 +145,12 @@ const DayStateObjectSchema = v.pipe(
 		paper: v.pipe(
 			v.object({
 				articles: v.pipe(
-					v.array(v.pipe(v.object({ newsItem: NewsItemSchema }), v.readonly())),
+					v.array(
+						v.pipe(
+							v.object({ newsItem: NewsItemSchema, size: ArticleSizeSchema }),
+							v.readonly(),
+						),
+					),
 					v.checkItems(
 						({ newsItem }, index, articlesArray) =>
 							articlesArray.findIndex(

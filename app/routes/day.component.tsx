@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { useFetcher, useFetchers, useLoaderData } from 'react-router'
 import * as v from 'valibot'
 import { Intents, type Intent } from '#app/intents.ts'
+import { ArticleSize } from '#app/state/article-size.ts'
 import {
 	type NewsItem,
 	NewsItemIdSchema,
@@ -13,19 +14,19 @@ import { type loader } from './day.data.ts'
 
 export default function Day() {
 	const { newsItems, paper: dehydratedPaper } = useLoaderData<typeof loader>()
-	const pendingArticleNewsItemIds = usePendingNewsItemIds(
-		Intents.AddToPaper,
-		newsItems,
+	const pendingArticles = usePendingArticles(newsItems)
+	const pendingArticleIds = new Set(
+		pendingArticles.map((article) => article.newsItem),
 	)
 	const pendingNewsFeedItemIds = usePendingNewsItemIds(
 		Intents.RemoveFromPaper,
 		newsItems,
 	)
+	const articlesInPaper = dehydratedPaper.articles
+		.filter((article) => !pendingNewsFeedItemIds.has(article.newsItem))
+		.concat(pendingArticles)
 	const newsItemIdsInPaper = new Set(
-		dehydratedPaper.articles
-			.filter((article) => !pendingNewsFeedItemIds.has(article.newsItem))
-			.map((article) => article.newsItem)
-			.concat(Array.from(pendingArticleNewsItemIds)),
+		articlesInPaper.map((article) => article.newsItem),
 	)
 	// When `Iterator.prototype.filter` is supported more generally,
 	// we can skip the conversion to an array with `Array.from` here.
@@ -38,7 +39,7 @@ export default function Day() {
 		newsItems,
 		paper: {
 			...dehydratedPaper,
-			articles: Array.from(newsItemIdsInPaper).map((id) => ({ newsItem: id })),
+			articles: articlesInPaper,
 		},
 	})
 
@@ -76,8 +77,9 @@ export default function Day() {
 					<ArticleItem
 						key={article.newsItem.id}
 						newsItemId={article.newsItem.id}
+						size={article.size}
 						state={
-							pendingArticleNewsItemIds.has(article.newsItem.id)
+							pendingArticleIds.has(article.newsItem.id)
 								? ArticleStates.Pending
 								: ArticleStates.Added
 						}
@@ -118,6 +120,35 @@ function usePendingNewsItemIds(
 	return pendingNewsItemIds
 }
 
+function usePendingArticles(newsItems: ReadonlyMap<NewsItemId, NewsItem>) {
+	function addArticleSize(size: ArticleSize) {
+		return (id: NewsItemId) => ({ newsItem: id, size })
+	}
+	const smallArticleIds = usePendingNewsItemIds(
+		Intents.AddToPaperAsSmallArticle,
+		newsItems,
+	)
+	const mediumArticleIds = usePendingNewsItemIds(
+		Intents.AddToPaperAsMediumArticle,
+		newsItems,
+	)
+	const largeArticleIds = usePendingNewsItemIds(
+		Intents.AddToPaperAsLargeArticle,
+		newsItems,
+	)
+	const pendingArticles = useMemo(
+		() =>
+			Array.from(smallArticleIds)
+				.map(addArticleSize(ArticleSize.Small))
+				.concat(
+					Array.from(mediumArticleIds).map(addArticleSize(ArticleSize.Medium)),
+					Array.from(largeArticleIds).map(addArticleSize(ArticleSize.Large)),
+				),
+		[smallArticleIds, mediumArticleIds, largeArticleIds],
+	)
+	return pendingArticles
+}
+
 function NewsItemForm({ newsItemID }: { newsItemID: NewsItemId }) {
 	const fetcher = useFetcher()
 	return (
@@ -140,6 +171,8 @@ function NewsFeedItem({
 	id: NewsItemId
 	state: NewsFeedItemState
 }) {
+	const newsItemFormID = getNewsItemFormID(id)
+
 	return (
 		<li>
 			{children}
@@ -149,14 +182,32 @@ function NewsFeedItem({
 				</small>
 			)}
 			{state === NewsFeedItemStates.Displayed && (
-				<button
-					type="submit"
-					form={getNewsItemFormID(id)}
-					name="intent"
-					value={Intents.AddToPaper}
-				>
-					<Trans>Add to paper</Trans>
-				</button>
+				<>
+					<button
+						type="submit"
+						form={newsItemFormID}
+						name="intent"
+						value={Intents.AddToPaperAsSmallArticle}
+					>
+						<Trans>Add to paper as small article</Trans>
+					</button>
+					<button
+						type="submit"
+						form={newsItemFormID}
+						name="intent"
+						value={Intents.AddToPaperAsMediumArticle}
+					>
+						<Trans>Add to paper as medium article</Trans>
+					</button>
+					<button
+						type="submit"
+						form={newsItemFormID}
+						name="intent"
+						value={Intents.AddToPaperAsLargeArticle}
+					>
+						<Trans>Add to paper as large article</Trans>
+					</button>
+				</>
 			)}
 		</li>
 	)
@@ -165,14 +216,16 @@ function NewsFeedItem({
 function ArticleItem({
 	children,
 	newsItemId,
+	size,
 	state,
 }: {
 	children: React.ReactNode
 	newsItemId: NewsItemId
+	size: ArticleSize
 	state: ArticleState
 }) {
 	return (
-		<li>
+		<li className={size}>
 			{children}
 			{state === ArticleStates.Pending && (
 				<small>

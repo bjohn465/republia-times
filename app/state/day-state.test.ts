@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { getDayStateInput } from '#tests/utils.ts'
+import { ArticleSize } from './article-size.ts'
 import { DayState } from './day-state.ts'
 import { newsItemIdTag as newsItemId } from './news-item.ts'
 
@@ -38,7 +39,11 @@ describe('DayState.parse', () => {
 	test('Throws when an article contains an invalid newsItem ID', () => {
 		expect(() =>
 			DayState.parse(
-				getDayStateInput({ paper: { articles: [{ newsItem: 'notValid' }] } }),
+				getDayStateInput({
+					paper: {
+						articles: [{ newsItem: 'notValid', size: ArticleSize.Medium }],
+					},
+				}),
 			),
 		).toThrowError(/^Invalid characters in news item ID "notValid"$/)
 	})
@@ -48,7 +53,7 @@ describe('DayState.parse', () => {
 			DayState.parse(
 				getDayStateInput({
 					newsItems: ['bBQb'],
-					paper: { articles: [{ newsItem: '9MrF' }] },
+					paper: { articles: [{ newsItem: '9MrF', size: ArticleSize.Medium }] },
 				}),
 			),
 		).toThrowError(/^Unable to find news item with ID "9MrF"$/)
@@ -59,7 +64,12 @@ describe('DayState.parse', () => {
 			DayState.parse(
 				getDayStateInput({
 					newsItems: ['bBQb'],
-					paper: { articles: [{ newsItem: 'bBQb' }, { newsItem: 'bBQb' }] },
+					paper: {
+						articles: [
+							{ newsItem: 'bBQb', size: ArticleSize.Small },
+							{ newsItem: 'bBQb', size: ArticleSize.Medium },
+						],
+					},
 				}),
 			),
 		).toThrowError(
@@ -80,28 +90,32 @@ describe('addToPaper', () => {
 				newsItems: ['bBQb'],
 			}),
 		)
-		const newState = state.addToPaper(newsItemId`bBQb`)
+		const newState = state.addToPaper(newsItemId`bBQb`, ArticleSize.Medium)
 		expect(newState).toBeInstanceOf(DayState)
 		expect(newState).not.toBe(state)
 		expect(Array.from(newState.newsItems.keys())).toEqual(['bBQb'])
 		expect(newState.paper).toEqual({
-			articles: [{ newsItem: expect.objectContaining({ id: 'bBQb' }) }],
+			articles: [
+				{ newsItem: expect.objectContaining({ id: 'bBQb' }), size: 'medium' },
+			],
 		})
 	})
 
 	test('Throws when news item ID is not in the newsItems collection', () => {
 		const state = DayState.parse(getDayStateInput({ newsItems: ['bBQb'] }))
-		expect(() => state.addToPaper(newsItemId`9MrF`)).toThrowError()
+		expect(() =>
+			state.addToPaper(newsItemId`9MrF`, ArticleSize.Medium),
+		).toThrowError()
 	})
 
 	test('Returns same state when news item ID is already in the paper', () => {
 		const state = DayState.parse(
 			getDayStateInput({
 				newsItems: ['bBQb'],
-				paper: { articles: [{ newsItem: 'bBQb' }] },
+				paper: { articles: [{ newsItem: 'bBQb', size: ArticleSize.Small }] },
 			}),
 		)
-		expect(state.addToPaper(newsItemId`bBQb`)).toBe(state)
+		expect(state.addToPaper(newsItemId`bBQb`, ArticleSize.Medium)).toBe(state)
 	})
 })
 
@@ -110,7 +124,7 @@ describe('removeFromPaper', () => {
 		const state = DayState.parse(
 			getDayStateInput({
 				newsItems: ['bBQb'],
-				paper: { articles: [{ newsItem: 'bBQb' }] },
+				paper: { articles: [{ newsItem: 'bBQb', size: ArticleSize.Small }] },
 			}),
 		)
 		const newState = state.removeFromPaper(newsItemId`bBQb`)
@@ -126,7 +140,7 @@ describe('removeFromPaper', () => {
 		const state = DayState.parse(
 			getDayStateInput({
 				newsItems: ['bBQb'],
-				paper: { articles: [{ newsItem: 'bBQb' }] },
+				paper: { articles: [{ newsItem: 'bBQb', size: ArticleSize.Small }] },
 			}),
 		)
 		expect(() => state.removeFromPaper(newsItemId`9MrF`)).toThrowError()
@@ -136,7 +150,7 @@ describe('removeFromPaper', () => {
 		const state = DayState.parse(
 			getDayStateInput({
 				newsItems: ['bBQb', '9MrF'],
-				paper: { articles: [{ newsItem: 'bBQb' }] },
+				paper: { articles: [{ newsItem: 'bBQb', size: ArticleSize.Small }] },
 			}),
 		)
 		expect(state.removeFromPaper(newsItemId`9MrF`)).toBe(state)
