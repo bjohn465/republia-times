@@ -8,6 +8,7 @@
 		"paths": {
 			"#app/*": ["./app/*"],
 			"#tests/*": ["./tests/*"]
-		}
+		},
+		"rewriteRelativeImportExtensions": false
 	}
 }
