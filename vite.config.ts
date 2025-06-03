@@ -39,6 +39,7 @@ export default defineConfig({
 		setupFiles: ['./tests/setup/setup-test-env.ts'],
 		restoreMocks: true,
 		coverage: {
+			experimentalAstAwareRemapping: true,
 			include: ['app/**/*.{ts,tsx}'],
 			all: true,
 		},
