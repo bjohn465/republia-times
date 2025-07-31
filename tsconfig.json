@@ -3,7 +3,7 @@
 	"extends": ["@epic-web/config/typescript"],
 	"compilerOptions": {
 		"lib": ["ES2024", "DOM", "DOM.Iterable"],
-		"module": "node16",
+		"module": "node20",
 		"moduleResolution": "node16",
 		"paths": {
 			"#app/*": ["./app/*"],
