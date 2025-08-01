@@ -34,8 +34,8 @@ msgstr "Add to paper as small article"
 msgid "As a precaution against influence, we are keeping your wife and child in a safe location."
 msgstr "As a precaution against influence, we are keeping your wife and child in a safe location."
 
-#: app/routes/morning.component.tsx:16
 #: app/routes/day.component.tsx:49
+#: app/routes/morning.component.tsx:16
 msgid "Day 1"
 msgstr "Day 1"
 
@@ -95,8 +95,8 @@ msgstr "Tennis star Restojiu powers through semifinal brackets"
 msgid "The public is not loyal to the government."
 msgstr "The public is not loyal to the government."
 
-#: app/routes/morning.component.tsx:13
 #: app/routes/day.component.tsx:73
+#: app/routes/morning.component.tsx:13
 msgid "The Republia Times"
 msgstr "The Republia Times"
 
