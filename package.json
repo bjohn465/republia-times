@@ -54,7 +54,7 @@
     "@lingui/babel-plugin-lingui-macro": "^5.3.3",
     "@lingui/cli": "^5.3.3",
     "@lingui/vite-plugin": "^5.3.3",
-    "@playwright/test": "^1.54.1",
+    "@playwright/test": "^1.54.2",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
