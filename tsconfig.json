@@ -1,13 +1,18 @@
 {
-	"include": ["**/*.ts", "**/*.tsx"],
-	"extends": ["@epic-web/config/typescript"],
+	"include": ["**/*.ts"],
 	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
 		"lib": ["ES2024", "DOM", "DOM.Iterable"],
 		"module": "node20",
 		"moduleResolution": "node16",
-		"paths": {
-			"#app/*": ["./app/*"],
-			"#tests/*": ["./tests/*"]
-		}
+		"noEmit": false,
+		"noUncheckedIndexedAccess": true,
+		"outDir": "public",
+		"rewriteRelativeImportExtensions": true,
+		"rootDir": ".",
+		"strict": true,
+		"skipLibCheck": true,
+		"target": "ES2022"
 	}
 }

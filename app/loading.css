@@ -1,8 +1,0 @@
-#initialLoadError,
-.initializationError #initialLoadText,
-:root:not(.hasJs) #initialLoadText {
-	display: none;
-}
-.initializationError #initialLoadError {
-	display: initial;
-}
