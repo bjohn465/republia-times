@@ -11,6 +11,7 @@ node_modules
 public/app
 .env
 .cache
+.wrangler
 
 # Easy way to create temporary files/folders that won't accidentally be added to git
 *.local.*
