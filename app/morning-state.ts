@@ -1,4 +1,4 @@
-import { createTemplate, html } from './templates.ts'
+import { createTemplate, getElementById, html } from './templates.ts'
 
 const template = createTemplate(html`
 	<header>
@@ -36,7 +36,7 @@ export class MorningState extends HTMLElement {
 	}
 
 	#render() {
-		this.#shadowRoot.getElementById('day')!.textContent = `Day ${this.day}`
+		getElementById(this.#shadowRoot, 'day').textContent = `Day ${this.day}`
 	}
 
 	attributeChangedCallback() {
