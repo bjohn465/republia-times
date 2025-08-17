@@ -3,12 +3,12 @@ import { createTemplate, html } from './templates.ts'
 const template = createTemplate(html`
 	<header>
 		<h1>The Republia Times</h1>
-		<h2 id="day-number"></h2>
+		<h2 id="day"></h2>
 	</header>
 `)
 
 export class MorningState extends HTMLElement {
-	static observedAttributes = Object.freeze(['day-number'])
+	static observedAttributes = Object.freeze(['day'])
 
 	#shadowRoot: ShadowRoot
 
@@ -18,9 +18,9 @@ export class MorningState extends HTMLElement {
 		this.#shadowRoot.appendChild(template.content.cloneNode(true))
 	}
 
-	get dayNumber(): number {
+	get day(): number {
 		const defaultValue = 1
-		const attributeValue = this.getAttribute('day-number')
+		const attributeValue = this.getAttribute('day')
 		if (!attributeValue) return defaultValue
 		const parsedAttributeValue = parseInt(attributeValue, 10)
 		if (!Number.isSafeInteger(parsedAttributeValue)) return defaultValue
@@ -29,15 +29,14 @@ export class MorningState extends HTMLElement {
 		return parsedAttributeValue
 	}
 
-	set dayNumber(value: unknown) {
+	set day(value: unknown) {
 		if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 1)
 			return
-		this.setAttribute('day-number', value.toString())
+		this.setAttribute('day', value.toString())
 	}
 
 	#render() {
-		this.#shadowRoot.getElementById('day-number')!.textContent =
-			`Day ${this.dayNumber}`
+		this.#shadowRoot.getElementById('day')!.textContent = `Day ${this.day}`
 	}
 
 	attributeChangedCallback() {
