@@ -20,19 +20,19 @@ export class MorningState extends HTMLElement {
 
 	get day(): number {
 		const defaultValue = 1
-		const attributeValue = this.getAttribute('day')
-		if (!attributeValue) return defaultValue
-		const parsedAttributeValue = parseInt(attributeValue, 10)
-		if (!Number.isSafeInteger(parsedAttributeValue)) return defaultValue
-		if (parsedAttributeValue < 1) return defaultValue
-		if (parsedAttributeValue.toString() !== attributeValue) return defaultValue
-		return parsedAttributeValue
+		try {
+			return parseDayValue(this.getAttribute('day'))
+		} catch {
+			return defaultValue
+		}
 	}
 
 	set day(value: unknown) {
-		if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 1)
-			return
-		this.setAttribute('day', value.toString())
+		try {
+			this.setAttribute('day', parseDayValue(value).toString())
+		} catch {
+			// Ignore the invalid value
+		}
 	}
 
 	#render() {
@@ -54,4 +54,25 @@ declare global {
 	interface HTMLElementTagNameMap {
 		'morning-state': MorningState
 	}
+}
+
+function parseDayValue(value: unknown) {
+	let numericValue: number | undefined
+	if (typeof value === 'string') {
+		numericValue = parseInt(value, 10)
+	} else if (typeof value === 'number') {
+		numericValue = value
+	} else {
+		throw new Error('Invalid day value type')
+	}
+	if (!Number.isSafeInteger(numericValue)) {
+		throw new Error('Non-safe integer day value')
+	}
+	if (numericValue < 1) {
+		throw new Error('Invalid day value')
+	}
+	if (numericValue.toString() !== value.toString()) {
+		throw new Error('Non-integer day value')
+	}
+	return numericValue
 }
