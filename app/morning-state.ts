@@ -2,13 +2,13 @@ import { createTemplate, getElementById, html } from './templates.ts'
 
 const template = createTemplate(html`
 	<header>
-		<h1>The Republia Times</h1>
+		<h1><img height="41" id="logo" width="250" /></h1>
 		<h2 id="day"></h2>
 	</header>
 `)
 
 export class MorningState extends HTMLElement {
-	static observedAttributes = Object.freeze(['day'])
+	static observedAttributes = Object.freeze(['day', 'stateincontrol'])
 
 	#shadowRoot: ShadowRoot
 
@@ -35,7 +35,21 @@ export class MorningState extends HTMLElement {
 		}
 	}
 
+	get stateincontrol(): boolean {
+		return this.getAttribute('stateincontrol') !== null
+	}
+
+	set stateincontrol(value: unknown) {
+		this.toggleAttribute('stateincontrol', !!value)
+	}
+
 	#render() {
+		const logo = getElementById(this.#shadowRoot, 'logo')
+		if (!(logo instanceof HTMLImageElement)) {
+			throw new Error('Unexpected type for logo element')
+		}
+		logo.src = `/assets/${this.stateincontrol ? 'logo' : 'logo2'}.png`
+		logo.alt = this.stateincontrol ? 'The Republia Times' : 'The Democria Times'
 		getElementById(this.#shadowRoot, 'day').textContent = `Day ${this.day}`
 	}
 
