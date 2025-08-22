@@ -1,5 +1,11 @@
 import { createTemplate, getElementById, html } from './templates.ts'
 
+const Governments = Object.freeze({
+	Republia: 'republia',
+	Democria: 'democria',
+})
+type Government = (typeof Governments)[keyof typeof Governments]
+
 const template = createTemplate(html`
 	<header>
 		<h1><img height="41" id="logo" width="250" /></h1>
@@ -8,7 +14,7 @@ const template = createTemplate(html`
 `)
 
 export class MorningState extends HTMLElement {
-	static observedAttributes = Object.freeze(['day', 'stateincontrol'])
+	static observedAttributes = Object.freeze(['day', 'government'])
 
 	#shadowRoot: ShadowRoot
 
@@ -35,12 +41,31 @@ export class MorningState extends HTMLElement {
 		}
 	}
 
-	get stateincontrol(): boolean {
-		return this.getAttribute('stateincontrol') !== null
+	get government(): Government {
+		const defaultValue = Governments.Republia
+		const value = this.getAttribute('government')
+		if (!value) {
+			return defaultValue
+		}
+		const lowerCaseValue = value.toLowerCase()
+		try {
+			parseGovernmentValue(lowerCaseValue)
+		} catch {
+			return defaultValue
+		}
+		return lowerCaseValue
 	}
 
-	set stateincontrol(value: unknown) {
-		this.toggleAttribute('stateincontrol', !!value)
+	set government(value: unknown) {
+		if (typeof value !== 'string') {
+			return
+		}
+		try {
+			parseGovernmentValue(value.toLowerCase())
+			this.setAttribute('government', value)
+		} catch {
+			// Ignore the invalid value
+		}
 	}
 
 	#render() {
@@ -48,8 +73,11 @@ export class MorningState extends HTMLElement {
 		if (!(logo instanceof HTMLImageElement)) {
 			throw new Error('Unexpected type for logo element')
 		}
-		logo.src = `/assets/${this.stateincontrol ? 'logo' : 'logo2'}.png`
-		logo.alt = this.stateincontrol ? 'The Republia Times' : 'The Democria Times'
+		logo.src = `/assets/${this.government === Governments.Republia ? 'logo' : 'logo2'}.png`
+		logo.alt =
+			this.government === Governments.Republia
+				? 'The Republia Times'
+				: 'The Democria Times'
 		getElementById(this.#shadowRoot, 'day').textContent = `Day ${this.day}`
 	}
 
@@ -67,6 +95,12 @@ customElements.define('morning-state', MorningState)
 declare global {
 	interface HTMLElementTagNameMap {
 		'morning-state': MorningState
+	}
+}
+
+function parseGovernmentValue(value: string): asserts value is Government {
+	if (!Object.values(Governments).includes(value)) {
+		throw new Error('Invalid government value')
 	}
 }
 
