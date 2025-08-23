@@ -26,19 +26,22 @@ export class MorningState extends HTMLElement {
 
 	get day(): number {
 		const defaultValue = 1
-		try {
-			return parseDayValue(this.getAttribute('day'))
-		} catch {
+		const value = this.getAttribute('day')
+		if (!value) {
 			return defaultValue
 		}
+		const numericValue = parseInt(value, 10)
+		if (!Number.isSafeInteger(numericValue)) {
+			return defaultValue
+		}
+		if (numericValue < 1) {
+			return defaultValue
+		}
+		return numericValue
 	}
 
 	set day(value: unknown) {
-		try {
-			this.setAttribute('day', parseDayValue(value).toString())
-		} catch {
-			// Ignore the invalid value
-		}
+		this.setAttribute('day', toStringValue(value))
 	}
 
 	get government(): Government {
@@ -48,37 +51,33 @@ export class MorningState extends HTMLElement {
 			return defaultValue
 		}
 		const lowerCaseValue = value.toLowerCase()
-		try {
-			parseGovernmentValue(lowerCaseValue)
-		} catch {
+		if (
+			Governments.Democria !== lowerCaseValue &&
+			Governments.Republia !== lowerCaseValue
+		) {
 			return defaultValue
 		}
 		return lowerCaseValue
 	}
 
 	set government(value: unknown) {
-		if (typeof value !== 'string') {
-			return
-		}
-		try {
-			parseGovernmentValue(value.toLowerCase())
-			this.setAttribute('government', value)
-		} catch {
-			// Ignore the invalid value
-		}
+		this.setAttribute('government', toStringValue(value))
 	}
 
 	#render() {
+		const { day, government } = this
+
 		const logo = getElementById(this.#shadowRoot, 'logo')
 		if (!(logo instanceof HTMLImageElement)) {
 			throw new Error('Unexpected type for logo element')
 		}
-		logo.src = `/assets/${this.government === Governments.Republia ? 'logo' : 'logo2'}.png`
+		logo.src = `/assets/${government === Governments.Republia ? 'logo' : 'logo2'}.png`
 		logo.alt =
-			this.government === Governments.Republia
+			government === Governments.Republia
 				? 'The Republia Times'
 				: 'The Democria Times'
-		getElementById(this.#shadowRoot, 'day').textContent = `Day ${this.day}`
+
+		getElementById(this.#shadowRoot, 'day').textContent = `Day ${day}`
 	}
 
 	attributeChangedCallback() {
@@ -98,29 +97,9 @@ declare global {
 	}
 }
 
-function parseGovernmentValue(value: string): asserts value is Government {
-	if (!Object.values(Governments).includes(value)) {
-		throw new Error('Invalid government value')
-	}
-}
-
-function parseDayValue(value: unknown) {
-	let numericValue: number | undefined
+function toStringValue(value: unknown) {
 	if (typeof value === 'string') {
-		numericValue = parseInt(value, 10)
-	} else if (typeof value === 'number') {
-		numericValue = value
-	} else {
-		throw new Error('Invalid day value type')
+		return value
 	}
-	if (!Number.isSafeInteger(numericValue)) {
-		throw new Error('Non-safe integer day value')
-	}
-	if (numericValue < 1) {
-		throw new Error('Invalid day value')
-	}
-	if (numericValue.toString() !== value.toString()) {
-		throw new Error('Non-integer day value')
-	}
-	return numericValue
+	return `${value}`
 }
