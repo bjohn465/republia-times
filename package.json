@@ -7,15 +7,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "run-s build:clean build:code",
+    "build:clean": "tsc --build --clean",
+    "build:code": "tsc --project tsconfig.build.json",
     "dev": "run-p --race watch serve:dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings 0",
     "serve:dev": "wrangler pages dev",
+    "test:browser": "vitest --browser.headless",
+    "test:browser:run": "npm run test:browser -- --run",
+    "test:browser:ui": "vitest",
     "typecheck": "tsc --noEmit",
-    "validate": "run-s format:check lint typecheck",
-    "watch": "tsc --watch"
+    "validate": "run-s format:check lint typecheck test:browser:run",
+    "watch": "npm run build:code -- --watch"
   },
   "eslintIgnore": [
     "/node_modules",
@@ -23,10 +28,13 @@
   ],
   "devDependencies": {
     "@epic-web/config": "^1.21.3",
+    "@vitest/browser": "^3.2.4",
     "eslint": "^9.34.0",
     "npm-run-all": "^4.1.5",
+    "playwright": "^1.55.0",
     "prettier": "3.6.2",
     "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
     "wrangler": "^4.32.0"
   },
   "engines": {
