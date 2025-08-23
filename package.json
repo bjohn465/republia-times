@@ -15,6 +15,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings 0",
     "serve:dev": "wrangler pages dev",
+    "test": "npm run test:browser:run",
     "test:browser": "vitest --browser.headless",
     "test:browser:run": "npm run test:browser -- --run",
     "test:browser:ui": "vitest",
