@@ -1,4 +1,7 @@
 {
 	"compatibility_date": "2025-08-09",
 	"pages_build_output_dir": "./public",
+	"dev": {
+		"ip": "127.0.0.1",
+	},
 }
