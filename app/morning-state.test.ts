@@ -21,7 +21,7 @@ test('handles the day number correctly', () => {
 	expect(element).toHaveAttribute('day', '0')
 	expect(element).toHaveProperty('day', 1)
 
-	element.day = '-1'
+	element.day = -1
 	expect(dayHeading).toHaveTextContent('Day 1')
 	expect(element).toHaveAttribute('day', '-1')
 	expect(element).toHaveProperty('day', 1)
@@ -36,7 +36,7 @@ test('handles the day number correctly', () => {
 	expect(element).toHaveAttribute('day', '2')
 	expect(element).toHaveProperty('day', 2)
 
-	element.day = '3'
+	element.setAttribute('day', '3')
 	expect(dayHeading).toHaveTextContent('Day 3')
 	expect(element).toHaveAttribute('day', '3')
 	expect(element).toHaveProperty('day', 3)
@@ -87,14 +87,14 @@ test('handles the government value correctly', () => {
 	expect(element).toHaveAttribute('government', 'REPUBLIA')
 	expect(element).toHaveProperty('government', 'republia')
 
-	element.government = 'invalid'
+	element.setAttribute('government', 'invalid')
 	expect(logo).toHaveAttribute('src', '/assets/logo.png')
 	expect(logo).toHaveAccessibleName('The Republia Times')
 	expect(heading).toHaveAccessibleName('The Republia Times')
 	expect(element).toHaveAttribute('government', 'invalid')
 	expect(element).toHaveProperty('government', 'republia')
 
-	element.government = ''
+	element.setAttribute('government', '')
 	expect(logo).toHaveAttribute('src', '/assets/logo.png')
 	expect(logo).toHaveAccessibleName('The Republia Times')
 	expect(heading).toHaveAccessibleName('The Republia Times')

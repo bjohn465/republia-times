@@ -40,7 +40,7 @@ export class MorningState extends HTMLElement {
 		return numericValue
 	}
 
-	set day(value: unknown) {
+	set day(value: number) {
 		this.setAttribute('day', toStringValue(value))
 	}
 
@@ -60,7 +60,7 @@ export class MorningState extends HTMLElement {
 		return lowerCaseValue
 	}
 
-	set government(value: unknown) {
+	set government(value: Government) {
 		this.setAttribute('government', toStringValue(value))
 	}
 
