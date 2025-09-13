@@ -1,10 +1,10 @@
 import { page } from '@vitest/browser/context'
-import { expect, test } from 'vitest'
+import { test } from '../test-utils/extended-test.ts'
 import './morning-state.ts'
 
-test('handles the day number correctly', () => {
+test('handles the day number correctly', ({ expect, renderElement }) => {
 	const element = document.createElement('morning-state')
-	document.body.replaceChildren(element)
+	renderElement(element)
 	const dayHeading = page.getByRole('heading', { level: 2 })
 
 	expect(dayHeading).toHaveTextContent('Day 1')
@@ -47,9 +47,9 @@ test('handles the day number correctly', () => {
 	expect(element).toHaveProperty('day', 3)
 })
 
-test('handles the government value correctly', () => {
+test('handles the government value correctly', ({ expect, renderElement }) => {
 	const element = document.createElement('morning-state')
-	document.body.replaceChildren(element)
+	renderElement(element)
 	const heading = page.getByRole('heading', { level: 1 })
 	const logo = heading.getByRole('img')
 
