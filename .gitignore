@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 public/app
+public/test-utils
 .env
 .cache
 .wrangler
