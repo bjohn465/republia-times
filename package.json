@@ -38,7 +38,8 @@
     "prettier": "3.6.2",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4",
-    "wrangler": "^4.40.1"
+    "wrangler": "^4.40.1",
+    "vite": "npm:rolldown-vite@7.1.13"
   },
   "engines": {
     "node": ">=24.8.0 <25",
