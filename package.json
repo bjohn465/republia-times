@@ -7,23 +7,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "run-s build:clean build:code",
-    "build:clean": "tsc --build --clean",
-    "build:code": "tsc --project tsconfig.build.json",
-    "dev": "run-p --race watch serve:dev",
+    "build": "vite build",
+    "dev": "vite",
     "docker": "docker compose run --rm --service-ports dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings 0",
-    "serve:dev": "wrangler pages dev",
+    "preview": "vite preview",
     "test": "npm run test:browser:run",
     "test:browser": "vitest --browser.headless",
     "test:browser:install": "npx playwright install --with-deps chromium",
     "test:browser:run": "npm run test:browser -- --run",
     "test:browser:ui": "vitest",
     "typecheck": "tsc --noEmit",
-    "validate": "run-s format:check lint typecheck test:browser:run",
-    "watch": "npm run build:code -- --watch"
+    "validate": "run-s format:check lint typecheck test:browser:run"
   },
   "eslintIgnore": [
     "/node_modules",
@@ -38,7 +35,6 @@
     "prettier": "3.6.2",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4",
-    "wrangler": "^4.40.1",
     "vite": "npm:rolldown-vite@7.1.13"
   },
   "engines": {

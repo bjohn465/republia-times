@@ -1,3 +1,5 @@
+import republiaTimesLogo from '../assets/logo.png'
+import democriaTimesLogo from '../assets/logo2.png'
 import { createTemplate, getElementById, html } from './templates.ts'
 
 const Governments = Object.freeze({
@@ -71,7 +73,10 @@ export class MorningState extends HTMLElement {
 		if (!(logo instanceof HTMLImageElement)) {
 			throw new Error('Unexpected type for logo element')
 		}
-		logo.src = `/assets/${government === Governments.Republia ? 'logo' : 'logo2'}.png`
+		logo.src =
+			government === Governments.Republia
+				? republiaTimesLogo
+				: democriaTimesLogo
 		logo.alt =
 			government === Governments.Republia
 				? 'The Republia Times'

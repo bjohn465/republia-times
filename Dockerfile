@@ -6,7 +6,8 @@
 ARG NODE_VERSION=24.8.0
 FROM node:${NODE_VERSION}-trixie-slim as base
 WORKDIR /usr/src/app
-EXPOSE 8788
+EXPOSE 5173
+EXPOSE 4173
 
 FROM base as dev
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
