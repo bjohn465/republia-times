@@ -7,9 +7,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "run-s build:clean build:code",
-    "build:clean": "tsc --build --clean",
-    "build:code": "tsc --project tsconfig.build.json",
+    "build": "rolldown --config rolldown.config.ts",
     "dev": "run-p --race watch serve:dev",
     "docker": "docker compose run --rm --service-ports dev",
     "format": "prettier --write .",
@@ -23,7 +21,7 @@
     "test:browser:ui": "vitest",
     "typecheck": "tsc --noEmit",
     "validate": "run-s format:check lint typecheck test:browser:run",
-    "watch": "npm run build:code -- --watch"
+    "watch": "npm run build -- --watch"
   },
   "eslintIgnore": [
     "/node_modules",
