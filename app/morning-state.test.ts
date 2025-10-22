@@ -1,4 +1,4 @@
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { test } from '../test-utils/extended-test.ts'
 import './morning-state.ts'
 
