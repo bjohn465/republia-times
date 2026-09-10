@@ -4,6 +4,9 @@ import { config as epicWebConfig } from '@epic-web/config/eslint'
 export default [
 	...epicWebConfig,
 	{
+		ignores: ['.ms-playwright/'],
+	},
+	{
 		linterOptions: {
 			reportUnusedDisableDirectives: 'warn',
 			reportUnusedInlineConfigs: 'warn',

@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Republia Times Dev Container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:5-24-trixie",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/node:2": {
+			"version": "24.21.0"
+		},
+		"ghcr.io/jsburckhardt/devcontainer-features/delta:1": {
+			"version": "0.19.2"
+		},
+		"ghcr.io/postfinance/devcontainer-features/playwright-deps:2": {
+			"installChromiumDeps": true
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": ["8788:8788"],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm run test:browser:install",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+	"containerEnv": {
+		"PLAYWRIGHT_BROWSERS_PATH": "${containerWorkspaceFolder}/.ms-playwright"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"mhutchie.git-graph",
+				"google.google-antigravity",
+				"esbenp.prettier-vscode",
+				"stylelint.vscode-stylelint"
+			]
+		}
+	}
+}

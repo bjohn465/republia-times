@@ -2,6 +2,7 @@ node_modules
 
 /dist
 .env
+/.ms-playwright
 
 /test-results/
 /playwright-report/
@@ -9,3 +10,5 @@ node_modules
 /coverage
 
 package-lock.json
+
+/.devcontainer/devcontainer-lock.json

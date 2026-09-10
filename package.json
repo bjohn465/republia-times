@@ -25,10 +25,6 @@
     "validate": "run-s format:check lint typecheck test:browser:run",
     "watch": "npm run build:code -- --watch"
   },
-  "eslintIgnore": [
-    "/node_modules",
-    "/public/app"
-  ],
   "devDependencies": {
     "@epic-web/config": "^1.24.1",
     "@vitest/browser": "^5.0.0",
