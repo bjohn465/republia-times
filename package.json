@@ -1,45 +1,41 @@
 {
   "name": "republia-times",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A port of the flash game Republia Times to the web.",
   "author": "Brandon Johnson <bjohn465+github@gmail.com>",
   "license": "ISC",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "run-s build:clean build:code",
-    "build:clean": "tsc --build --clean",
-    "build:code": "tsc --project tsconfig.build.json",
-    "dev": "run-p --race watch serve:dev",
-    "docker": "docker compose run --rm --service-ports dev",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint . --max-warnings 0",
-    "serve:dev": "wrangler pages dev",
-    "test": "npm run test:browser:run",
-    "test:browser": "vitest --browser.headless",
-    "test:browser:install": "npx playwright install --with-deps chromium",
-    "test:browser:run": "npm run test:browser -- --run",
-    "test:browser:ui": "vitest",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint --max-warnings=0",
+    "lint:fix": "oxlint --fix",
     "typecheck": "tsc --noEmit",
-    "validate": "run-s format:check lint typecheck test:browser:run",
-    "watch": "npm run build:code -- --watch"
+    "test": "remix test",
+    "validate": "run-s format:check lint typecheck test",
+    "playwright:install": "npx playwright install --with-deps chromium"
   },
   "devDependencies": {
-    "@epic-web/config": "^1.24.1",
-    "@vitest/browser": "^5.0.1",
-    "@vitest/browser-playwright": "^5.0.1",
-    "eslint": "^10.11.0",
+    "@epic-web/config": "^3.2.1",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "@types/node": "^24.13.6",
     "npm-run-all": "^4.1.5",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
+    "oxlint-tsgolint": "^7.0.2002",
     "playwright": "^1.63.0",
-    "prettier": "3.9.8",
-    "typescript": "^6.0.3",
-    "vite": "^8.3.0",
-    "vitest": "^5.0.1",
-    "wrangler": "^4.136.0"
+    "typescript": "~6.0.3",
+    "vite": "^8.3.0"
   },
   "engines": {
     "node": ">=24.21.0 <25",
     "npm": ">=11.19.0 <12"
+  },
+  "dependencies": {
+    "remix": "^3.0.0-rc.3"
   }
 }

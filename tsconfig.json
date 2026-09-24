@@ -1,18 +1,32 @@
 {
-	"include": ["**/*.ts"],
 	"compilerOptions": {
+		"target": "es2023",
+		"module": "esnext",
+		"lib": ["ES2023", "DOM"],
+		"types": ["vite/client"],
+		"allowArbitraryExtensions": true,
+		"skipLibCheck": true,
+		"strict": true,
+
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
+		"moduleDetection": "force",
+		"noEmit": true,
+
+		/* Linting */
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"erasableSyntaxOnly": true,
+		"noFallthroughCasesInSwitch": true,
+
+		"noUncheckedIndexedAccess": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
-		"lib": ["ES2024", "DOM", "DOM.Iterable"],
-		"module": "node20",
-		"moduleResolution": "node16",
-		"noEmit": false,
-		"noUncheckedIndexedAccess": true,
-		"outDir": "public",
-		"rewriteRelativeImportExtensions": true,
-		"rootDir": ".",
-		"strict": true,
-		"skipLibCheck": true,
-		"target": "ES2022"
-	}
+
+		"jsx": "react-jsx",
+		"jsxImportSource": "remix/ui"
+	},
+	"include": ["src", "vite.config.ts"]
 }

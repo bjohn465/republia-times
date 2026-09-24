@@ -8,15 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-public/app
-public/test-utils
-.env
-.cache
-.wrangler
+dist
+dist-ssr
+*.local
 .ms-playwright
-
-# Easy way to create temporary files/folders that won't accidentally be added to git
-*.local.*
 
 # Editor directories and files
 .vscode/*

@@ -19,10 +19,10 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": ["8788:8788"],
+	"forwardPorts": ["44100:44100"],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm run test:browser:install",
+	"postCreateCommand": "npm run playwright:install",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -39,8 +39,7 @@
 				"streetsidesoftware.code-spell-checker",
 				"mhutchie.git-graph",
 				"google.google-antigravity",
-				"esbenp.prettier-vscode",
-				"stylelint.vscode-stylelint"
+				"oxc.oxc-vscode"
 			]
 		}
 	}
