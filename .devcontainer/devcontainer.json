@@ -19,7 +19,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": ["44100:44100"],
+	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "npm run playwright:install",
