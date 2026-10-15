@@ -11,7 +11,7 @@
 			"version": "24.22.0"
 		},
 		"ghcr.io/jsburckhardt/devcontainer-features/delta:1": {
-			"version": "0.19.2"
+			"version": "0.20.1"
 		},
 		"ghcr.io/postfinance/devcontainer-features/playwright-deps:2": {
 			"installChromiumDeps": true
