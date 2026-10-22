@@ -51,14 +51,18 @@ describe(`Republia Times (${mode})`, () => {
 		if (mode === 'production') await build({ root, logLevel: 'silent' })
 	})
 
-	it('displays day 1 morning page', async (t) => {
+	it('works through starting a work day', async (t) => {
 		let page = await t.serve(await createViteTestServer())
 
 		await page.goto('/')
 		await page
-			.getByRole('heading', { level: 1, name: 'The Republia Times' })
+			.getByRole('heading', { level: 1, name: /The Republia Times/i })
 			.waitFor()
-		await page.getByRole('heading', { level: 2, name: 'Day 1' }).waitFor()
+		await page.getByRole('heading', { level: 2, name: /day 1/i }).waitFor()
+		await page.getByRole('button', { name: /start work/i }).click()
+
+		await page.getByRole('heading', { level: 1, name: /day 1/i }).waitFor()
+		await page.getByRole('heading', { level: 2, name: /news feed/i }).waitFor()
 	})
 
 	it('displays 404 page on unknown URL', async (t) => {
