@@ -2,6 +2,7 @@ import { createRouter, type RouterContext } from 'remix/router'
 import { render } from 'remix/spa'
 
 import rootController from './actions/controller.tsx'
+import morningController from './actions/morning/controller.tsx'
 import { NotFoundPage } from './actions/pages.tsx'
 import { routes } from './routes.ts'
 
@@ -21,3 +22,4 @@ declare module 'remix' {
 }
 
 router.map(routes, rootController)
+router.map(routes.morning, morningController)
