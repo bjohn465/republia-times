@@ -26,7 +26,13 @@ export function MorningPage() {
 					in a safe location.
 				</p>
 
-				<button type="button">Start Work</button>
+				<form
+					action={routes.morning.startWork.href()}
+					data-rmx-history="replace"
+					method={routes.morning.startWork.method}
+				>
+					<button type="submit">Start Work</button>
+				</form>
 			</main>
 			<footer>
 				<p>
