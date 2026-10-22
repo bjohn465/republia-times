@@ -5,4 +5,7 @@ export const routes = route({
 	morning: {
 		show: get('/morning'),
 	},
+	work: {
+		show: get('/work'),
+	},
 })
