@@ -63,6 +63,39 @@ describe(`Republia Times (${mode})`, () => {
 
 		await page.getByRole('heading', { level: 1, name: /day 1/i }).waitFor()
 		await page.getByRole('heading', { level: 2, name: /news feed/i }).waitFor()
+
+		const paperItems = page
+			.getByRole('list', { name: /the republia times/i })
+			.getByRole('listitem')
+		assert.equal(await paperItems.count(), 0)
+		const feedItems = page
+			.getByRole('list', { name: /news feed/i })
+			.getByRole('listitem')
+		const startingFeedItemCount = await feedItems.count()
+		const feedItem = feedItems.first()
+		assert.equal(
+			await feedItem.evaluate((el) => window.getComputedStyle(el).opacity),
+			'1',
+		)
+		const addButton = feedItem.getByRole('button', { name: /add/i })
+		await addButton.click()
+		assert.equal(await addButton.isDisabled(), true)
+		assert.equal(
+			await feedItem.evaluate((el) => window.getComputedStyle(el).opacity),
+			'0.55',
+		)
+		assert.equal(await paperItems.count(), 1)
+		assert.equal(await feedItems.count(), startingFeedItemCount)
+		await paperItems
+			.first()
+			.getByRole('button', { name: /remove/i })
+			.click()
+		assert.equal(await addButton.isDisabled(), false)
+		assert.equal(
+			await feedItem.evaluate((el) => window.getComputedStyle(el).opacity),
+			'1',
+		)
+		assert.equal(await paperItems.count(), 0)
 	})
 
 	it('displays 404 page on unknown URL', async (t) => {
